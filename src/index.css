@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Roc Grotesk';
+  src: url('https://cdn.prod.website-files.com/67f76ea15593a44f3a57fe4b/67f8e7f5046d43a5abaa3ee1_Kostic%20-%20Roc%20Grotesk%20Regular.otf')
+    format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roc Grotesk';
+  src: url('https://cdn.prod.website-files.com/67f76ea15593a44f3a57fe4b/67f8e7db71b5b3e4e040d269_Kostic%20-%20Roc%20Grotesk%20Bold.otf')
+    format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roc Grotesk';
+  src: url('https://cdn.prod.website-files.com/67f76ea15593a44f3a57fe4b/67f8e7db745341cb00674262_Kostic%20-%20Roc%20Grotesk%20Black.otf')
+    format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --_colors---blanco: #f4f3e6;
+  --_colors---verde: #0a4635;
+  --_colors---rojo: #e54d3a;
+  --_colors---azul: #28306c;
+  --_colors---amarillo: #ffc62d;
+}
+* {
+  cursor: none !important;
+}
+
+body {
+  background-color: var(--_colors---blanco);
+  color: var(--_colors---verde);
+  min-height: 100%;
+  margin: 0;
+  font-family: 'Roc Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: normal;
+  /* letter-spacing: 0.06em; */
+}
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Cursor styles for data-cursor elements */
+[data-cursor] {
+  cursor: none !important;
+}
