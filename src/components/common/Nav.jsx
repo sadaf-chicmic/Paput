@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import images from '../../assets/images';
+import { ROUTES } from '../../constants/routes';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -14,12 +15,12 @@ export default function Nav() {
   }, [open]);
 
   const menuItems = [
-    { name: 'HACER PEDIDO', href: '#' },
-    { name: 'DELIVERY', href: '#' },
-    { name: 'ABOUT PAPUT', href: '/about' },
-    { name: 'STORE', href: '#' },
-    { name: 'EVENTS', href: '#' },
-    { name: 'LARGE ORDERS', href: '#' },
+    { name: 'HACER PEDIDO', href: ROUTES.ORDER },
+    { name: 'DELIVERY', href: ROUTES.DELIVERY },
+    { name: 'SOBRE PAPUT', href: ROUTES.ABOUT },
+    { name: 'TIENDA', href: ROUTES.SHOP },
+    { name: 'EVENTOS', href: ROUTES.EVENTS },
+    { name: 'PEDIDOS GRANDES', href: ROUTES.BIG_ORDERS },
   ];
 
   const staggerVariants = {

@@ -4,158 +4,305 @@ import {
   staggerContainer,
   fadeInLeft,
   fadeInRight,
-  fadeInUp2,
+  fadeZoom,
 } from '../constants/utils';
 import { motion } from 'framer-motion';
-import './About.css';
 
-const Polaroid = ({ src, alt, rotation = 'rot-left', className = '' }) => (
-  <motion.div
-    variants={fadeInUp}
-    className={`polaroid ${rotation} ${className}`}
-    whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
+  <div
+    className={`p-3 inline-block transition-transform duration-300  max-w-[300px] ${rotation} ${className}`}
   >
-    <div className="polaroid-img-wrapper" data-cursor>
-      <img src={src} alt={alt} />
-    </div>
-  </motion.div>
+    <img src={src} alt={alt} className=" w-full object-cover" />
+  </div>
 );
 
 export default function About() {
   return (
-    <div className="about-container">
-      {/* Section 1 */}
-      <motion.section
-        className="about-section"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <motion.p className="about-text" variants={fadeInLeft}>
-          Paput es un restaurante chiringuito en el Puerto de Mahón, en la isla
-          de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos hacer,{' '}
-          <span className="emphasis">hamburguesas.</span>
-        </motion.p>
-        <div className="about-images">
-          <Polaroid
-            src={images.image1}
-            alt="Burgers"
-            rotation="rot-right-more"
-          />
-        </div>
-      </motion.section>
-
-      {/* Section 2 */}
-      <motion.section
-        className="about-section reverse"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <motion.p className="about-text" variants={fadeInRight}>
-          En temporada, lo celebramos todo, montamos fiestas e inventamos
-          santos, con sesiones de <span className="emphasis">DJs en vivo</span>{' '}
-          para ambientar el lugar con buena música y mejorar tu experiencia.
-        </motion.p>
-        <div className="about-images">
-          <Polaroid src={images.image2} alt="People" rotation="rot-left" />
-          <Polaroid src={images.image3} alt="Beach" rotation="rot-right" />
-        </div>
-      </motion.section>
-
-      {/* SOMOS TODO ESTO */}
-      <motion.section
-        className="grid-section"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.h2 variants={fadeInUp}>SOMOS TODO ESTO</motion.h2>
-        <div className="polaroid-grid">
-          <Polaroid src={images.image4} alt="Info 1" rotation="rot-left" />
-          <Polaroid
-            src={images.image5}
-            alt="Info 2"
-            rotation="rot-right-more"
-          />
-          <Polaroid src={images.image6} alt="Info 3" rotation="rot-left-more" />
-          <Polaroid src={images.image7} alt="Info 4" rotation="rot-right" />
-        </div>
-      </motion.section>
-
-      {/* MUCHO DE ESTO */}
-      <motion.section
-        className="grid-section"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.h2 variants={fadeInUp}>MUCHO DE ESTO</motion.h2>
-        <div className="polaroid-grid polaroid-grid-6">
-          <Polaroid src={images.image8} alt="Food 1" rotation="rot-right" />
-          <Polaroid src={images.image9} alt="Food 2" rotation="rot-left-more" />
-          <Polaroid
-            src={images.image10}
-            alt="Food 3"
-            rotation="rot-right-more"
-          />
-          <Polaroid src={images.image11} alt="Food 4" rotation="rot-left" />
-          <Polaroid src={images.image12} alt="Food 5" rotation="rot-right" />
-          <Polaroid
-            src={images.image13}
-            alt="Food 6"
-            rotation="rot-left-more"
-          />
-        </div>
-      </motion.section>
-
-      {/* Y SOBRETODO DE ESTOS */}
-      <motion.section
-        className="grid-section"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.h2 variants={fadeInUp}>Y SOBRETODO DE ESTOS</motion.h2>
-        <div className="polaroid-grid">
-          <Polaroid src={images.image14} alt="Pet 1" rotation="rot-left-more" />
-          <Polaroid src={images.image15} alt="Pet 2" rotation="rot-right" />
-          <Polaroid
-            src={images.image16}
-            alt="Pet 3"
-            rotation="rot-right-more"
-          />
-          <Polaroid src={images.image17} alt="Pet 4" rotation="rot-left" />
-        </div>
-      </motion.section>
-
-      {/* Footer text and button */}
-      <motion.footer
-        className="about-footer"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.p className="about-footer-text" variants={fadeInUp2}>
-          Paput no es solo un sitio para venir a comer, pasar el rato y escuchar
-          buena música. Ahora también te lo llevamos a casa.
-        </motion.p>
-        <motion.button
-          className="order-btn"
-          data-cursor
-          variants={fadeInUp2}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+    <>
+      <div className="mx-auto pb-32 px-40 flex flex-col gap-32 overflow-x-hidden font-['Roc_Grotesk'] text-[#0a4635] pt-[18vh]">
+        {/* Section 1 */}
+        <motion.section
+          className="flex flex-col md:flex-row items-center justify-between gap-16"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
         >
-          HACER PEDIDO
-        </motion.button>
-      </motion.footer>
-    </div>
+          <motion.p
+            className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
+            variants={fadeInLeft}
+          >
+            Paput es un restaurante chiringuito en el Puerto de Mahón, en la
+            isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos
+            hacer, <span className=" font-black mt-2">hamburguesas.</span>
+          </motion.p>
+          <motion.div
+            variants={fadeInRight}
+            className="flex-1 flex justify-center md:justify-end pr-10"
+          >
+            <Polaroid src={images.image1} alt="Burgers" rotation="rotate-8" />
+          </motion.div>
+        </motion.section>
+
+        {/* Section 2 */}
+        <motion.section
+          className="flex flex-col md:flex-row-reverse items-center justify-between gap-16"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
+        >
+          <motion.p
+            className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
+            variants={fadeInRight}
+          >
+            En temporada, lo celebramos todo, montamos fiestas e inventamos
+            santos, con sesiones de{' '}
+            <span className=" font-black mt-2">DJs en vivo</span> para ambientar
+            el lugar con buena música y mejorar tu experiencia.
+          </motion.p>
+          <motion.div
+            variants={fadeInLeft}
+            className="flex-1 flex justify-center md:justify-start -space-x-12 md:-space-x-16"
+          >
+            <Polaroid src={images.image2} alt="People 1" rotation="rotate-8" />
+            <Polaroid
+              src={images.image3}
+              alt="People 2"
+              rotation="-rotate-6"
+              className="mt-8"
+            />
+          </motion.div>
+        </motion.section>
+
+        {/* SOMOS TODO ESTO */}
+        <motion.section
+          className="flex flex-col items-center gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
+        >
+          <h2 className="text-[40px] font-black uppercase ">SOMOS TODO ESTO</h2>
+          <div className="flex justify-center -space-x-16 md:-space-x-12">
+            <motion.section
+              variants={fadeInLeft}
+              className="-space-x-16 md:-space-x-12"
+            >
+              <Polaroid
+                src={images.image4}
+                alt="Info 1"
+                rotation="-rotate-10"
+                className="mt-12"
+              />
+              <Polaroid
+                src={images.image5}
+                alt="Info 2"
+                rotation="rotate-2"
+                className="-mt-12"
+              />
+            </motion.section>
+            <motion.section
+              variants={fadeInRight}
+              className="-space-x-16 md:-space-x-12"
+            >
+              <Polaroid
+                src={images.image6}
+                alt="Info 3"
+                rotation="-rotate-12"
+                className="-mt-12"
+              />
+              <Polaroid
+                src={images.image7}
+                alt="Info 4"
+                rotation="rotate-6"
+                className="mt-12"
+              />
+            </motion.section>
+          </div>
+        </motion.section>
+
+        {/* MUCHO DE ESTO */}
+        <motion.section
+          className="flex flex-col items-center gap-16"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
+        >
+          <h2 className="text-[40px] font-black uppercase ">MUCHO DE ESTO</h2>
+          <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-14 lg:-space-x-16 px-8 mt-12">
+            <Polaroid
+              src={images.image8}
+              alt="Food 1"
+              rotation="rotate-6"
+              className="-mt-4"
+            />
+            <motion.section
+              variants={fadeInLeft}
+              className="-space-x-16 md:-space-x-12"
+            >
+              <Polaroid
+                src={images.image9}
+                alt="Food 2"
+                rotation="-rotate-6"
+                className="mt-6"
+              />
+              <Polaroid
+                src={images.image10}
+                alt="Food 3"
+                rotation="rotate-8"
+                className="-mb-6"
+              />
+            </motion.section>
+            <motion.section
+              variants={fadeInRight}
+              className="-space-x-16 md:-space-x-12"
+            >
+              <Polaroid
+                src={images.image11}
+                alt="Food 4"
+                rotation="-rotate-6"
+                className="mb-14"
+              />
+              <Polaroid
+                src={images.image12}
+                alt="Food 5"
+                rotation="rotate-8"
+                className="mt-2"
+              />
+            </motion.section>
+            <Polaroid
+              src={images.image13}
+              alt="Food 6"
+              rotation="-rotate-8"
+              className="mt-0"
+            />
+          </div>
+        </motion.section>
+
+        {/* Y SOBRETODO DE ESTOS */}
+        <motion.section
+          className="flex flex-col items-center gap-12 mt-12"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
+        >
+          <h2 className="text-[40px] font-black uppercase  text-center">
+            Y SOBRETODO DE ESTOS
+          </h2>
+          <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-3">
+            <motion.section
+              variants={fadeInLeft}
+              className="-space-x-16 md:-space-x-8"
+            >
+              <Polaroid
+                src={images.image14}
+                alt="Pet 1"
+                rotation="-rotate-12"
+                className="-mt-8"
+              />
+              <Polaroid
+                src={images.image15}
+                alt="Pet 2"
+                rotation="rotate-8"
+                className="mt-8"
+              />
+            </motion.section>
+            <motion.section
+              variants={fadeInRight}
+              className="-space-x-16 md:-space-x-12"
+            >
+              <Polaroid
+                src={images.image16}
+                alt="Pet 3"
+                rotation="-rotate-9"
+                className="-mt-8 text-center"
+              />
+              <Polaroid
+                src={images.image17}
+                alt="Pet 4"
+                rotation="rotate-12"
+                className="mt-12"
+              />
+            </motion.section>
+          </div>
+        </motion.section>
+
+        {/* Footer */}
+        <motion.section
+          className="flex flex-col items-center gap-12 text-center mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-100px' }}
+        >
+          <motion.p
+            className="flex-1 text-[30px]  leading-[1.1] max-w-[70vw]"
+            variants={fadeInUp}
+          >
+            Paput no es solo un sitio para venir a comer, pasar el rato y
+            escuchar buena música. Ahora también te lo llevamos a casa.
+          </motion.p>
+          <motion.button
+            data-cursor
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="h-16 px-12 bg-[#ffc62d] text-[#0a4635] font-black text-2xl rounded-full shadow-2xl uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
+          >
+            HACER PEDIDO
+          </motion.button>
+        </motion.section>
+      </div>
+
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: '-100px' }}
+        className="relative flex flex-col md:flex-row items-center bg-[#ffc62d] text-[#0a4635] px-10 md:px-32 py-24 md:py-40 min-h-[500px] md:min-h-[75vh] overflow-hidden"
+      >
+        <motion.div
+          variants={fadeInLeft}
+          className="flex flex-col gap-6 md:gap-4 max-w-full md:max-w-[50%] z-10"
+        >
+          <h2 className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] xl:text-[115px] font-black uppercase leading-[0.8] tracking-tighter">
+            SI QUIERES UNIRTE <br /> AL EQUIPO
+          </h2>
+          <p className="text-[17px] md:text-[22px] leading-tight font-medium max-w-[90%] mt-6">
+            Escríbenos a{' '}
+            <span
+              className="font-black underline decoration-2 underline-offset-4"
+              data-cursor
+            >
+              rrhh@paputmenorca.com
+            </span>
+            , adjunta tu curriculum y cuéntanos algo de tí!
+          </p>
+          <motion.button
+            data-cursor
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="h-14 px-10 bg-transparent text-[#0a4635] font-black text-lg border-[2px] border-[#0a4635] w-fit rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300 mt-10"
+          >
+            CONTÁCTANOS
+          </motion.button>
+        </motion.div>
+        <motion.div
+          variants={fadeInRight}
+          className="absolute bottom-0 right-0 w-[70%] md:w-[50%] lg:w-[45%] flex justify-end items-end pointer-events-none select-none "
+        >
+          <motion.img
+            variants={fadeZoom}
+            src={images.aboutImg}
+            alt="image-about"
+            className="w-full h-auto object-contain"
+          />
+        </motion.div>
+      </motion.section>
+    </>
   );
 }

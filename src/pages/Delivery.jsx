@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import images from '../assets/images';
-import { fadeInUp, fadeInUp2, staggerContainer, fadeInLeft, fadeInRight } from '../constants/utils';
+import { fadeInUp, staggerContainer, fadeInLeft, fadeInRight } from '../constants/utils';
 
 export default function Delivery() {
   return (
@@ -12,7 +12,7 @@ export default function Delivery() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            // viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: false, margin: '-100px' }}
             className="w-full flex flex-col items-center gap-12 px-6 mb-20"
           >
             <motion.img
@@ -32,7 +32,7 @@ export default function Delivery() {
               HACER PEDIDO
             </motion.button>
 
-            <motion.div variants={fadeInUp} className="w-full">
+            <motion.div variants={fadeInUp} viewport={{ once: false, margin: '-100px' }} className="w-full">
               <img
                 src={images.map}
                 alt="Delivery Map"
@@ -48,6 +48,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
+        viewport={{once:false,margin:'-100px'}}
         className="w-full flex flex-col items-start gap-15 px-6 md:px-12 lg:px-16 mx-auto"
       >
         <div className="w-full flex flex-col lg:flex-row justify-between items-start">
@@ -86,7 +87,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        // viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, margin: '-100px' }}
         className="w-full flex justify-center"
       >
         <motion.img
@@ -102,7 +103,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        // viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: false, margin: '-100px' }}
         className="w-full flex flex-col gap-16 px-6 md:px-12 lg:px-16 mx-auto mb-40"
       >
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
@@ -110,7 +111,7 @@ export default function Delivery() {
             OPCIONES DE SERVICIO
           </p>
           <motion.p
-            variants={fadeInUp2}
+            variants={fadeInUp}
             className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
           >
             Recoge tu pedido en el local <br className="hidden md:block" /> O
@@ -123,7 +124,7 @@ export default function Delivery() {
             PIDE PAPUT A DOMICILIO FÁCIL Y RÁPIDO
           </p>
           <motion.p
-            variants={fadeInUp2}
+            variants={fadeInUp}
             className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
           >
             A través de nuestra web O por{' '}
@@ -144,13 +145,13 @@ export default function Delivery() {
               Y SI PREFIERES COMER EN EL LOCAL
             </p>
             <motion.p
-              variants={fadeInUp2}
+              variants={fadeInUp}
               className="text-[18px] lg:text-[25px] tracking-tight text-[#0a4635] leading-tight opacity-90"
             >
               Tenemos mesas para que disfrutes tu pedido en el momento 🍽️
             </motion.p>
             <motion.p
-              variants={fadeInUp2}
+              variants={fadeInUp}
               className="text-[18px] lg:text-[25px] text-[#0a4635] opacity-90"
             >
               *Solo para el nuevo local en Av. José Anselmo Clavé 35, Mahón.
