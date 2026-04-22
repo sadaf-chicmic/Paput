@@ -7,10 +7,12 @@ import Events from './pages/Events';
 import Shop from './pages/Shop';
 import LargeOrders from './pages/LargeOrders';
 import { ROUTES } from './constants/routes';
+import ScrollToTop from './components/common/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path={ROUTES.DELIVERY} element={<Delivery />} />
