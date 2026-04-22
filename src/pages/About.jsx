@@ -138,7 +138,7 @@ export default function About() {
           viewport={{ once: false, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase ">{S.MUCHO}</h2>
-          <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-14 lg:-space-x-16 px-8 mt-12">
+          <div className="flex flex-nowrap justify-center -space-x-10 md:-space-x-14 lg:-space-x-16 px-8 mt-12">
             <Polaroid
               src={images.image8}
               alt="Food 1"

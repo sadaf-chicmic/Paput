@@ -22,7 +22,13 @@ export default function Nav() {
   return (
     <>
       <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 z-[40] ">
-        <img src={images.paputGreen} alt="paputGreen" className="h-10" />
+        <img
+          src={images.paputGreen}
+          alt="paputGreen"
+          className="h-10 cursor-pointer"
+          data-cursor
+          onClick={() => navigate(ROUTES.ABOUT)}
+        />
 
         <div className="flex gap-8">
           <motion.button

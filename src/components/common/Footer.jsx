@@ -16,7 +16,9 @@ export default function Footer() {
           <img
             src={images.paputYellow}
             alt="PAPUT"
-            className="w-[180px] mb-6"
+            className="w-[180px] mb-6 cursor-pointer"
+            data-cursor
+            onClick={() => navigate(ROUTES.ABOUT)}
           />
           <div className="flex gap-4">
             {FOOTER_SOCIAL_ICONS.map((social, idx) => (
