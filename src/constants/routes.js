@@ -1,7 +1,9 @@
 export const ROUTES = {
+  LANDING: '/',
   DELIVERY: '/DELIVERY',
-  ABOUT: '/',
+  ABOUT: '/ABOUT',
   SHOP: '/SHOP',
   EVENTS: '/EVENTS',
   LARGE_ORDERS: '/LARGE_ORDERS',
+  ORDER: '/ORDER',
 };

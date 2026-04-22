@@ -3,6 +3,7 @@ import { ROUTES } from './routes';
 import { WHATSAPP_LINK, TIKTOK_LINK, INSTAGRAM_LINK } from './strings';
 
 export const MENU_ITEMS = [
+  { name: 'HACER PADIDO', href: ROUTES.ORDER },
   { name: 'DELIVERY', href: ROUTES.DELIVERY },
   { name: 'SOBRE PAPUT', href: ROUTES.ABOUT },
   { name: 'TIENDA', href: ROUTES.SHOP },

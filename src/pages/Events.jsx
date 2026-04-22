@@ -14,7 +14,7 @@ export default function Events() {
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      viewport={{ once: false, margin: '-100px' }}
+      viewport={{ once: true, margin: '-100px' }}
       className="w-full min-h-screen py-32 px-4 md:px-12 flex flex-col items-center"
     >
       <motion.section variants={fadeInUp2} className="w-full max-w-[90vw]">

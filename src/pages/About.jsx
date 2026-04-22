@@ -9,11 +9,8 @@ import {
 import { motion } from 'framer-motion';
 import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router';
-import {
-  HACER_PEDIDO,
-  CONTACTANOS,
-  ABOUT_STRINGS as S,
-} from '../constants/strings';
+import { CONTACTANOS, ABOUT_STRINGS as S } from '../constants/strings';
+import OrderButton from '../components/common/OrderButton';
 
 const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
   <div
@@ -24,8 +21,6 @@ const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
 );
 
 export default function About() {
-  const navigate = useNavigate();
-
   return (
     <>
       <div className="mx-auto pb-32 px-40 flex flex-col gap-32 overflow-x-hidden font-['Roc_Grotesk'] text-[#0a4635] pt-[18vh]">
@@ -35,7 +30,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <motion.p
             className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
@@ -58,7 +53,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <motion.p
             className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
@@ -88,7 +83,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase ">{S.SOMOS}</h2>
           <div className="flex justify-center -space-x-16 md:-space-x-12">
@@ -135,7 +130,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase ">{S.MUCHO}</h2>
           <div
@@ -209,7 +204,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase  text-center">
             {S.SOBRETODO}
@@ -258,7 +253,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <motion.p
             className="flex-1 text-[30px]  leading-[1.1] max-w-[70vw]"
@@ -266,16 +261,10 @@ export default function About() {
           >
             {S.FOOTER_TEXT}
           </motion.p>
-          <motion.button
-            data-cursor
+          <OrderButton
             variants={fadeInUp}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate(ROUTES.LARGE_ORDERS)}
-            className="h-16 px-12 bg-[#ffc62d] text-[#0a4635] font-black text-2xl rounded-full shadow-2xl uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
-          >
-            {HACER_PEDIDO}
-          </motion.button>
+            className="h-16 px-12 text-2xl tracking-tight"
+          />
         </motion.section>
       </div>
 
@@ -283,7 +272,7 @@ export default function About() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: true, margin: '-100px' }}
         className="relative flex flex-col md:flex-row items-center bg-[#ffc62d] text-[#0a4635] px-10 md:px-32 py-24 md:py-40 min-h-[500px] md:min-h-[75vh] overflow-hidden"
       >
         <motion.div

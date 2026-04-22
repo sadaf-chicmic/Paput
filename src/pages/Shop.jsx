@@ -24,7 +24,7 @@ export default function Shop() {
       initial="hidden"
       animate="visible"
       className="w-full min-h-screen pt-32 flex flex-col items-center"
-      viewport={{ once: false, margin: '-100px' }}
+      viewport={{ once: true, margin: '-100px' }}
     >
       <motion.section
         variants={fadeInUp2}

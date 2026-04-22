@@ -8,6 +8,7 @@ import Shop from './pages/Shop';
 import LargeOrders from './pages/LargeOrders';
 import { ROUTES } from './constants/routes';
 import ScrollToTop from './components/common/ScrollToTop';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path={ROUTES.LANDING} index element={<LandingPage />} />
           <Route path={ROUTES.DELIVERY} element={<Delivery />} />
           <Route path={ROUTES.ABOUT} element={<About />} />
           <Route path={ROUTES.EVENTS} element={<Events />} />

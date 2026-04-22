@@ -5,7 +5,7 @@ import { ROUTES } from '../../constants/routes';
 import { useNavigate } from 'react-router';
 import { staggerVariants, navFadeInUp } from '../../constants/utils';
 import { MENU_ITEMS, NAV_SOCIAL_ICONS } from '../../constants/nav';
-import { HACER_PEDIDO } from '../../constants/strings';
+import OrderButton from './OrderButton';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 z-[40] ">
+      <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 z-[40] bg-[var(--_colors---blanco)]">
         <img
           src={images.paputGreen}
           alt="paputGreen"
@@ -31,16 +31,11 @@ export default function Nav() {
         />
 
         <div className="flex gap-8">
-          <motion.button
-            data-cursor
+          <OrderButton
             variants={navFadeInUp}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate(ROUTES.LARGE_ORDERS)}
-            className="h-15 bg-[#ffc62d] text-[#0a4635] font-extrabold hover:bg-[#0a4635] hover:text-[#ffc62d] text-xl lg:text-xl px-6 rounded-full shadow-xl uppercase tracking-tight flex items-center justify-center transition-transform"
-          >
-            {HACER_PEDIDO}
-          </motion.button>
+            className="h-15 text-xl lg:text-xl px-6 tracking-tight"
+          />
+
           <button
             data-cursor
             onClick={() => setOpen(true)}

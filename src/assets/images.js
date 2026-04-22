@@ -52,7 +52,24 @@ import prod4 from './prod4.jpg';
 import prod5 from './prod5.jpg';
 import prod6 from './prod6.jpg';
 import prod7 from './prod7.jpg';
-
+import burger1 from './burger1.png';
+import burger2 from './burger2.png';
+import burger3 from './burger3.png';
+import burger4 from './burger4.png';
+import burger5 from './burger5.png';
+import burger6 from './burger6.png';
+import burger7 from './burger7.png';
+import burger8 from './burger8.png';
+import burger9 from './burger9.png';
+import burger10 from './burger10.png';
+import grill from './grill.jpg';
+import icon1 from './icon1.svg';
+import icon2 from './icon2.svg';
+import heroBg from './heroBg.jpg';
+import tag from './tag.svg';
+import tagGreen from './tagGreen.svg';
+import slidingImg from './slidingImg.jpg';
+import nastras from './nastras.svg';
 
 export default {
   paputGreen,
@@ -109,4 +126,22 @@ export default {
   prod6,
   prod7,
   shop,
+  burger1,
+  burger2,
+  burger3,
+  burger4,
+  burger5,
+  burger6,
+  burger7,
+  burger8,
+  burger9,
+  burger10,
+  grill,
+  icon1,
+  icon2,
+  heroBg,
+  tag,
+  tagGreen,
+  slidingImg,
+  nastras,
 };

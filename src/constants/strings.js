@@ -133,6 +133,19 @@ export const EVENTS_DATA = [
   },
 ];
 
+//landing page
+export const HERO_STRINGS = {
+  LINE1: 'Con nuestro servicio a domicilio disfruta de',
+  LINE2: 'PAPUT',
+  LINE3: 'EN CASA',
+};
+
+export const SECTION1_STRINGS = {
+  LINE1: 'AÇÒ ÉS UNA',
+  LINE2: 'MANERA DE VIURE',
+  LINE3: 'Paput es un restaurante chiringuito en el Puerto de Mahón, en la isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos hacer, hamburguesas.',
+};
+
 export const WHATSAPP_LINK = 'https://wa.me/34666666666';
 export const TIKTOK_LINK = 'https://www.tiktok.com';
 export const INSTAGRAM_LINK = 'https://www.instagram.com';

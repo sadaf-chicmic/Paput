@@ -8,11 +8,10 @@ import {
 } from '../constants/utils';
 import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router';
-import { WHATSAPP_LINK,HACER_PEDIDO, DELIVERY_STRINGS as S } from '../constants/strings';
+import { WHATSAPP_LINK, DELIVERY_STRINGS as S } from '../constants/strings';
+import OrderButton from '../components/common/OrderButton';
 
 export default function Delivery() {
-  const navigate = useNavigate();
-
   return (
     <div className=" ">
       {/* Section 1: Brand & Map */}
@@ -22,7 +21,7 @@ export default function Delivery() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: '-100px' }}
+            viewport={{ once: true, margin: '-100px' }}
             className="w-full flex flex-col items-center gap-12 px-6 mb-20"
           >
             <motion.img
@@ -32,20 +31,14 @@ export default function Delivery() {
               className="w-full max-w-[600px] h-auto object-contain"
             />
 
-            <motion.button
-              data-cursor
+            <OrderButton
               variants={fadeInUp}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate(ROUTES.LARGE_ORDERS)}
-              className="cursor-hover bg-[#ffc62d] text-[#0a4635] hover:bg-[#0a4635] hover:text-[#ffc62d] font-black text-4xl lg:text-5xl px-16 py-8 rounded-full shadow-xl uppercase transition-transform"
-            >
-              {HACER_PEDIDO}
-            </motion.button>
+              className="px-16 py-8 text-4xl lg:text-5xl"
+            />
 
             <motion.div
               variants={fadeInUp}
-              viewport={{ once: false, margin: '-100px' }}
+              viewport={{ once: true, margin: '-100px' }}
               className="w-full"
             >
               <img
@@ -63,7 +56,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: true, margin: '-100px' }}
         className="w-full flex flex-col items-start gap-15 px-6 md:px-12 lg:px-16 mx-auto"
       >
         <div className="w-full flex flex-col lg:flex-row justify-between items-start">
@@ -101,7 +94,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: true, margin: '-100px' }}
         className="w-full flex justify-center"
       >
         <motion.img
@@ -117,7 +110,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: true, margin: '-100px' }}
         className="w-full flex flex-col gap-16 px-6 md:px-12 lg:px-16 mx-auto mb-40"
       >
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
