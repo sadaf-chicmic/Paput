@@ -138,53 +138,68 @@ export default function About() {
           viewport={{ once: false, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase ">{S.MUCHO}</h2>
-          <div className="flex flex-nowrap justify-center -space-x-10 md:-space-x-14 lg:-space-x-16 px-8 mt-12">
-            <Polaroid
-              src={images.image8}
-              alt="Food 1"
-              rotation="rotate-6"
-              className="-mt-4"
-            />
+          <div
+            className="flex flex-nowrap justify-center items-center px-8 mt-12"
+            style={{ gap: 0 }}
+          >
+            <div className="shrink-0 -mr-10 md:-mr-14 lg:-mr-16">
+              <Polaroid
+                src={images.image8}
+                alt="Food 1"
+                rotation="rotate-6"
+                className="-mt-4"
+              />
+            </div>
             <motion.section
               variants={fadeInLeft}
-              className="-space-x-16 md:-space-x-12"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
-              <Polaroid
-                src={images.image9}
-                alt="Food 2"
-                rotation="-rotate-6"
-                className="mt-6"
-              />
-              <Polaroid
-                src={images.image10}
-                alt="Food 3"
-                rotation="rotate-8"
-                className="-mb-6"
-              />
+              <div className="-mr-16 md:-mr-12">
+                <Polaroid
+                  src={images.image9}
+                  alt="Food 2"
+                  rotation="-rotate-6"
+                  className="mt-6"
+                />
+              </div>
+              <div>
+                <Polaroid
+                  src={images.image10}
+                  alt="Food 3"
+                  rotation="rotate-8"
+                  className="-mb-6"
+                />
+              </div>
             </motion.section>
             <motion.section
               variants={fadeInRight}
-              className="-space-x-16 md:-space-x-12"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
-              <Polaroid
-                src={images.image11}
-                alt="Food 4"
-                rotation="-rotate-6"
-                className="mb-14"
-              />
-              <Polaroid
-                src={images.image12}
-                alt="Food 5"
-                rotation="rotate-8"
-                className="mt-2"
-              />
+              <div className="-mr-16 md:-mr-12">
+                <Polaroid
+                  src={images.image11}
+                  alt="Food 4"
+                  rotation="-rotate-6"
+                  className="mb-14"
+                />
+              </div>
+              <div>
+                <Polaroid
+                  src={images.image12}
+                  alt="Food 5"
+                  rotation="rotate-8"
+                  className="mt-2"
+                />
+              </div>
             </motion.section>
-            <Polaroid
-              src={images.image13}
-              alt="Food 6"
-              rotation="-rotate-8"
-              className="mt-0"
-            />
+            <div className="shrink-0">
+              <Polaroid
+                src={images.image13}
+                alt="Food 6"
+                rotation="-rotate-8"
+                className="mt-0"
+              />
+            </div>
           </div>
         </motion.section>
 
