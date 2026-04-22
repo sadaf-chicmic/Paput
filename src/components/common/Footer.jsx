@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import images from '../../assets/images';
+import { useNavigate } from 'react-router';
+import { ROUTES } from '../../constants/routes';
 
 export default function Footer() {
+  const navigate = useNavigate();
   const orderLinks = [
-    { name: 'HACER PEDIDO', href: '#' },
-    { name: 'PEDIDOS GRANDES', href: '#' },
-    { name: 'DELIVERY', href: '#' },
-    { name: 'TIENDA', href: '#' },
-    { name: 'EVENTOS', href: '#' },
+    { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
+    { name: 'DELIVERY', href: ROUTES.DELIVERY },
+    { name: 'TIENDA', href: ROUTES.SHOP },
+    { name: 'EVENTOS', href: ROUTES.EVENTS },
   ];
 
   const socialIcons = [
@@ -15,25 +17,25 @@ export default function Footer() {
       default: images.instaFooter,
       hover: images.instaFooterY,
       alt: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com',
     },
     {
       default: images.wpFooter,
       hover: images.wpFooterY,
       alt: 'WhatsApp',
-      href: '#',
+      href: 'https://wa.me/34666666666',
     },
     {
       default: images.vehicleFooter,
       hover: images.bikeFooterY,
       alt: 'Delivery',
-      href: '#',
+      href: ROUTES.DELIVERY,
     },
     {
       default: images.musFooter,
       hover: images.musFooterY,
       alt: 'TikTok',
-      href: '#',
+      href: 'https://www.tiktok.com',
     },
   ];
 
@@ -59,7 +61,7 @@ export default function Footer() {
           {orderLinks.map((link, idx) => (
             <a
               key={idx}
-              href={link.href}
+              onClick={() => navigate(link.href)}
               className="text-[var(--_colors---amarillo)] no-underline font-black text-[24px] tracking-[0.02em] transition-opacity duration-200 hover:underline"
               data-cursor
             >

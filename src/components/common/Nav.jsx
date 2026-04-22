@@ -15,12 +15,11 @@ export default function Nav() {
   }, [open]);
 
   const menuItems = [
-    { name: 'HACER PEDIDO', href: ROUTES.ORDER },
     { name: 'DELIVERY', href: ROUTES.DELIVERY },
     { name: 'SOBRE PAPUT', href: ROUTES.ABOUT },
     { name: 'TIENDA', href: ROUTES.SHOP },
     { name: 'EVENTOS', href: ROUTES.EVENTS },
-    { name: 'PEDIDOS GRANDES', href: ROUTES.BIG_ORDERS },
+    { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
   ];
 
   const staggerVariants = {
@@ -52,6 +51,7 @@ export default function Nav() {
             variants={fadeInUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate(ROUTES.LARGE_ORDERS)}
             className="h-15 bg-[#ffc62d] text-[#0a4635] font-extrabold hover:bg-[#0a4635] hover:text-[#ffc62d] text-xl lg:text-xl px-6 rounded-full shadow-xl uppercase tracking-tight flex items-center justify-center transition-transform"
           >
             HACER PEDIDO

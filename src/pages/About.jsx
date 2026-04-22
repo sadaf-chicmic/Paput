@@ -250,6 +250,7 @@ export default function About() {
             variants={fadeInUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate(ROUTES.LARGE_ORDERS)}
             className="h-16 px-12 bg-[#ffc62d] text-[#0a4635] font-black text-2xl rounded-full shadow-2xl uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
           >
             HACER PEDIDO
@@ -268,7 +269,7 @@ export default function About() {
           variants={fadeInLeft}
           className="flex flex-col gap-6 md:gap-4 max-w-full md:max-w-[50%] z-10"
         >
-          <h2 className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] xl:text-[115px] font-black uppercase leading-[0.8] tracking-tighter">
+          <h2 className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] xl:text-[115px] font-black uppercase leading-[0.8] ">
             SI QUIERES UNIRTE <br /> AL EQUIPO
           </h2>
           <p className="text-[17px] md:text-[22px] leading-tight font-medium max-w-[90%] mt-6">

@@ -27,6 +27,7 @@ export default function Delivery() {
               variants={fadeInUp}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate(ROUTES.LARGE_ORDERS)}
               className="cursor-hover bg-[#ffc62d] text-[#0a4635] hover:bg-[#0a4635] hover:text-[#ffc62d] font-black text-4xl lg:text-5xl px-16 py-8 rounded-full shadow-xl uppercase transition-transform"
             >
               HACER PEDIDO
@@ -141,7 +142,7 @@ export default function Delivery() {
 
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
-            <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] tracking-tighter text-[#0a4635] decoration-[8px]">
+            <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
               Y SI PREFIERES COMER EN EL LOCAL
             </p>
             <motion.p

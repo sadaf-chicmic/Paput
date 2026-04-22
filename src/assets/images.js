@@ -42,6 +42,17 @@ import image14 from './image14.jpg';
 import image15 from './image15.jpg';
 import image16 from './image16.jpg';
 import image17 from './image17.jpg';
+import eventos from './eventos.svg';
+import event1 from './event1.jpg';
+import shop from './shop.svg';
+import prod1 from './prod1.png';
+import prod2 from './prod2.png';
+import prod3 from './prod3.png';
+import prod4 from './prod4.jpg';
+import prod5 from './prod5.jpg';
+import prod6 from './prod6.jpg';
+import prod7 from './prod7.jpg';
+
 
 export default {
   paputGreen,
@@ -88,4 +99,14 @@ export default {
   image15,
   image16,
   image17,
+  eventos,
+  event1,
+  prod1,
+  prod2,
+  prod3,
+  prod4,
+  prod5,
+  prod6,
+  prod7,
+  shop,
 };
