@@ -2,9 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import images from '../../assets/images';
 import { ROUTES } from '../../constants/routes';
+import { useNavigate } from 'react-router';
+import { staggerVariants, navFadeInUp } from '../../constants/utils';
+import { MENU_ITEMS, NAV_SOCIAL_ICONS } from '../../constants/nav';
+import { HACER_PEDIDO } from '../../constants/strings';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (open) {
@@ -14,32 +19,6 @@ export default function Nav() {
     }
   }, [open]);
 
-  const menuItems = [
-    { name: 'DELIVERY', href: ROUTES.DELIVERY },
-    { name: 'SOBRE PAPUT', href: ROUTES.ABOUT },
-    { name: 'TIENDA', href: ROUTES.SHOP },
-    { name: 'EVENTOS', href: ROUTES.EVENTS },
-    { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
-  ];
-
-  const staggerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
   return (
     <>
       <nav className="fixed top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 z-[40] ">
@@ -48,13 +27,13 @@ export default function Nav() {
         <div className="flex gap-8">
           <motion.button
             data-cursor
-            variants={fadeInUp}
+            variants={navFadeInUp}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate(ROUTES.LARGE_ORDERS)}
             className="h-15 bg-[#ffc62d] text-[#0a4635] font-extrabold hover:bg-[#0a4635] hover:text-[#ffc62d] text-xl lg:text-xl px-6 rounded-full shadow-xl uppercase tracking-tight flex items-center justify-center transition-transform"
           >
-            HACER PEDIDO
+            {HACER_PEDIDO}
           </motion.button>
           <button
             data-cursor
@@ -100,7 +79,7 @@ export default function Nav() {
                 },
               }}
             >
-              {menuItems.map((item, idx) => (
+              {MENU_ITEMS.map((item, idx) => (
                 <motion.a
                   data-cursor
                   key={idx}
@@ -119,24 +98,7 @@ export default function Nav() {
                 variants={staggerVariants}
                 className="flex gap-6 mt-8"
               >
-                {[
-                  {
-                    default: images.instaNav,
-                    hover: images.instaNavR,
-                    alt: 'instaNav',
-                  },
-                  { default: images.wpNav, hover: images.wpNavR, alt: 'wpNav' },
-                  {
-                    default: images.bikeNav,
-                    hover: images.bikeNavR,
-                    alt: 'bikeNav',
-                  },
-                  {
-                    default: images.musNav,
-                    hover: images.musNavR,
-                    alt: 'musNav',
-                  },
-                ].map((item, idx) => (
+                {NAV_SOCIAL_ICONS.map((item, idx) => (
                   <SocialIcon key={idx} item={item} />
                 ))}
               </motion.div>
@@ -153,7 +115,9 @@ function SocialIcon({ item }) {
   return (
     <a
       data-cursor
-      href="#"
+      href={item.href}
+      target={item.href.startsWith('http') ? '_blank' : undefined}
+      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="cursor-hover h-16 w-16 flex items-center justify-center hover:bg-transparent hover:text-[#06482f] transition-all"

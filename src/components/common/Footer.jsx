@@ -2,42 +2,11 @@ import { useState } from 'react';
 import images from '../../assets/images';
 import { useNavigate } from 'react-router';
 import { ROUTES } from '../../constants/routes';
+import { ORDER_LINKS, FOOTER_SOCIAL_ICONS } from '../../constants/nav';
+import { FOOTER_STRINGS as S } from '../../constants/strings';
 
 export default function Footer() {
   const navigate = useNavigate();
-  const orderLinks = [
-    { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
-    { name: 'DELIVERY', href: ROUTES.DELIVERY },
-    { name: 'TIENDA', href: ROUTES.SHOP },
-    { name: 'EVENTOS', href: ROUTES.EVENTS },
-  ];
-
-  const socialIcons = [
-    {
-      default: images.instaFooter,
-      hover: images.instaFooterY,
-      alt: 'Instagram',
-      href: 'https://www.instagram.com',
-    },
-    {
-      default: images.wpFooter,
-      hover: images.wpFooterY,
-      alt: 'WhatsApp',
-      href: 'https://wa.me/34666666666',
-    },
-    {
-      default: images.vehicleFooter,
-      hover: images.bikeFooterY,
-      alt: 'Delivery',
-      href: ROUTES.DELIVERY,
-    },
-    {
-      default: images.musFooter,
-      hover: images.musFooterY,
-      alt: 'TikTok',
-      href: 'https://www.tiktok.com',
-    },
-  ];
 
   return (
     <footer className="bg-[var(--_colors---verde)] text-[var(--_colors---amarillo)] py-[60px] md:py-[100px] px-5 sm:px-10 lg:px-[60px] w-full">
@@ -50,7 +19,7 @@ export default function Footer() {
             className="w-[180px] mb-6"
           />
           <div className="flex gap-4">
-            {socialIcons.map((social, idx) => (
+            {FOOTER_SOCIAL_ICONS.map((social, idx) => (
               <SocialIcon key={idx} social={social} />
             ))}
           </div>
@@ -58,7 +27,7 @@ export default function Footer() {
 
         {/* Orders Column */}
         <div className="flex flex-col gap-6">
-          {orderLinks.map((link, idx) => (
+          {ORDER_LINKS.map((link, idx) => (
             <a
               key={idx}
               onClick={() => navigate(link.href)}
@@ -78,10 +47,10 @@ export default function Footer() {
               className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)] hover:underline"
               data-cursor
             >
-              CHIRINGUITO
+              {S.CHIRINGUITO}
             </a>
             <p className="text-[14px] leading-relaxed text-[var(--_colors---amarillo)] max-w-[320px]">
-              Andén de poniente S/N, Puerto de Mahón, Menorca
+              {S.CHIRINGUITO_ADDRESS}
             </p>
           </div>
           <div className="flex flex-col gap-1">
@@ -90,10 +59,10 @@ export default function Footer() {
               className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)] hover:underline"
               data-cursor
             >
-              DELIVERY / TAKE AWAY / DINE IN
+              {S.DELIVERY_LOCATION}
             </a>
             <p className="text-[14px] leading-relaxed text-[var(--_colors---amarillo)] max-w-[320px]">
-              Avinguda de Josep A. Clavé, 35, Mahón, Menorca
+              {S.DELIVERY_ADDRESS}
             </p>
           </div>
         </div>
@@ -102,14 +71,14 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-1 mb-8">
             <h4 className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)]">
-              CONTACTO
+              {S.CONTACTO}
             </h4>
             <a
-              href="mailto:hola@paputmenorca.com"
+              href={`mailto:${S.EMAIL}`}
               className="text-[var(--_colors---amarillo)] no-underline  text-[18px] tracking-[0.02em] transition-opacity duration-200 hover:opacity-70 lowercase hover:underline"
               data-cursor
             >
-              hola@paputmenorca.com
+              {S.EMAIL}
             </a>
           </div>
           <div className="flex flex-col gap-1">
@@ -118,21 +87,21 @@ export default function Footer() {
               className="text-[var(--_colors---amarillo)] no-underline font-black text-[18px] tracking-[0.02em] transition-opacity duration-200 hover:underline"
               data-cursor
             >
-              COOKIES
+              {S.COOKIES}
             </a>
             <a
               href="#"
               className="text-[var(--_colors---amarillo)] no-underline font-black text-[18px] tracking-[0.02em] transition-opacity duration-200 hover:underline"
               data-cursor
             >
-              POLÍTICA DE PRIVACIDAD
+              {S.PRIVACY}
             </a>
             <a
               href="#"
               className="text-[var(--_colors---amarillo)] no-underline font-black text-[18px] tracking-[0.02em] transition-opacity duration-200 hover:underline"
               data-cursor
             >
-              TODO LEGAL
+              {S.LEGAL}
             </a>
           </div>
         </div>
@@ -146,6 +115,8 @@ function SocialIcon({ social }) {
   return (
     <a
       href={social.href}
+      target={social.href.startsWith('http') ? '_blank' : undefined}
+      rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className=" rounded-full flex items-center justify-center transition-all duration-300 overflow-hidden group"

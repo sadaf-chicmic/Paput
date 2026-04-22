@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUp2, staggerContainer } from '../constants/utils.js';
+import { LARGE_ORDERS_STRINGS as S } from '../constants/strings';
 
 export default function LargeOrders() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -39,7 +40,7 @@ export default function LargeOrders() {
           >
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                NOMBRE
+                {S.LABELS.NOMBRE}
               </label>
               <input
                 type="text"
@@ -51,7 +52,7 @@ export default function LargeOrders() {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                EMAIL
+                {S.LABELS.EMAIL}
               </label>
               <input
                 type="email"
@@ -63,7 +64,7 @@ export default function LargeOrders() {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                TELÉFONO
+                {S.LABELS.TELEFONO}
               </label>
               <input
                 type="tel"
@@ -76,7 +77,7 @@ export default function LargeOrders() {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                EMPRESA (OPCIONAL)
+                {S.LABELS.EMPRESA}
               </label>
               <input
                 type="text"
@@ -128,7 +129,7 @@ export default function LargeOrders() {
                   )}
                 </div>
                 <span className="text-[14px] font-black tracking-widest text-[#0a4635] uppercase">
-                  DELIVERY - Pedido mínimo 12 menús
+                  {S.SERVICE_DELIVERY}
                 </span>
               </label>
               <label className="flex items-center gap-4 cursor-pointer group">
@@ -141,7 +142,7 @@ export default function LargeOrders() {
                   className="hidden"
                 />
                 <div
-                data-cursor
+                  data-cursor
                   className={`w-4 h-4 border border-[#0a4635] flex items-center justify-center shrink-0 ${formData.tipoServicio === 'TAKE AWAY' ? 'bg-[#0a4635]' : 'bg-white'}`}
                 >
                   {formData.tipoServicio === 'TAKE AWAY' && (
@@ -160,8 +161,7 @@ export default function LargeOrders() {
                   )}
                 </div>
                 <span className="text-[14px] font-black tracking-widest text-[#0a4635] uppercase">
-                  TAKE AWAY - En función del horario que elijas te asignaremos
-                  un local de recogida
+                  {S.SERVICE_TAKEAWAY}
                 </span>
               </label>
             </div>
@@ -179,7 +179,7 @@ export default function LargeOrders() {
           >
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                ZONA
+                {S.LABELS.ZONA}
               </label>
               <select
                 name="zona"
@@ -200,7 +200,7 @@ export default function LargeOrders() {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                DIRECCION DE ENTREGA
+                {S.LABELS.DIRECCION}
               </label>
               <input
                 type="text"
@@ -224,7 +224,7 @@ export default function LargeOrders() {
           >
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                NOMBRE DE TU PEDIDO
+                {S.LABELS.NOMBRE_PEDIDO}
               </label>
               <input
                 type="text"
@@ -248,7 +248,7 @@ export default function LargeOrders() {
           >
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                DIA DEL EVENTO
+                {S.LABELS.DIA_EVENTO}
               </label>
               <input
                 type="text"
@@ -261,7 +261,7 @@ export default function LargeOrders() {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[18px] font-bold text-[#0a4635]">
-                HORA DE ENTREGA
+                {S.LABELS.HORA_ENTREGA}
               </label>
               <input
                 type="text"
@@ -279,14 +279,6 @@ export default function LargeOrders() {
     }
   };
 
-  const stepTitles = [
-    'DATOS PERSONALES',
-    '¿QUE TIPO DE SERVICIO QUIERES?',
-    '¿DÓNDE SERÁ TU EVENTO?',
-    '¿CÓMO QUIERES LLAMAR A TU PEDIDO GRANDE?',
-    'DETALLES DEL EVENTO',
-  ];
-
   return (
     <motion.main
       variants={staggerContainer}
@@ -299,23 +291,22 @@ export default function LargeOrders() {
         className="flex flex-col items-center text-center mt-20 mb-20"
       >
         <h2 className="text-[14px] md:text-[25px] font-bold text-[#0a4635] tracking-widest uppercase mb-6">
-          PAPUT PARA GRUPOS Y EVENTOS
+          {S.SUBTITLE}
         </h2>
         <h1 className="text-[clamp(4.5rem,15vw,11rem)] font-black text-[#0a4635] leading-[0.8] tracking-tighter flex flex-col items-center">
-          <span>PAPUT</span>
-          <span>ESTÉS DONDE</span>
+          <span>{S.TITLE_LINE1}</span>
+          <span>{S.TITLE_LINE2}</span>
           <span className="relative">
-            ESTÉS
+            {S.TITLE_LINE3}
             <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-[#0a4635] origin-left scale-x-0 group-hover:scale-x-100 transition-transform"></div>
           </span>
         </h1>
         <div className="mt-6">
           <p className="text-[17px] md:text-[18px] font-medium text-[#0a4635] leading-relaxed">
-            Llevamos Paput a tu evento, fiesta, boda, cena con amigos... Si te
-            imaginas a Paput allí, haremos lo posible por estar.
+            {S.DESC}
           </p>
           <p className="text-[17px] md:text-[18px] font-black text-[#0a4635] leading-relaxed">
-            Recuerda hacer tu pedido con 48h de antelación.
+            {S.REMINDER}
           </p>
         </div>
       </motion.div>
@@ -326,7 +317,7 @@ export default function LargeOrders() {
       >
         <div className="flex justify-between items-start mb-10">
           <h2 className="text-[18px] md:text-[30px] font-black text-[#0a4635] uppercase">
-            {stepTitles[currentStep - 1]}
+            {S.STEP_TITLES[currentStep - 1]}
           </h2>
           <span className="text-[14px] font-black text-[#0a4635] opacity-60">
             {currentStep}/5
@@ -344,7 +335,7 @@ export default function LargeOrders() {
               onClick={prevStep}
               className="px-8 md:px-12 py-3 md:py-4 border border-[#0a4635] rounded-full text-[#0a4635] font-black text-[18px] hover:bg-slate-50 transition-colors uppercase"
             >
-              ATRÁS
+              {S.BTN_BACK}
             </button>
           ) : (
             <div></div>
@@ -356,14 +347,14 @@ export default function LargeOrders() {
               onClick={nextStep}
               className="px-8 md:px-12 py-3 md:py-4 bg-[#ffc62d] rounded-full text-[#0a4635] font-black text-[18px] hover:opacity-90 transition-opacity uppercase"
             >
-              SIGUIENTE
+              {S.BTN_NEXT}
             </button>
           ) : (
             <button
               data-cursor
               className="px-8 md:px-12 py-3 md:py-4 bg-[#ffc62d] rounded-full text-[#0a4635] font-black text-[18px] hover:opacity-90 transition-opacity uppercase"
             >
-              ENVIAR
+              {S.BTN_SEND}
             </button>
           )}
         </div>

@@ -1,8 +1,18 @@
 import { motion } from 'framer-motion';
 import images from '../assets/images';
-import { fadeInUp, staggerContainer, fadeInLeft, fadeInRight } from '../constants/utils';
+import {
+  fadeInUp,
+  staggerContainer,
+  fadeInLeft,
+  fadeInRight,
+} from '../constants/utils';
+import { ROUTES } from '../constants/routes';
+import { useNavigate } from 'react-router';
+import { WHATSAPP_LINK,HACER_PEDIDO, DELIVERY_STRINGS as S } from '../constants/strings';
 
 export default function Delivery() {
+  const navigate = useNavigate();
+
   return (
     <div className=" ">
       {/* Section 1: Brand & Map */}
@@ -30,10 +40,14 @@ export default function Delivery() {
               onClick={() => navigate(ROUTES.LARGE_ORDERS)}
               className="cursor-hover bg-[#ffc62d] text-[#0a4635] hover:bg-[#0a4635] hover:text-[#ffc62d] font-black text-4xl lg:text-5xl px-16 py-8 rounded-full shadow-xl uppercase transition-transform"
             >
-              HACER PEDIDO
+              {HACER_PEDIDO}
             </motion.button>
 
-            <motion.div variants={fadeInUp} viewport={{ once: false, margin: '-100px' }} className="w-full">
+            <motion.div
+              variants={fadeInUp}
+              viewport={{ once: false, margin: '-100px' }}
+              className="w-full"
+            >
               <img
                 src={images.map}
                 alt="Delivery Map"
@@ -49,7 +63,7 @@ export default function Delivery() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{once:false,margin:'-100px'}}
+        viewport={{ once: false, margin: '-100px' }}
         className="w-full flex flex-col items-start gap-15 px-6 md:px-12 lg:px-16 mx-auto"
       >
         <div className="w-full flex flex-col lg:flex-row justify-between items-start">
@@ -58,11 +72,10 @@ export default function Delivery() {
               variants={fadeInLeft}
               className="text-[18px] lg:text-[30px] pb-6 font-black uppercase text-[#0a4635] leading-tight opacity-90"
             >
-              SERVICIO EXCLUSIVO PARA MAHÓN, SANT CLIMENT, LLUCMAÇANES, SA
-              MESQUIDA, CALA LLONGA, ES CASTELL, SANT LLUÍS DESDE PAPUT DELIVERY
+              {S.SERVICE_AREA}
             </motion.p>
             <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] underline decoration-[8px] ">
-              AV. JOSÉ ANSELMO CLAVÉ 35, MAHÓN
+              {S.ADDRESS}
             </p>
           </div>
 
@@ -77,10 +90,10 @@ export default function Delivery() {
 
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <p className="text-[18px] lg:text-[30px] pb-6 font-black uppercase tracking-tight text-[#0a4635] opacity-90">
-            HORARIO
+            {S.SCHEDULE_LABEL}
           </p>
           <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635]">
-            TODOS LOS DÍAS DE 19:30 A 23:00
+            {S.SCHEDULE}
           </p>
         </motion.div>
       </motion.div>
@@ -109,7 +122,7 @@ export default function Delivery() {
       >
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-            OPCIONES DE SERVICIO
+            {S.SERVICE_OPTIONS}
           </p>
           <motion.p
             variants={fadeInUp}
@@ -122,19 +135,19 @@ export default function Delivery() {
 
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-            PIDE PAPUT A DOMICILIO FÁCIL Y RÁPIDO
+            {S.ORDER_EASY}
           </p>
           <motion.p
             variants={fadeInUp}
             className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
           >
-            A través de nuestra web O por{' '}
+            {S.ORDER_EASY_DESC_PREFIX}
             <a
               data-cursor
-              href="#"
+              href={WHATSAPP_LINK}
               className="underline decoration-[2px] underline-offset-4 hover:text-[#e54d3a] transition-colors"
             >
-              WhatsApp aquí
+              {S.ORDER_EASY_LINK}
             </a>{' '}
             🤳🏼
           </motion.p>
@@ -143,19 +156,19 @@ export default function Delivery() {
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
             <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-              Y SI PREFIERES COMER EN EL LOCAL
+              {S.DINE_IN}
             </p>
             <motion.p
               variants={fadeInUp}
               className="text-[18px] lg:text-[25px] tracking-tight text-[#0a4635] leading-tight opacity-90"
             >
-              Tenemos mesas para que disfrutes tu pedido en el momento 🍽️
+              {S.DINE_IN_DESC}
             </motion.p>
             <motion.p
               variants={fadeInUp}
               className="text-[18px] lg:text-[25px] text-[#0a4635] opacity-90"
             >
-              *Solo para el nuevo local en Av. José Anselmo Clavé 35, Mahón.
+              {S.DINE_IN_NOTE}
             </motion.p>
           </div>
         </motion.div>

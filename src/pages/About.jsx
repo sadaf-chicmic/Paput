@@ -7,6 +7,13 @@ import {
   fadeZoom,
 } from '../constants/utils';
 import { motion } from 'framer-motion';
+import { ROUTES } from '../constants/routes';
+import { useNavigate } from 'react-router';
+import {
+  HACER_PEDIDO,
+  CONTACTANOS,
+  ABOUT_STRINGS as S,
+} from '../constants/strings';
 
 const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
   <div
@@ -17,6 +24,8 @@ const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
 );
 
 export default function About() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="mx-auto pb-32 px-40 flex flex-col gap-32 overflow-x-hidden font-['Roc_Grotesk'] text-[#0a4635] pt-[18vh]">
@@ -32,9 +41,8 @@ export default function About() {
             className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
             variants={fadeInLeft}
           >
-            Paput es un restaurante chiringuito en el Puerto de Mahón, en la
-            isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos
-            hacer, <span className=" font-black mt-2">hamburguesas.</span>
+            {S.INTRO}
+            <span className=" font-black mt-2">{S.INTRO_BOLD}</span>
           </motion.p>
           <motion.div
             variants={fadeInRight}
@@ -56,10 +64,9 @@ export default function About() {
             className="flex-1 text-[30px]  leading-[1.1] max-w-[38vw]"
             variants={fadeInRight}
           >
-            En temporada, lo celebramos todo, montamos fiestas e inventamos
-            santos, con sesiones de{' '}
-            <span className=" font-black mt-2">DJs en vivo</span> para ambientar
-            el lugar con buena música y mejorar tu experiencia.
+            {S.DJ_SECTION}
+            <span className=" font-black mt-2">{S.DJ_BOLD}</span>
+            {S.DJ_SUFFIX}
           </motion.p>
           <motion.div
             variants={fadeInLeft}
@@ -83,7 +90,7 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: false, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase ">SOMOS TODO ESTO</h2>
+          <h2 className="text-[40px] font-black uppercase ">{S.SOMOS}</h2>
           <div className="flex justify-center -space-x-16 md:-space-x-12">
             <motion.section
               variants={fadeInLeft}
@@ -130,7 +137,7 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: false, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase ">MUCHO DE ESTO</h2>
+          <h2 className="text-[40px] font-black uppercase ">{S.MUCHO}</h2>
           <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-14 lg:-space-x-16 px-8 mt-12">
             <Polaroid
               src={images.image8}
@@ -190,7 +197,7 @@ export default function About() {
           viewport={{ once: false, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase  text-center">
-            Y SOBRETODO DE ESTOS
+            {S.SOBRETODO}
           </h2>
           <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-3">
             <motion.section
@@ -242,8 +249,7 @@ export default function About() {
             className="flex-1 text-[30px]  leading-[1.1] max-w-[70vw]"
             variants={fadeInUp}
           >
-            Paput no es solo un sitio para venir a comer, pasar el rato y
-            escuchar buena música. Ahora también te lo llevamos a casa.
+            {S.FOOTER_TEXT}
           </motion.p>
           <motion.button
             data-cursor
@@ -253,7 +259,7 @@ export default function About() {
             onClick={() => navigate(ROUTES.LARGE_ORDERS)}
             className="h-16 px-12 bg-[#ffc62d] text-[#0a4635] font-black text-2xl rounded-full shadow-2xl uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
           >
-            HACER PEDIDO
+            {HACER_PEDIDO}
           </motion.button>
         </motion.section>
       </div>
@@ -273,14 +279,14 @@ export default function About() {
             SI QUIERES UNIRTE <br /> AL EQUIPO
           </h2>
           <p className="text-[17px] md:text-[22px] leading-tight font-medium max-w-[90%] mt-6">
-            Escríbenos a{' '}
+            {S.JOIN_DESC_PREFIX}
             <span
               className="font-black underline decoration-2 underline-offset-4"
               data-cursor
             >
-              rrhh@paputmenorca.com
+              {S.JOIN_EMAIL}
             </span>
-            , adjunta tu curriculum y cuéntanos algo de tí!
+            {S.JOIN_DESC_SUFFIX}
           </p>
           <motion.button
             data-cursor
@@ -289,7 +295,7 @@ export default function About() {
             whileTap={{ scale: 0.95 }}
             className="h-14 px-10 bg-transparent text-[#0a4635] font-black text-lg border-[2px] border-[#0a4635] w-fit rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300 mt-10"
           >
-            CONTÁCTANOS
+            {CONTACTANOS}
           </motion.button>
         </motion.div>
         <motion.div

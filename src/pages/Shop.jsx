@@ -2,52 +2,21 @@ import images from '../assets/images';
 import ShopCard from '../components/ShopCard';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeInUp2 } from '../constants/utils.js';
+import { SHOP_STRINGS as S, SHOP_PRODUCTS } from '../constants/strings';
 
 export default function Shop() {
-  const products = [
-    {
-      imageSrc: images.prod1,
-      title: 'CAMISETA A POC A POC LIFE',
-      fabric: '100% Algodón',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod2,
-      title: 'CAMISETA CAP PEGA',
-      fabric: '100% Algodón',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod3,
-      title: 'CAMISETA FCKU PAPUT',
-      fabric: '100% Algodón',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod4,
-      title: 'CAMISETA PARET SECA CLUB',
-      fabric: '100% Algodón',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod5,
-      title: 'CAMISETA XIN XORIGUER CLASSIC',
-      fabric: '100% Algodón, oversize',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod6,
-      title: 'CAMISETA XINU XANU',
-      fabric: '100% Algodón, oversize',
-      year: '2026',
-    },
-    {
-      imageSrc: images.prod7,
-      title: 'CAMISETA XIN XORIGUER RETRO',
-      fabric: '100% Algodón',
-      year: '2026',
-    },
-  ];
+  const products = SHOP_PRODUCTS.map((p, i) => ({
+    ...p,
+    imageSrc: [
+      images.prod1,
+      images.prod2,
+      images.prod3,
+      images.prod4,
+      images.prod5,
+      images.prod6,
+      images.prod7,
+    ][i],
+  }));
 
   return (
     <motion.main
@@ -55,7 +24,7 @@ export default function Shop() {
       initial="hidden"
       animate="visible"
       className="w-full min-h-screen pt-32 flex flex-col items-center"
-      viewport={{once:false,margin:'-100px'}}
+      viewport={{ once: false, margin: '-100px' }}
     >
       <motion.section
         variants={fadeInUp2}
@@ -66,8 +35,7 @@ export default function Shop() {
         </div>
 
         <p className="text-center text-lg md:text-xl font-medium text-[var(--_colors---verde)] mb-20">
-          Pronto abriremos tienda online. Mientras tanto puedes comprar nuestro
-          merch en Paput Chiringuito y Paput Delivery.
+          {S.INTRO}
         </p>
 
         <motion.button
@@ -75,7 +43,7 @@ export default function Shop() {
           whileTap={{ scale: 0.95 }}
           className="text-[25px] pb-8 font-black tracking-wider"
         >
-          COLECCIÓN
+          {S.COLLECTION}
         </motion.button>
       </motion.section>
 

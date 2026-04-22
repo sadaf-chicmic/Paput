@@ -1,21 +1,13 @@
 import images from '../assets/images';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeInUp2 } from '../constants/utils.js';
+import { EVENTS_DATA } from '../constants/strings';
 
 export default function Events() {
-  const events = [
-    {
-      date: 'TBA → TBA',
-      title: 'TEMPORADA 2026',
-      description: 'TBA',
-      image: images.event1,
-    },
-    {
-      date: 'TBA',
-      title: 'PRÓXIMAMENTE',
-      description: 'TBA',
-    },
-  ];
+  const events = EVENTS_DATA.map((e, i) => ({
+    ...e,
+    image: [images.event1][i],
+  }));
 
   return (
     <motion.main
@@ -44,15 +36,11 @@ export default function Events() {
               className="flex flex-col md:flex-row items-center justify-between py-10 md:py-10 border-b border-[var(--_colors---verde)] gap-8 md:gap-16 last:border-b-0"
             >
               <div className="flex flex-col gap-2 w-full md:w-[60%]">
-                <p className="text-[25px] font-medium">
-                  {event.date}
-                </p>
+                <p className="text-[25px] font-medium">{event.date}</p>
                 <h2 className="text-[clamp(2.5rem,8vw,5.5rem)] font-black text-[var(--_colors---verde)] tracking-tight">
                   {event.title}
                 </h2>
-                <p className="text-[25px] font-bold ">
-                  {event.description}
-                </p>
+                <p className="text-[25px] font-bold ">{event.description}</p>
               </div>
 
               {event.image && (
