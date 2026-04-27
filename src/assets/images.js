@@ -70,6 +70,8 @@ import tag from './tag.svg';
 import tagGreen from './tagGreen.svg';
 import slidingImg from './slidingImg.jpg';
 import nastras from './nastras.svg';
+import mainShirt from './mainShirt.jpg';
+import paputDuck from './paputDuck.svg';
 
 export default {
   paputGreen,
@@ -144,4 +146,6 @@ export default {
   tagGreen,
   slidingImg,
   nastras,
+  mainShirt,
+  paputDuck,
 };

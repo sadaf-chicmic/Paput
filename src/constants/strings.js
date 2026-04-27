@@ -37,10 +37,14 @@ export const ABOUT_STRINGS = {
   SOBRETODO: 'Y SOBRETODO DE ESTOS',
   FOOTER_TEXT:
     'Paput no es solo un sitio para venir a comer, pasar el rato y escuchar buena música. Ahora también te lo llevamos a casa.',
-  JOIN_HEADING: 'SI QUIERES UNIRTE \nAL EQUIPO',
+  JOIN_HEADING: 'SI QUIERES UNIRTE <br/> AL EQUIPO',
   JOIN_DESC_PREFIX: 'Escríbenos a ',
   JOIN_EMAIL: 'rrhh@paputmenorca.com',
   JOIN_DESC_SUFFIX: ', adjunta tu curriculum y cuéntanos algo de tí!',
+};
+
+export const CONTACT_STRINGS = {
+  ABOUT_IMG_ALT: 'image-about',
 };
 
 // ── Footer ──
@@ -138,12 +142,88 @@ export const HERO_STRINGS = {
   LINE1: 'Con nuestro servicio a domicilio disfruta de',
   LINE2: 'PAPUT',
   LINE3: 'EN CASA',
+  HERO_ALT: 'Paput Hero',
 };
 
 export const SECTION1_STRINGS = {
   LINE1: 'AÇÒ ÉS UNA',
   LINE2: 'MANERA DE VIURE',
-  LINE3: 'Paput es un restaurante chiringuito en el Puerto de Mahón, en la isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos hacer, hamburguesas.',
+  LINE3:
+    'Paput es un restaurante chiringuito en el Puerto de Mahón, en la isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos hacer, hamburguesas.',
+  HAMBURGUESAS: 'hamburguesas',
+  INSTAGRAM_TAG: 'instagram tag',
+  GRILL_ALT: 'grill',
+  SLIDING_IMG_ALT: 'slidingImg',
+};
+
+export const SECTION2_STRINGS = {
+  NUESTRAS_BURGERS_ALT: 'Nuestras Burgers',
+  BURGERS: [
+    {
+      title: 'LA CLÁSICA',
+      description: 'Lechuga, tomate, cheddar y mayonesa.',
+    },
+    {
+      title: 'BACON CHEESE',
+      description: 'Cheddar, bacon y mayonesa.',
+    },
+    {
+      title: 'MCATOL',
+      description: 'Doble cheddar, bacon, pepinillos y salsa Macatol.',
+    },
+    {
+      title: 'FORA FÚA (VEGANA)',
+      description:
+        'Burger de Heura, cheddar vegano, lechuga, tomate, cebolla morada y salsa Bahiana vegana.',
+    },
+    {
+      title: 'MARCO PAQUETTI',
+      description: 'Rúcula, scamorza, guanciale, tomate seco y mayo pesto.',
+    },
+    {
+      title: 'TRUFA MEL·LA',
+      description:
+        'Queso provolone fundido, champiñones salteados, cebolla caramelizada y mayo trufa.',
+    },
+    {
+      title: 'PAPUT',
+      description: 'Lechuga, queso de Mahón, sobrasada, miel y mayo romero.',
+    },
+    {
+      title: 'GUIRIGALL',
+      description:
+        'Cheddar, mermelada de bacon y mayonesa de cebolla caramelizada.',
+    },
+    {
+      title: 'BIG PONS',
+      description:
+        'Contramuslo de pollo rebozado, lechuga, cheddar y mayo sweet chili.',
+    },
+  ],
+};
+
+export const SECTION3_STRINGS = {
+  TEXT: 'NOS VESTIMOS COMO HABLAMOS, A POC A POC Y CON SABOR A MENORCA.',
+  ORDER_BUTTON_LABEL: 'NUESTRA TIENDA',
+  SHIRT_ALT: 'Paput Shirt',
+};
+
+export const SECTION4_STRINGS = {
+  ITEMS: [
+    {
+      title: 'CHIRINGUITO / RESTAURANTE',
+      location: 'Andén de poniente S/N, Puerto de Mahón',
+      description:
+        'Domingo a Jueves 12:00H a 22:30H <br/> Viernes y sábado 12:00H a 23:30H',
+    },
+    {
+      title: 'DELIVERY / TAKE AWAY / DINE IN',
+      location: 'Avinguda de Josep A. Clavé, 35, Mahón',
+      description: 'Todos los días de 19:30H a 23:00H',
+    },
+  ],
+  FOOTER_TEXT:
+    'El servicio a domicilio a Mahón es de 2€ Es Castell, Sant Lluís, Sant Climent, Sa Mesquida y Cala Llonga 3€',
 };
 
 export const WHATSAPP_LINK = 'https://wa.me/34666666666';

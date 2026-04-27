@@ -8,7 +8,9 @@ export default function Section1() {
   const [hovered, setHovered] = useState(false);
 
   // Split LINE3 for bolding
-  const line3Parts = SECTION1_STRINGS.LINE3.split('hamburguesas');
+  const line3Parts = SECTION1_STRINGS.LINE3.split(
+    SECTION1_STRINGS.HAMBURGUESAS,
+  );
   const prefix = line3Parts[0];
 
   return (
@@ -33,7 +35,10 @@ export default function Section1() {
 
           <div className="mb-8 lg:mb-15">
             <p className="text-xl lg:text-[22px] text-[#0a4635]font-medium">
-              {prefix} <span className="font-bold">hamburguesas.</span>
+              {prefix}{' '}
+              <span className="font-bold">
+                {SECTION1_STRINGS.HAMBURGUESAS}.
+              </span>
             </p>
           </div>
 
@@ -46,7 +51,7 @@ export default function Section1() {
               data-cursor
               onClick={() => window.open(INSTAGRAM_LINK, '_blank')}
               src={hovered ? images.tagGreen : images.tag}
-              alt="instagram tag"
+              alt={SECTION1_STRINGS.INSTAGRAM_TAG}
               className="w-[280px] ml-150 -rotate-18"
             />
           </div>
@@ -63,7 +68,7 @@ export default function Section1() {
           >
             <img
               src={images.grill}
-              alt="grill"
+              alt={SECTION1_STRINGS.GRILL_ALT}
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -76,7 +81,7 @@ export default function Section1() {
           >
             <img
               src={images.slidingImg}
-              alt="slidingImg"
+              alt={SECTION1_STRINGS.SLIDING_IMG_ALT}
               className="w-full h-full object-cover"
             />
           </motion.div>

@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src={images.heroBg}
-          alt="Paput Hero"
+          alt={HERO_STRINGS.HERO_ALT}
           className="w-full h-full object-cover object-center opacity-95 brightness-70"
         />
         {/* Subtle overlay to make text pop if needed, though the image seems dark enough in the screenshot */}
