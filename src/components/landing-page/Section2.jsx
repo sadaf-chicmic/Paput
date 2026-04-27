@@ -6,7 +6,7 @@ import {
 } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import images from '../../assets/images';
-import { fadeInUp2, staggerContainer, fadeZoom } from '../../constants/utils';
+import { fadeInUp, staggerContainer, fadeZoom } from '../../constants/utils';
 import OrderButton from '../common/OrderButton';
 import { SECTION2_STRINGS } from '../../constants/strings';
 
@@ -185,7 +185,7 @@ export default function Section2() {
         </motion.div>
       </motion.div>
 
-      <motion.div variants={fadeInUp2} className="flex justify-center mt-20">
+      <motion.div variants={fadeInUp} className="flex justify-center mt-20">
         <OrderButton className="px-12 py-5 text-xl" />
       </motion.div>
     </motion.section>

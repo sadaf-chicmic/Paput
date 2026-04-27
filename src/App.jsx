@@ -6,6 +6,7 @@ import About from './pages/About';
 import Events from './pages/Events';
 import Shop from './pages/Shop';
 import LargeOrders from './pages/LargeOrders';
+import Order from './pages/Order';
 import { ROUTES } from './constants/routes';
 import ScrollToTop from './components/common/ScrollToTop';
 import LandingPage from './pages/LandingPage';
@@ -22,6 +23,7 @@ function App() {
           <Route path={ROUTES.EVENTS} element={<Events />} />
           <Route path={ROUTES.SHOP} element={<Shop />} />
           <Route path={ROUTES.LARGE_ORDERS} element={<LargeOrders />} />
+          <Route path={ROUTES.ORDER} element={<Order />} />
         </Route>
       </Routes>
     </BrowserRouter>

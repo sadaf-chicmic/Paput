@@ -72,6 +72,8 @@ import slidingImg from './slidingImg.jpg';
 import nastras from './nastras.svg';
 import mainShirt from './mainShirt.jpg';
 import paputDuck from './paputDuck.svg';
+import orderFav from './orderFav.jpeg';
+import orderPng from './orderPng.png';
 
 export default {
   paputGreen,
@@ -148,4 +150,6 @@ export default {
   nastras,
   mainShirt,
   paputDuck,
+  orderFav,
+  orderPng,
 };

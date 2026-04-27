@@ -45,7 +45,9 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <a
-              href="#"
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(S.CHIRINGUITO_ADDRESS)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)] hover:underline"
               data-cursor
             >
@@ -57,7 +59,9 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-1">
             <a
-              href="#"
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(S.DELIVERY_ADDRESS)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)] hover:underline"
               data-cursor
             >
