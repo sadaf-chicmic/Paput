@@ -6,9 +6,15 @@ import {
 } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import images from '../../assets/images';
-import { fadeInUp, staggerContainer, fadeZoom } from '../../constants/utils';
+import {
+  fadeInUp,
+  fadeInUp2,
+  staggerContainer,
+  fadeZoom,
+} from '../../constants/animations';
 import OrderButton from '../common/OrderButton';
-import { SECTION2_STRINGS } from '../../constants/strings';
+import { LANDING_TEXTS } from '../../constants/texts';
+const { SECTION_2: SECTION2_STRINGS } = LANDING_TEXTS;
 
 export default function Section2() {
   const [width, setWidth] = useState(0);
@@ -129,11 +135,12 @@ export default function Section2() {
       viewport={{ once: true }}
       className="py-20 overflow-hidden bg-[#f4f3e6]"
     >
-      <motion.div variants={fadeZoom} className="flex justify-center mb-16">
-        <img
+      <motion.div className="flex justify-center">
+        <motion.img
+          variants={fadeZoom}
           src={images.nastras}
-          alt={SECTION2_STRINGS.NUESTRAS_BURGERS_ALT}
-          className="max-w-[40vw]"
+          alt={SECTION2_STRINGS.OUR_BURGERS_ALT}
+          className="w-full max-w-[200px] mb-8"
         />
       </motion.div>
 

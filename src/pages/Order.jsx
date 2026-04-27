@@ -6,22 +6,26 @@ import LocationsTab from '../components/order/LocationsTab';
 import OrderFooter from '../components/order/OrderFooter';
 import LoginModal from '../components/common/LoginModal';
 
-const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org';
+import { API_ENDPOINTS } from '../constants/api';
+import { APP_CONFIG } from '../constants/config';
+import { ORDER_TEXTS } from '../constants/texts';
 
 const Order = () => {
-  const [activeTab, setActiveTab] = useState('ORDER'); // ORDER or LOCATIONS
-  const [orderType, setOrderType] = useState('DELIVERY'); // DELIVERY or PICKUP
+  const [activeTab, setActiveTab] = useState(ORDER_TEXTS.TABS.ORDER); // ORDER or LOCATIONS
+  const [orderType, setOrderType] = useState(ORDER_TEXTS.TYPES.DELIVERY); // DELIVERY or PICKUP
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState([39.889, 4.263]); // Default Mahón
+  const [selectedLocation, setSelectedLocation] = useState(
+    APP_CONFIG.DEFAULT_COORDINATES,
+  ); // Default Mahón
   const [address, setAddress] = useState('');
   const [loading, setLoading] = useState(false);
   const [showStoreInfo, setShowStoreInfo] = useState(false);
   const [selectedStore, setSelectedStore] = useState({
-    name: 'Paput Delivery',
-    address: 'Avinguda Josep Anselm Clave',
-    hours: 'Mon-Sun: 19:30 - 23:00',
-    location: [39.889, 4.263],
+    name: ORDER_TEXTS.STORE.DEFAULT_NAME,
+    address: ORDER_TEXTS.STORE.DEFAULT_ADDRESS,
+    hours: ORDER_TEXTS.STORE.DEFAULT_HOURS,
+    location: APP_CONFIG.DEFAULT_COORDINATES,
   });
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -32,12 +36,12 @@ const Order = () => {
     }
     try {
       const response = await fetch(
-        `${NOMINATIM_BASE_URL}/search?format=json&q=${query}&limit=5&addressdetails=1`,
+        `${API_ENDPOINTS.GEOCODING.SEARCH}?format=json&q=${query}&limit=5&addressdetails=1`,
       );
       const data = await response.json();
       setSuggestions(data);
     } catch (error) {
-      console.error('Error fetching suggestions:', error);
+      console.error(ORDER_TEXTS.ERRORS.FETCH_SUGGESTIONS, error);
     }
   }, []);
 
@@ -46,7 +50,7 @@ const Order = () => {
       if (searchQuery && searchQuery !== address) {
         fetchSuggestions(searchQuery);
       }
-    }, 500);
+    }, APP_CONFIG.SEARCH_TIMEOUT);
     return () => clearTimeout(timer);
   }, [searchQuery, fetchSuggestions, address]);
 
@@ -73,13 +77,13 @@ const Order = () => {
         setSelectedLocation([latitude, longitude]);
         try {
           const response = await fetch(
-            `${NOMINATIM_BASE_URL}/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+            `${API_ENDPOINTS.GEOCODING.REVERSE}?format=json&lat=${latitude}&lon=${longitude}`,
           );
           const data = await response.json();
           setAddress(data.display_name);
           setSearchQuery(data.display_name);
         } catch (error) {
-          console.error('Error reverse geocoding:', error);
+          console.error(ORDER_TEXTS.ERRORS.REVERSE_GEOCODING, error);
         } finally {
           setLoading(false);
         }

@@ -1,19 +1,20 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
-import { HACER_PEDIDO } from '../../constants/strings';
+import { SHARED_TEXTS } from '../../constants/texts';
+const { PLACE_ORDER } = SHARED_TEXTS;
 import { ROUTES } from '../../constants/routes';
 
 /**
- * Reusable Order Button component "HACER PEDIDO"
+ * Reusable Order Button component
  * @param {Object} props
  * @param {string} props.className - Additional tailwind classes
  * @param {Object} props.variants - Framer motion variants for entrance animation
- * @param {string} props.label - Optional label override (defaults to HACER_PEDIDO)
+ * @param {string} props.label - Optional label override (defaults to PLACE_ORDER)
  */
 export default function OrderButton({
   className = '',
   variants,
-  label = HACER_PEDIDO,
+  label = PLACE_ORDER,
   ...props
 }) {
   const navigate = useNavigate();

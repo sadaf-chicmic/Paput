@@ -5,11 +5,11 @@ import {
   fadeInLeft,
   fadeInRight,
   fadeZoom,
-} from '../constants/utils';
+} from '../constants/animations';
 import { motion } from 'framer-motion';
 import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router';
-import { ABOUT_STRINGS as S } from '../constants/strings';
+import { ABOUT_TEXTS as S } from '../constants/texts';
 import OrderButton from '../components/common/OrderButton';
 import Contact from '../components/Contact';
 
@@ -86,7 +86,9 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase ">{S.SOMOS}</h2>
+          <h2 className="text-[40px] font-black uppercase ">
+            {S.WE_ARE_ALL_THIS}
+          </h2>
           <div className="flex justify-center -space-x-16 md:-space-x-12">
             <motion.section
               variants={fadeInLeft}
@@ -133,7 +135,9 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase ">{S.MUCHO}</h2>
+          <h2 className="text-[40px] font-black uppercase ">
+            {S.A_LOT_OF_THIS}
+          </h2>
           <div
             className="flex flex-nowrap justify-center items-center px-8 mt-12"
             style={{ gap: 0 }}
@@ -208,7 +212,7 @@ export default function About() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <h2 className="text-[40px] font-black uppercase  text-center">
-            {S.SOBRETODO}
+            {S.ESPECIALLY_THESE}
           </h2>
           <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-3">
             <motion.section
@@ -260,7 +264,7 @@ export default function About() {
             className="flex-1 text-[30px]  leading-[1.1] max-w-[70vw]"
             variants={fadeInUp}
           >
-            {S.FOOTER_TEXT}
+            {S.FOOTER_DESCRIPTION}
           </motion.p>
           <OrderButton
             variants={fadeInUp}

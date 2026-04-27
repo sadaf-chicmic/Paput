@@ -1,0 +1,17 @@
+export const SHARED_TEXTS = {
+  PLACE_ORDER: 'HACER PEDIDO',
+  CONTACT_US: 'CONTÁCTANOS',
+  LOGIN: 'Login',
+  ORDER: 'Order',
+  LOCATIONS: 'Locations',
+  BACK: 'ATRÁS',
+  NEXT: 'SIGUIENTE',
+  SEND: 'ENVIAR',
+  INFO: 'Info',
+  CLOSE: 'Close',
+  DELIVERY: 'DELIVERY',
+  ABOUT: 'SOBRE PAPUT',
+  SHOP: 'TIENDA',
+  EVENTS: 'EVENTOS',
+  LARGE_ORDERS: 'PEDIDOS GRANDES',
+};

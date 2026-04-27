@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { INSTAGRAM_LINK, SECTION1_STRINGS } from '../../constants/strings';
-import { fadeInLeft, fadeInRight } from '../../constants/utils';
+import { LANDING_TEXTS } from '../../constants/texts';
+const { SECTION_1: SECTION1_STRINGS, SOCIAL } = LANDING_TEXTS;
+const { INSTAGRAM: INSTAGRAM_LINK } = SOCIAL;
+import { fadeInLeft, fadeInRight } from '../../constants/animations';
 import images from '../../assets/images';
 
 export default function Section1() {
   const [hovered, setHovered] = useState(false);
 
-  // Split LINE3 for bolding
-  const line3Parts = SECTION1_STRINGS.LINE3.split(
-    SECTION1_STRINGS.HAMBURGUESAS,
+  // Split DESCRIPTION for bolding
+  const line3Parts = SECTION1_STRINGS.DESCRIPTION.split(
+    SECTION1_STRINGS.BURGERS_KEYWORD,
   );
   const prefix = line3Parts[0];
 
@@ -26,18 +28,18 @@ export default function Section1() {
         >
           <div className="flex flex-col -space-y-3 lg:-space-y-10 mb-4 lg:mb-6">
             <h1 className="text-[12vw] lg:text-[90px] font-black text-[#ffc62d] leading-[0.75] pb-14 uppercase">
-              {SECTION1_STRINGS.LINE1}
+              {SECTION1_STRINGS.HEADING_1}
             </h1>
             <h1 className="text-[12vw] lg:text-[90px] font-black text-[#ffc62d] leading-[0.75] uppercase">
-              {SECTION1_STRINGS.LINE2}
+              {SECTION1_STRINGS.HEADING_2}
             </h1>
           </div>
 
           <div className="mb-8 lg:mb-15">
-            <p className="text-xl lg:text-[22px] text-[#0a4635]font-medium">
+            <p className="text-xl lg:text-[22px] text-[#0a4635] font-medium">
               {prefix}{' '}
               <span className="font-bold">
-                {SECTION1_STRINGS.HAMBURGUESAS}.
+                {SECTION1_STRINGS.BURGERS_KEYWORD}.
               </span>
             </p>
           </div>

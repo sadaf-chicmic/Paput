@@ -1,5 +1,6 @@
-import React from 'react';
 import { Search, X } from 'lucide-react';
+import { ORDER_TEXTS, SHARED_TEXTS } from '../../constants/texts';
+const { PICKUP_PANEL: T } = ORDER_TEXTS;
 
 const PickupPanel = ({
   searchQuery,
@@ -15,7 +16,7 @@ const PickupPanel = ({
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4">
         <h2 className="text-[18px] font-bold uppercase tracking-tight text-[#2c2b2b]">
-          Pickup from
+          {T.PICKUP_FROM}
         </h2>
         <div className="relative group">
           <div className="absolute left-5 top-1/2 -translate-y-1/2">
@@ -29,7 +30,7 @@ const PickupPanel = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search"
+            placeholder={T.SEARCH}
             className="w-full h-14 pl-12 pr-12 rounded-[20px] border border-gray-400 bg-white focus:border-[#0a4635]/40 outline-none transition-all text-[14px] font-bold placeholder:text-gray-400"
           />
           {searchQuery && (
@@ -73,7 +74,7 @@ const PickupPanel = ({
                 {selectedStore.address}
               </p>
               <p className="text-[#0a4635] text-[14px] mt-1 uppercase">
-                Abrimos pronto
+                {T.OPENS_SOON}
               </p>
             </div>
             <div className="flex gap-2">
@@ -82,14 +83,14 @@ const PickupPanel = ({
                 onClick={() => setShowStoreInfo(true)}
                 className="bg-[#ffc62d] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
               >
-                Info
+                {SHARED_TEXTS.INFO}
               </button>
               <button
                 data-cursor
                 onClick={() => setIsLoginModalOpen(true)}
                 className="bg-[#0a4635] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
               >
-                Order
+                {SHARED_TEXTS.ORDER}
               </button>
             </div>
           </div>

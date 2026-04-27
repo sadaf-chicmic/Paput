@@ -1,7 +1,8 @@
 import images from '../assets/images';
 import { motion } from 'framer-motion';
-import { staggerContainer, fadeInUp2 } from '../constants/utils.js';
-import { EVENTS_DATA } from '../constants/strings';
+import { staggerContainer, fadeInUp2 } from '../constants/animations.js';
+import { EVENTS_TEXTS } from '../constants/texts';
+const { EVENTS_LIST: EVENTS_DATA } = EVENTS_TEXTS;
 
 export default function Events() {
   const events = EVENTS_DATA.map((e, i) => ({

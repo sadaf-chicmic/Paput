@@ -3,15 +3,16 @@ import { MapContainer, TileLayer, Marker, useMap, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+import { API_ENDPOINTS } from '../../constants/api';
+import { APP_CONFIG } from '../../constants/config';
+import { ORDER_TEXTS } from '../../constants/texts';
+
 // Fix Leaflet icon issue
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl:
-    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconRetinaUrl: API_ENDPOINTS.LEAFLET.MARKER_ICON_2X,
+  iconUrl: API_ENDPOINTS.LEAFLET.MARKER_ICON,
+  shadowUrl: API_ENDPOINTS.LEAFLET.MARKER_SHADOW,
 });
 
 function ChangeView({ center, zoom }) {
@@ -25,13 +26,13 @@ const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
     <div className="hidden lg:block flex-1 bg-[#d0d7de] relative z-0">
       <MapContainer
         center={selectedLocation}
-        zoom={13}
+        zoom={APP_CONFIG.MAP_ZOOM}
         style={{ height: '100%', width: '100%' }}
         zoomControl={false}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution={APP_CONFIG.MAP_ATTRIBUTION}
+          url={API_ENDPOINTS.LEAFLET.TILE_URL}
         />
         {/* Always show selected location marker if address is set */}
         {address && <Marker position={selectedLocation} />}
@@ -53,7 +54,7 @@ const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
                   data-cursor
                   className="bg-[#0a4635] text-[#f4f3e6] px-4 py-2 rounded-lg font-black text-[12px] uppercase shadow-lg whitespace-nowrap"
                 >
-                  Programar recogida
+                  {ORDER_TEXTS.MAP.SCHEDULE_PICKUP}
                 </button>
               </div>
             </Popup>
@@ -68,7 +69,7 @@ const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
                 ? selectedLocation
                 : selectedStore.location
           }
-          zoom={15}
+          zoom={APP_CONFIG.MAP_ZOOM_DETAIL}
         />
       </MapContainer>
     </div>

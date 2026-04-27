@@ -1,0 +1,32 @@
+export const LARGE_ORDERS_STRINGS = {
+  SUBTITLE: 'PEDIDOS PARA GRUPOS Y EVENTOS',
+  TITLE_LINE1: 'ORGANIZA',
+  TITLE_LINE2: 'TU EVENTO',
+  TITLE_LINE3: 'CON PAPUT',
+  DESC: 'Disfruta de la mejor experiencia Paput en tus celebraciones. Ofrecemos servicio de catering adaptado a tus necesidades.',
+  REMINDER:
+    'Recuerda que para pedidos grandes necesitamos un mínimo de 24h de antelación.',
+  STEP_TITLES: [
+    'DATOS DE CONTACTO',
+    'TIPO DE SERVICIO',
+    'ZONA Y DIRECCIÓN',
+    'NOMBRE DEL PEDIDO',
+    'FECHA Y HORA',
+  ],
+  BTN_BACK: 'ATRÁS',
+  BTN_NEXT: 'SIGUIENTE',
+  BTN_SEND: 'ENVIAR',
+  SERVICE_DELIVERY: 'DELIVERY',
+  SERVICE_TAKEAWAY: 'RECOGIDA (TAKE AWAY)',
+  LABELS: {
+    NOMBRE: 'NOMBRE Y APELLIDOS',
+    EMAIL: 'EMAIL',
+    TELEFONO: 'TELÉFONO',
+    EMPRESA: 'EMPRESA (OPCIONAL)',
+    ZONA: 'ZONA',
+    DIRECCION: 'DIRECCIÓN DE ENTREGA',
+    NOMBRE_PEDIDO: 'NOMBRE DEL EVENTO / PEDIDO',
+    DIA_EVENTO: 'DÍA DEL EVENTO',
+    HORA_ENTREGA: 'HORA DE ENTREGA / RECOGIDA',
+  },
+};

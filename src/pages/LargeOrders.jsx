@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fadeInUp2, staggerContainer } from '../constants/utils.js';
-import { LARGE_ORDERS_STRINGS as S } from '../constants/strings';
+import { fadeInUp2, staggerContainer } from '../constants/animations.js';
+import { LARGE_ORDERS_STRINGS as S } from '../constants/texts';
 
 export default function LargeOrders() {
   const [currentStep, setCurrentStep] = useState(1);

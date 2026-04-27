@@ -3,10 +3,13 @@ import images from '../../assets/images';
 import OrderButton from '../common/OrderButton';
 import { ROUTES } from '../../constants/routes';
 import BackgroundPattern from './BackgroundPattern.jsx';
-import { fadeInUp2, staggerContainer } from '../../constants/utils';
-import { SECTION3_STRINGS } from '../../constants/strings';
+import { fadeInUp2, staggerContainer } from '../../constants/animations';
+import { LANDING_TEXTS } from '../../constants/texts';
+import { useNavigate } from 'react-router';
+const { SECTION_3: SECTION3_STRINGS } = LANDING_TEXTS;
 
 export default function Section3() {
+  const navigate = useNavigate();
   return (
     <section className="relative w-full bg-[#f4f3e6] overflow-hidden flex items-center justify-center">
       <BackgroundPattern />
@@ -31,20 +34,20 @@ export default function Section3() {
         {/* Text + Button */}
         <div className="flex flex-col items-center gap-8 text-center">
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-[#0a4635] text-[40px] font-black uppercase leading-tight"
+            variants={fadeInUp2}
+            className="text-[4.5vw] md:text-[3.5vw] lg:text-[40px] font-black  text-center leading-[1] max-w-[80vw] mb-12 uppercase"
           >
-            {SECTION3_STRINGS.TEXT}
+            {SECTION3_STRINGS.MOTTO}
           </motion.p>
-
-          <OrderButton
-            label={SECTION3_STRINGS.ORDER_BUTTON_LABEL}
-            className="px-10 py-4 text-xl md:text-2xl"
-            onClick={() => (window.location.href = ROUTES.SHOP)}
-          />
+          <motion.div variants={fadeInUp2}>
+            <button
+              data-cursor
+              onClick={() => navigate(ROUTES.SHOP)}
+              className="h-14 md:h-16 px-10 md:px-14 bg-transparent text-[#0a4635] font-bold text-lg md:text-xl border-[2px] border-[#0a4635] rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
+            >
+              {SECTION3_STRINGS.STORE_BUTTON_LABEL}
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>

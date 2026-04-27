@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { fadeInUp2 } from '../constants/utils.js';
+import { fadeInUp2 } from '../constants/animations.js';
 
 export default function ShopCard({ imageSrc, title, fabric, year }) {
   return (

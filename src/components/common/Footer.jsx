@@ -3,7 +3,7 @@ import images from '../../assets/images';
 import { useNavigate } from 'react-router';
 import { ROUTES } from '../../constants/routes';
 import { ORDER_LINKS, FOOTER_SOCIAL_ICONS } from '../../constants/nav';
-import { FOOTER_STRINGS as S } from '../../constants/strings';
+import { FOOTER_TEXTS as S } from '../../constants/texts';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-1 mb-8">
             <h4 className="text-[24px] font-black mb-2 tracking-[0.05em] text-[var(--_colors---amarillo)]">
-              {S.CONTACTO}
+              {S.CONTACT}
             </h4>
             <a
               href={`mailto:${S.EMAIL}`}

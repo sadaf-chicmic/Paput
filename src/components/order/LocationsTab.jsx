@@ -1,5 +1,6 @@
-import React from 'react';
 import { Search, X } from 'lucide-react';
+import { ORDER_TEXTS } from '../../constants/texts';
+const { LOCATIONS_TAB: T, STORE } = ORDER_TEXTS;
 
 const LocationsTab = ({
   searchQuery,
@@ -13,7 +14,7 @@ const LocationsTab = ({
       {/* All Locations Card - Matching Image 2 */}
       <div className="w-[50vw] bg-white p-10 rounded-[22px] shadow-sm flex flex-col gap-10">
         <h1 className="text-[20px] font-bold uppercase text-[#2c2b2b]">
-          All locations
+          {T.TITLE}
         </h1>
         <div className="relative group">
           <div className="absolute left-6 top-1/2 -translate-y-1/2">
@@ -24,7 +25,7 @@ const LocationsTab = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by address"
+            placeholder={T.PLACEHOLDER}
             className="w-full h-15 pl-14 pr-12 rounded-[20px] border border-gray-300 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-base  placeholder:text-gray-300"
           />
           {searchQuery && (
@@ -61,9 +62,9 @@ const LocationsTab = ({
             className="border border-gray-100 rounded-2xl p-6 hover:bg-[#fbfbfb] cursor-pointer transition-all"
           >
             <h3 className="text-lg font-bold uppercase mb-1 text-[#2c2b2b]">
-              Paput Delivery
+              {STORE.DEFAULT_NAME}
             </h3>
-            <p className="text-gray-400 text-sm">Avinguda Josep Anselm Clave</p>
+            <p className="text-gray-400 text-sm">{STORE.DEFAULT_ADDRESS}</p>
           </div>
         </div>
       </div>

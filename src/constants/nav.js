@@ -1,21 +1,27 @@
 import images from '../assets/images';
 import { ROUTES } from './routes';
-import { WHATSAPP_LINK, TIKTOK_LINK, INSTAGRAM_LINK } from './strings';
+import { LANDING_TEXTS, SHARED_TEXTS } from './texts';
+const { SOCIAL } = LANDING_TEXTS;
+const {
+  WHATSAPP: WHATSAPP_LINK,
+  TIKTOK: TIKTOK_LINK,
+  INSTAGRAM: INSTAGRAM_LINK,
+} = SOCIAL;
 
 export const MENU_ITEMS = [
-  { name: 'HACER PADIDO', href: ROUTES.ORDER },
-  { name: 'DELIVERY', href: ROUTES.DELIVERY },
-  { name: 'SOBRE PAPUT', href: ROUTES.ABOUT },
-  { name: 'TIENDA', href: ROUTES.SHOP },
-  { name: 'EVENTOS', href: ROUTES.EVENTS },
-  { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
+  { name: SHARED_TEXTS.PLACE_ORDER, href: ROUTES.ORDER },
+  { name: SHARED_TEXTS.DELIVERY, href: ROUTES.DELIVERY },
+  { name: SHARED_TEXTS.ABOUT, href: ROUTES.ABOUT },
+  { name: SHARED_TEXTS.SHOP, href: ROUTES.SHOP },
+  { name: SHARED_TEXTS.EVENTS, href: ROUTES.EVENTS },
+  { name: SHARED_TEXTS.LARGE_ORDERS, href: ROUTES.LARGE_ORDERS },
 ];
 
 export const ORDER_LINKS = [
-  { name: 'PEDIDOS GRANDES', href: ROUTES.LARGE_ORDERS },
-  { name: 'DELIVERY', href: ROUTES.DELIVERY },
-  { name: 'TIENDA', href: ROUTES.SHOP },
-  { name: 'EVENTOS', href: ROUTES.EVENTS },
+  { name: SHARED_TEXTS.LARGE_ORDERS, href: ROUTES.LARGE_ORDERS },
+  { name: SHARED_TEXTS.DELIVERY, href: ROUTES.DELIVERY },
+  { name: SHARED_TEXTS.SHOP, href: ROUTES.SHOP },
+  { name: SHARED_TEXTS.EVENTS, href: ROUTES.EVENTS },
 ];
 
 export const NAV_SOCIAL_ICONS = [

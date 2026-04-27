@@ -1,0 +1,19 @@
+export const DELIVERY_TEXTS = {
+  SERVICE_AREA:
+    'SERVICIO EXCLUSIVO PARA MAHÓN, SANT CLIMENT, LLUCMAÇANES, SA MESQUIDA, CALA LLONGA, ES CASTELL, SANT LLUÍS DESDE PAPUT DELIVERY',
+  ADDRESS: 'AV. JOSÉ ANSELMO CLAVÉ 35, MAHÓN',
+  SCHEDULE_LABEL: 'HORARIO',
+  SCHEDULE: 'TODOS LOS DÍAS DE 19:30 A 23:00',
+  SERVICE_OPTIONS: 'OPCIONES DE SERVICIO',
+  SERVICE_OPTIONS_DESCRIPTION:
+    'Recoge tu pedido en el local \nO recíbelo en casa cómodamente 🛵',
+  ORDER_EASY_TITLE: 'PIDE PAPUT A DOMICILIO FÁCIL Y RÁPIDO',
+  ORDER_EASY_DESCRIPTION_PREFIX: 'A través de nuestra web O por ',
+  ORDER_EASY_LINK_TEXT: 'WhatsApp aquí',
+  ORDER_EASY_DESCRIPTION_SUFFIX: ' 🤳🏼',
+  DINE_IN_TITLE: 'Y SI PREFIERES COMER EN EL LOCAL',
+  DINE_IN_DESCRIPTION:
+    'Tenemos mesas para que disfrutes tu pedido en el momento 🍽️',
+  DINE_IN_NOTE:
+    '*Solo para el nuevo local en Av. José Anselmo Clavé 35, Mahón.',
+};

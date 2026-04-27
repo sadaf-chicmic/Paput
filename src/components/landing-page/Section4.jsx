@@ -1,20 +1,25 @@
 import { motion } from 'framer-motion';
 import images from '../../assets/images';
-import { SECTION4_STRINGS } from '../../constants/strings';
+import { LANDING_TEXTS } from '../../constants/texts';
+import { fadeInUp2 } from '../../constants/animations';
+const { SECTION_4: SECTION4_STRINGS } = LANDING_TEXTS;
 
 export default function Section4() {
   const items = [
     {
-      ...SECTION4_STRINGS.ITEMS[0],
       icon: images.icon1,
+      title: 'CHIRINGUITO / RESTAURANTE',
+      location: 'Andén de poniente S/N, Puerto de Mahón',
+      description:
+        'Domingo a Jueves 12:00H a 22:30H <br/> Viernes y sábado 12:00H a 23:30H',
     },
     {
-      ...SECTION4_STRINGS.ITEMS[1],
       icon: images.icon2,
+      title: 'DELIVERY / TAKE AWAY / DINE IN',
+      location: 'Avinguda de Josep A. Clavé, 35, Mahón',
+      description: 'Todos los días de 19:30H a 23:00H',
     },
   ];
-
-  const footerText = SECTION4_STRINGS.FOOTER_TEXT;
 
   const iconVariants = {
     hidden: { y: -100, opacity: 0 },
@@ -87,9 +92,10 @@ export default function Section4() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
+          variants={fadeInUp2}
           className="text-center text-[20px] opacity-80  px-4"
         >
-          {footerText}
+          {SECTION4_STRINGS.FOOTER_TEXT}
         </motion.p>
       </div>
     </section>

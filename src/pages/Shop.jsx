@@ -1,8 +1,9 @@
 import images from '../assets/images';
 import ShopCard from '../components/ShopCard';
 import { motion } from 'framer-motion';
-import { staggerContainer, fadeInUp2 } from '../constants/utils.js';
-import { SHOP_STRINGS as S, SHOP_PRODUCTS } from '../constants/strings';
+import { staggerContainer, fadeInUp2 } from '../constants/animations.js';
+import { SHOP_TEXTS } from '../constants/texts';
+const { PRODUCTS: SHOP_PRODUCTS, ...S } = SHOP_TEXTS;
 
 export default function Shop() {
   const products = SHOP_PRODUCTS.map((p, i) => ({

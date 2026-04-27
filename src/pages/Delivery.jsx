@@ -5,10 +5,12 @@ import {
   staggerContainer,
   fadeInLeft,
   fadeInRight,
-} from '../constants/utils';
+} from '../constants/animations';
 import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router';
-import { WHATSAPP_LINK, DELIVERY_STRINGS as S } from '../constants/strings';
+import { DELIVERY_TEXTS as S, LANDING_TEXTS } from '../constants/texts';
+const { SOCIAL } = LANDING_TEXTS;
+const { WHATSAPP: WHATSAPP_LINK } = SOCIAL;
 import OrderButton from '../components/common/OrderButton';
 
 export default function Delivery() {
@@ -128,19 +130,19 @@ export default function Delivery() {
 
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-            {S.ORDER_EASY}
+            {S.ORDER_EASY_TITLE}
           </p>
           <motion.p
             variants={fadeInUp}
             className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
           >
-            {S.ORDER_EASY_DESC_PREFIX}
+            {S.ORDER_EASY_DESCRIPTION_PREFIX}
             <a
               data-cursor
               href={WHATSAPP_LINK}
               className="underline decoration-[2px] underline-offset-4 hover:text-[#e54d3a] transition-colors"
             >
-              {S.ORDER_EASY_LINK}
+              {S.ORDER_EASY_LINK_TEXT}
             </a>{' '}
             🤳🏼
           </motion.p>
@@ -149,13 +151,13 @@ export default function Delivery() {
         <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
           <div className="flex flex-col gap-2">
             <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-              {S.DINE_IN}
+              {S.DINE_IN_TITLE}
             </p>
             <motion.p
               variants={fadeInUp}
               className="text-[18px] lg:text-[25px] tracking-tight text-[#0a4635] leading-tight opacity-90"
             >
-              {S.DINE_IN_DESC}
+              {S.DINE_IN_DESCRIPTION}
             </motion.p>
             <motion.p
               variants={fadeInUp}

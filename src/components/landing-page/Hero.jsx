@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import images from '../../assets/images';
-import { HERO_STRINGS } from '../../constants/strings';
+import { LANDING_TEXTS } from '../../constants/texts';
+const { HERO: HERO_STRINGS } = LANDING_TEXTS;
 import { ROUTES } from '../../constants/routes';
 
-import { navFadeInUp, staggerContainer } from '../../constants/utils';
+import { navFadeInUp, staggerContainer } from '../../constants/animations';
 import OrderButton from '../common/OrderButton';
 
 export default function Hero() {
@@ -32,21 +33,21 @@ export default function Hero() {
           variants={navFadeInUp}
           className="text-[#f4f3e6] text-lg md:text-xl lg:text-xl font-medium mb-7"
         >
-          {HERO_STRINGS.LINE1}
+          {HERO_STRINGS.SUBTITLE}
         </motion.p>
 
         <motion.h1
           variants={navFadeInUp}
           className="text-[#f4f3e6] text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.85] uppercase"
         >
-          {HERO_STRINGS.LINE2}
+          {HERO_STRINGS.TITLE_PRIMARY}
         </motion.h1>
 
         <motion.h1
           variants={navFadeInUp}
           className="text-[#f4f3e6] text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.85] uppercase mb-10"
         >
-          {HERO_STRINGS.LINE3}
+          {HERO_STRINGS.TITLE_SECONDARY}
         </motion.h1>
 
         <OrderButton

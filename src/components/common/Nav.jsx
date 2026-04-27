@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import images from '../../assets/images';
 import { ROUTES } from '../../constants/routes';
 import { useNavigate } from 'react-router';
-import { staggerVariants, navFadeInUp } from '../../constants/utils';
+import { staggerVariants, navFadeInUp } from '../../constants/animations';
 import { MENU_ITEMS, NAV_SOCIAL_ICONS } from '../../constants/nav';
 import OrderButton from './OrderButton';
 
