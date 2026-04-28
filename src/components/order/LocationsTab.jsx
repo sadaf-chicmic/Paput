@@ -12,7 +12,7 @@ const LocationsTab = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <div className="flex-1 flex flex-col bg-[#f4f3e6] px-4 pb-20 pt-16 items-center">
+    <div className="flex-1 flex flex-col bg-[#f4f3e6] px-4 pt-12 items-center">
       {/* All Locations Card - Matching Image 2 */}
       <div className="w-[50vw] bg-white p-10 rounded-[22px] shadow-sm flex flex-col gap-10">
         <h1 className="text-[20px] font-bold uppercase text-[#2c2b2b]">
