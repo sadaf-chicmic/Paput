@@ -62,6 +62,8 @@ const Order = () => {
   useEffect(() => {
     setSearchQuery('');
     setSuggestions([]);
+    setAddress('');
+    setSelectedLocation(APP_CONFIG.DEFAULT_COORDINATES);
   }, [activeTab, orderType]);
 
   const handleSelectLocation = (loc) => {
@@ -120,6 +122,9 @@ const Order = () => {
               selectedStore={selectedStore}
               showStoreInfo={showStoreInfo}
               setShowStoreInfo={setShowStoreInfo}
+              isServiceable={
+                !address || address.toLowerCase().includes('mohali')
+              }
             />
 
             <OrderMap
@@ -127,6 +132,9 @@ const Order = () => {
               address={address}
               orderType={orderType}
               selectedStore={selectedStore}
+              isDeliverable={
+                !address || address.toLowerCase().includes('mohali')
+              }
             />
           </div>
         ) : (

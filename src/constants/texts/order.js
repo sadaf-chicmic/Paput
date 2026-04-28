@@ -5,7 +5,7 @@ export const ORDER_TEXTS = {
   },
   STORE: {
     DEFAULT_NAME: 'Paput Delivery',
-    DEFAULT_ADDRESS: 'Avinguda Josep Anselm Clave',
+    DEFAULT_ADDRESS: 'Landran Chowk, Mohali',
     DEFAULT_HOURS: 'Mon-Sun: 19:30 - 23:00',
   },
   TABS: {
@@ -30,7 +30,7 @@ export const ORDER_TEXTS = {
     PICKUP_FROM: 'Pickup from',
     SEARCH: 'Search',
     OPENS_SOON: 'Abrimos pronto',
-    NO_SUGGESTIONS: 'No se encontraron sugerencias',
+    NO_SUGGESTIONS: 'Unserviceable location',
   },
   STORE_INFO: {
     ORDER_FOR_LATER: 'Order for later',
@@ -40,6 +40,7 @@ export const ORDER_TEXTS = {
   },
   MAP: {
     SCHEDULE_PICKUP: 'Programar recogida',
+    NOT_DELIVERING: 'Not delivering here',
   },
   LOCATIONS_TAB: {
     TITLE: 'All locations',

@@ -21,7 +21,15 @@ function ChangeView({ center, zoom }) {
   return null;
 }
 
-const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
+const OrderMap = ({
+  selectedLocation,
+  address,
+  orderType,
+  selectedStore,
+  isDeliverable,
+}) => {
+  const isSearchEmpty = !address || address.trim() === '';
+
   return (
     <div className="hidden lg:block flex-1 bg-[#d0d7de] relative z-0">
       <MapContainer
@@ -37,12 +45,40 @@ const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
         {/* Always show selected location marker if address is set */}
         {address && <Marker position={selectedLocation} />}
 
-        {/* Show store marker only in PICKUP mode */}
-        {orderType === 'PICKUP' && (
-          <Marker position={selectedStore.location}>
-            <Popup permanent className="custom-popup">
-              <div className="flex flex-col items-center p-1">
-                <div className="bg-white px-4 py-2 rounded-lg shadow-sm mb-2 text-center">
+        {/* Deliverability Popup - Standalone to ensure it opens automatically */}
+        {address && orderType === 'DELIVERY' && !isDeliverable && (
+          <Popup
+            position={selectedLocation}
+            autoClose={false}
+            closeOnClick={false}
+            offset={[0, -32]}
+            className="not-delivering-popup"
+          >
+            <div className="flex flex-col items-center p-2 min-w-[180px] max-w-[220px]">
+              <h3 className="text-[14px] font-black uppercase text-[#2c2b2b] mb-1 leading-tight">
+                {ORDER_TEXTS.MAP.NOT_DELIVERING}
+              </h3>
+              <p className="text-[11px] font-bold text-gray-400 text-center leading-snug">
+                {address}
+              </p>
+            </div>
+          </Popup>
+        )}
+
+        {/* Show store marker */}
+        {/* Show store marker and popup only when search is empty */}
+        {isSearchEmpty && (
+          <>
+            <Marker position={selectedStore.location} />
+            <Popup
+              position={selectedStore.location}
+              autoClose={false}
+              closeOnClick={false}
+              offset={[0, -32]}
+              className="custom-popup"
+            >
+              <div className="flex flex-col items-center">
+                <div className="bg-white px-2 py-1 text-center">
                   <p className="text-[12px] font-black uppercase text-[#2c2b2b] leading-tight">
                     {selectedStore.name}
                   </p>
@@ -50,25 +86,13 @@ const OrderMap = ({ selectedLocation, address, orderType, selectedStore }) => {
                     {selectedStore.address}
                   </p>
                 </div>
-                <button
-                  data-cursor
-                  className="bg-[#0a4635] text-[#f4f3e6] px-4 py-2 rounded-lg font-black text-[12px] uppercase shadow-lg whitespace-nowrap"
-                >
-                  {ORDER_TEXTS.MAP.SCHEDULE_PICKUP}
-                </button>
               </div>
             </Popup>
-          </Marker>
+          </>
         )}
 
         <ChangeView
-          center={
-            address
-              ? selectedLocation
-              : orderType === 'DELIVERY'
-                ? selectedLocation
-                : selectedStore.location
-          }
+          center={address ? selectedLocation : selectedStore.location}
           zoom={APP_CONFIG.MAP_ZOOM_DETAIL}
         />
       </MapContainer>

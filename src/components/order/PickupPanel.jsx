@@ -12,8 +12,11 @@ const PickupPanel = ({
   selectedStore,
   setShowStoreInfo,
   setIsLoginModalOpen,
+  isServiceable,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const isSearchEmpty = !searchQuery || searchQuery.trim() === '';
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4">
@@ -74,37 +77,45 @@ const PickupPanel = ({
       </div>
 
       <div className="flex flex-col gap-3">
-        <div className="p-4 border border-gray-100 rounded-2xl bg-white shadow-sm flex flex-col gap-4">
-          <div className="flex justify-between items-start">
-            <div>
-              <h3 className="text-[18px] font-bold uppercase text-[#2c2b2b] mb-1">
-                {selectedStore.name}
-              </h3>
-              <p className="text-gray-400 text-[16px]">
-                {selectedStore.address}
-              </p>
-              <p className="text-[#0a4635] text-[14px] mt-1 uppercase">
-                {T.OPENS_SOON}
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <button
-                data-cursor
-                onClick={() => setShowStoreInfo(true)}
-                className="bg-[#ffc62d] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
-              >
-                {SHARED_TEXTS.INFO}
-              </button>
-              <button
-                data-cursor
-                onClick={() => setIsLoginModalOpen(true)}
-                className="bg-[#0a4635] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
-              >
-                {SHARED_TEXTS.ORDER}
-              </button>
+        {isServiceable ? (
+          <div className="p-4 border border-gray-100 rounded-2xl bg-white shadow-sm flex flex-col gap-4">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="text-[18px] font-bold uppercase text-[#2c2b2b] mb-1">
+                  {selectedStore.name}
+                </h3>
+                <p className="text-gray-400 text-[16px]">
+                  {selectedStore.address}
+                </p>
+                <p className="text-[#0a4635] text-[14px] mt-1 uppercase">
+                  {T.OPENS_SOON}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  data-cursor
+                  onClick={() => setShowStoreInfo(true)}
+                  className="bg-[#ffc62d] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
+                >
+                  {SHARED_TEXTS.INFO}
+                </button>
+                <button
+                  data-cursor
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="bg-[#0a4635] text-white px-4 py-2 rounded-[10px] font-bold tracking-wider text-[14px] uppercase shadow-sm hover:translate-y-[-1.5px] transition-all"
+                >
+                  {SHARED_TEXTS.ORDER}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-10 px-4 text-center">
+            <p className="text-gray-400 text-[16px] font-bold uppercase tracking-wide">
+              {T.NO_SUGGESTIONS}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

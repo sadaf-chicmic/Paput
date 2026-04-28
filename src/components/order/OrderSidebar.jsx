@@ -18,6 +18,7 @@ const OrderSidebar = ({
   selectedStore,
   showStoreInfo,
   setShowStoreInfo,
+  isServiceable,
 }) => {
   return (
     <div className="flex h-full bg-white border-r border-gray-100 z-10">
@@ -69,6 +70,7 @@ const OrderSidebar = ({
             selectedStore={selectedStore}
             setShowStoreInfo={setShowStoreInfo}
             setIsLoginModalOpen={setIsLoginModalOpen}
+            isServiceable={isServiceable}
           />
         )}
       </div>
