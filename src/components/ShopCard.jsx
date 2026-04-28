@@ -14,6 +14,7 @@ export default function ShopCard({ imageSrc, title, fabric, year }) {
           src={imageSrc}
           alt={title}
           className="w-full h-full object-contain"
+          loading="lazy"
         />
       </div>
 

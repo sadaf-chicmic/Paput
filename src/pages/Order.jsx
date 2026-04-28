@@ -9,8 +9,11 @@ import LoginModal from '../components/common/LoginModal';
 import { API_ENDPOINTS } from '../constants/api';
 import { APP_CONFIG } from '../constants/config';
 import { ORDER_TEXTS } from '../constants/texts';
+import { useAuth } from '../context/AuthContext';
+import { addressService } from '../services/addressService';
 
 const Order = () => {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState(ORDER_TEXTS.TABS.ORDER); // ORDER or LOCATIONS
   const [orderType, setOrderType] = useState(ORDER_TEXTS.TYPES.DELIVERY); // DELIVERY or PICKUP
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,6 +31,57 @@ const Order = () => {
     location: APP_CONFIG.DEFAULT_COORDINATES,
   });
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  // Saved addresses state
+  const [savedAddresses, setSavedAddresses] = useState([]);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Fetch saved addresses if user is logged in
+  useEffect(() => {
+    const fetchSavedAddresses = async () => {
+      if (user) {
+        try {
+          const data = await addressService.getAddresses(user.id);
+          setSavedAddresses(data);
+        } catch (error) {
+          console.error('Error fetching addresses:', error);
+        }
+      } else {
+        setSavedAddresses([]);
+      }
+    };
+    fetchSavedAddresses();
+  }, [user]);
+
+  const handleSaveAddress = async () => {
+    if (!user || !address) return;
+
+    setIsSaving(true);
+    try {
+      const newAddress = {
+        user_id: user.id,
+        name: address.split(',')[0], // Use first part of address as name for now
+        full_address: address,
+        lat: selectedLocation[0],
+        lon: selectedLocation[1],
+      };
+      const saved = await addressService.saveAddress(newAddress);
+      setSavedAddresses([saved, ...savedAddresses]);
+    } catch (error) {
+      console.error('Error saving address:', error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDeleteAddress = async (addressId) => {
+    try {
+      await addressService.deleteAddress(addressId);
+      setSavedAddresses(savedAddresses.filter((addr) => addr.id !== addressId));
+    } catch (error) {
+      console.error('Error deleting address:', error);
+    }
+  };
 
   const fetchSuggestions = useCallback(async (query) => {
     if (query.length < 3) {
@@ -125,6 +179,12 @@ const Order = () => {
               isServiceable={
                 !address || address.toLowerCase().includes('mohali')
               }
+              // Added props for saved addresses
+              savedAddresses={savedAddresses}
+              handleSaveAddress={handleSaveAddress}
+              handleDeleteAddress={handleDeleteAddress}
+              isSaving={isSaving}
+              address={address}
             />
 
             <OrderMap

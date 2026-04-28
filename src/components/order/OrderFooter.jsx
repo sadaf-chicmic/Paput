@@ -9,6 +9,7 @@ const OrderFooter = () => {
           src={images.orderPng}
           alt="Avatar"
           className="h-24 w-24 rounded-full object-contain"
+          loading="lazy"
         />
       </div>
       <a
@@ -16,7 +17,12 @@ const OrderFooter = () => {
         href="https://instagram.com"
         className="rounded-full hover:scale-110 transition-transform shadow-sm"
       >
-        <img src={images.instaFooter} alt="" className="w-10 rounded-[80px]" />
+        <img
+          src={images.instaFooter}
+          alt=""
+          className="w-10 rounded-[80px]"
+          loading="lazy"
+        />
       </a>
       <div className="flex flex-col items-center gap-2 text-[10px] font-bold text-[#0a4635]/30 uppercase tracking-[0.2em] mt-2">
         <p>©2026 Paput. All Rights Reserved.</p>

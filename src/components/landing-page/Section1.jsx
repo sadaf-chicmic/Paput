@@ -55,6 +55,7 @@ export default function Section1() {
               src={hovered ? images.tagGreen : images.tag}
               alt={SECTION1_STRINGS.INSTAGRAM_TAG}
               className="w-[280px] ml-150 -rotate-18"
+              loading="lazy"
             />
           </div>
         </motion.div>
@@ -72,6 +73,7 @@ export default function Section1() {
               src={images.grill}
               alt={SECTION1_STRINGS.GRILL_ALT}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </motion.div>
           <motion.div
@@ -85,6 +87,7 @@ export default function Section1() {
               src={images.slidingImg}
               alt={SECTION1_STRINGS.SLIDING_IMG_ALT}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </motion.div>
         </div>

@@ -19,6 +19,7 @@ export default function Footer() {
             className="w-[180px] mb-6 cursor-pointer"
             data-cursor
             onClick={() => navigate(ROUTES.LANDING)}
+            loading="lazy"
           />
           <div className="flex gap-4">
             {FOOTER_SOCIAL_ICONS.map((social, idx) => (
@@ -132,6 +133,7 @@ function SocialIcon({ social }) {
         src={isHovered ? social.hover : social.default}
         alt={social.alt}
         className="w-16 h-16 transition-all duration-300"
+        loading="lazy"
       />
     </a>
   );

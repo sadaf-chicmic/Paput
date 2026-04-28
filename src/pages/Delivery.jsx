@@ -31,6 +31,7 @@ export default function Delivery() {
               src={images.deliveryGreen}
               alt="DELIVERY"
               className="w-full max-w-[600px] h-auto object-contain"
+              loading="lazy"
             />
 
             <OrderButton
@@ -47,6 +48,7 @@ export default function Delivery() {
                 src={images.map}
                 alt="Delivery Map"
                 className="w-full h-auto object-contain"
+                loading="lazy"
               />
             </motion.div>
           </motion.div>
@@ -79,6 +81,7 @@ export default function Delivery() {
               src={images.img1}
               alt="Mascot"
               className="w-[100px] lg:w-[150px] h-auto object-contain"
+              loading="lazy"
             />
           </motion.div>
         </div>
@@ -104,6 +107,7 @@ export default function Delivery() {
           src={images.vehicle}
           alt="Vehicle"
           className="w-full max-w-[1000px] h-auto object-contain"
+          loading="lazy"
         />
       </motion.div>
 

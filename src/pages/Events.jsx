@@ -24,6 +24,7 @@ export default function Events() {
             src={images.eventos}
             alt="Eventos"
             className="w-full max-w-[400px] h-auto"
+            loading="lazy"
           />
         </div>
 
@@ -50,6 +51,7 @@ export default function Events() {
                     src={event.image}
                     alt={event.title}
                     className="w-full h-auto object-cover grayscale-0"
+                    loading="lazy"
                   />
                 </div>
               )}

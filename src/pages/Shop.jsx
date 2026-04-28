@@ -32,7 +32,12 @@ export default function Shop() {
         className="w-full flex flex-col items-center px-4 md:px-12"
       >
         <div className="flex justify-center mb-8">
-          <img src={images.shop} alt="Shop" className="w-[35vw]" />
+          <img
+            src={images.shop}
+            alt="Shop"
+            className="w-[35vw]"
+            loading="lazy"
+          />
         </div>
 
         <p className="text-center text-lg md:text-xl font-medium text-[var(--_colors---verde)] mb-20">

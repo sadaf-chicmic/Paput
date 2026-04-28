@@ -64,6 +64,7 @@ export default function Section4() {
                   src={item.icon}
                   alt={item.title}
                   className="h-20 w-auto object-contain"
+                  loading="lazy"
                 />
               </motion.div>
 

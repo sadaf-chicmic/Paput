@@ -16,6 +16,7 @@ export default function Hero() {
           src={images.heroBg}
           alt={HERO_STRINGS.HERO_ALT}
           className="w-full h-full object-cover object-center opacity-95 brightness-70"
+          loading="eager"
         />
         {/* Subtle overlay to make text pop if needed, though the image seems dark enough in the screenshot */}
         <div className="absolute inset-0 bg-black/10" />

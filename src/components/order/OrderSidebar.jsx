@@ -19,6 +19,11 @@ const OrderSidebar = ({
   showStoreInfo,
   setShowStoreInfo,
   isServiceable,
+  savedAddresses,
+  handleSaveAddress,
+  handleDeleteAddress,
+  isSaving,
+  address,
 }) => {
   return (
     <div className="flex h-full bg-white border-r border-gray-100 z-10">
@@ -59,6 +64,11 @@ const OrderSidebar = ({
             handleCurrentLocation={handleCurrentLocation}
             loading={loading}
             setIsLoginModalOpen={setIsLoginModalOpen}
+            savedAddresses={savedAddresses}
+            handleSaveAddress={handleSaveAddress}
+            handleDeleteAddress={handleDeleteAddress}
+            isSaving={isSaving}
+            address={address}
           />
         ) : (
           <PickupPanel

@@ -28,6 +28,7 @@ export default function Nav() {
           className="h-10 cursor-pointer"
           data-cursor
           onClick={() => navigate(ROUTES.LANDING)}
+          loading="eager"
         />
 
         <div className="flex gap-8">
@@ -41,7 +42,12 @@ export default function Nav() {
             onClick={() => setOpen(true)}
             className="cursor-hover h-15 w-15 flex items-center justify-center rounded-full"
           >
-            <img src={images.hamburger} alt="hamburger" className="w-12 h-12" />
+            <img
+              src={images.hamburger}
+              alt="hamburger"
+              className="w-12 h-12"
+              loading="lazy"
+            />
           </button>
         </div>
       </nav>
@@ -62,7 +68,12 @@ export default function Nav() {
                 onClick={() => setOpen(false)}
                 className="cursor-hover text-[#06482f] hover:scale-110 transition-transform"
               >
-                <img src={images.close} alt="close" className="w-12 h-12" />
+                <img
+                  src={images.close}
+                  alt="close"
+                  className="w-12 h-12"
+                  loading="lazy"
+                />
               </button>
             </div>
 
@@ -127,6 +138,7 @@ function SocialIcon({ item }) {
         src={isHovered ? item.hover : item.default}
         alt={item.alt}
         className="w-16 h-16 transition-all duration-300"
+        loading="lazy"
       />
     </a>
   );

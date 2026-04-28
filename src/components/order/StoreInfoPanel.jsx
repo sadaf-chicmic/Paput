@@ -25,6 +25,7 @@ const StoreInfoPanel = ({ selectedStore, setShowStoreInfo }) => {
             src={images.close}
             alt={SHARED_TEXTS.CLOSE}
             className="w-4 h-4 opacity-40 hover:opacity-100"
+            loading="lazy"
           />
         </button>
       </div>

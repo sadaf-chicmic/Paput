@@ -17,7 +17,7 @@ const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
   <div
     className={`p-3 inline-block transition-transform duration-300  max-w-[300px] ${rotation} ${className}`}
   >
-    <img src={src} alt={alt} className=" w-full object-cover" />
+    <img src={src} alt={alt} className=" w-full object-cover" loading="lazy" />
   </div>
 );
 

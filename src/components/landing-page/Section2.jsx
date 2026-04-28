@@ -141,6 +141,7 @@ export default function Section2() {
           src={images.nastras}
           alt={SECTION2_STRINGS.OUR_BURGERS_ALT}
           className="max-w-[40vw] mb-8"
+          loading="lazy"
         />
       </motion.div>
 
@@ -179,6 +180,7 @@ export default function Section2() {
                   alt={burger.title}
                   className="max-w-full max-h-full object-contain hover:scale-110 transition-transform duration-500 cursor-pointer"
                   draggable="false"
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-3xl font-black text-[#1a3a2a] mb-2">
