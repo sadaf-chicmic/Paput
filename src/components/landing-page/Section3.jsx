@@ -35,18 +35,16 @@ export default function Section3() {
         <div className="flex flex-col items-center gap-8 text-center">
           <motion.p
             variants={fadeInUp2}
-            className="text-[4.5vw] md:text-[3.5vw] lg:text-[40px] font-black  text-center leading-[1] max-w-[80vw] mb-12 uppercase"
+            className="text-[4.5vw] md:text-[3.5vw] lg:text-[40px] font-black  text-center leading-[1] max-w-[80vw] mt-6 uppercase"
           >
             {SECTION3_STRINGS.MOTTO}
           </motion.p>
           <motion.div variants={fadeInUp2}>
-            <button
-              data-cursor
+            <OrderButton
+              label={SECTION3_STRINGS.STORE_BUTTON_LABEL}
               onClick={() => navigate(ROUTES.SHOP)}
-              className="h-14 md:h-16 px-10 md:px-14 bg-transparent text-[#0a4635] font-bold text-lg md:text-xl border-[2px] border-[#0a4635] rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
-            >
-              {SECTION3_STRINGS.STORE_BUTTON_LABEL}
-            </button>
+              className="px-12 py-5 text-xl"
+            />
           </motion.div>
         </div>
       </div>

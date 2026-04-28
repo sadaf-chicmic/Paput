@@ -24,11 +24,13 @@ export const ORDER_TEXTS = {
     YOUR_ADDRESSES: 'Tus direcciones',
     NO_ADDRESSES: 'Aún no has creado ninguna dirección.',
     LOGIN_TO_SAVE: 'Iniciar sesión para direcciones guardadas',
+    NO_SUGGESTIONS: 'No se encontraron sugerencias',
   },
   PICKUP_PANEL: {
     PICKUP_FROM: 'Pickup from',
     SEARCH: 'Search',
     OPENS_SOON: 'Abrimos pronto',
+    NO_SUGGESTIONS: 'No se encontraron sugerencias',
   },
   STORE_INFO: {
     ORDER_FOR_LATER: 'Order for later',
@@ -42,5 +44,6 @@ export const ORDER_TEXTS = {
   LOCATIONS_TAB: {
     TITLE: 'All locations',
     PLACEHOLDER: 'Search by address',
+    NO_SUGGESTIONS: 'No se encontraron sugerencias',
   },
 };

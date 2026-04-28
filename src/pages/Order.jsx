@@ -46,8 +46,12 @@ const Order = () => {
   }, []);
 
   useEffect(() => {
+    if (!searchQuery || searchQuery.trim() === '') {
+      setSuggestions([]);
+      return;
+    }
     const timer = setTimeout(() => {
-      if (searchQuery && searchQuery !== address) {
+      if (searchQuery !== address) {
         fetchSuggestions(searchQuery);
       }
     }, APP_CONFIG.SEARCH_TIMEOUT);

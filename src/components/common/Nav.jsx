@@ -27,7 +27,7 @@ export default function Nav() {
           alt="paputGreen"
           className="h-10 cursor-pointer"
           data-cursor
-          onClick={() => navigate(ROUTES.ABOUT)}
+          onClick={() => navigate(ROUTES.LANDING)}
         />
 
         <div className="flex gap-8">

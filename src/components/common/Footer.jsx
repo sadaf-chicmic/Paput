@@ -18,7 +18,7 @@ export default function Footer() {
             alt="PAPUT"
             className="w-[180px] mb-6 cursor-pointer"
             data-cursor
-            onClick={() => navigate(ROUTES.ABOUT)}
+            onClick={() => navigate(ROUTES.LANDING)}
           />
           <div className="flex gap-4">
             {FOOTER_SOCIAL_ICONS.map((social, idx) => (

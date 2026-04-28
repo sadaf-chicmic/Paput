@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { ORDER_TEXTS } from '../../constants/texts';
 const { LOCATIONS_TAB: T, STORE } = ORDER_TEXTS;
@@ -9,6 +10,7 @@ const LocationsTab = ({
   handleSelectLocation,
   setSuggestions,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="flex-1 flex flex-col bg-[#f4f3e6] px-4 pb-20 pt-16 items-center">
       {/* All Locations Card - Matching Image 2 */}
@@ -25,6 +27,8 @@ const LocationsTab = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             placeholder={T.PLACEHOLDER}
             className="w-full h-15 pl-14 pr-12 rounded-[20px] border border-gray-300 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-base  placeholder:text-gray-300"
           />
@@ -39,20 +43,26 @@ const LocationsTab = ({
               <X size={20} />
             </button>
           )}
-          {suggestions.length > 0 && (
+          {isFocused && searchQuery.trim() !== '' && (
             <div className="absolute top-[calc(100%+8px)] left-0 right-0 bg-white rounded-2xl shadow-xl border border-gray-100 z-[2000] overflow-hidden p-2">
-              {suggestions.map((loc, idx) => (
-                <button
-                  key={idx}
-                  data-cursor
-                  onClick={() => handleSelectLocation(loc)}
-                  className="w-full p-3 text-left hover:bg-[#f4f3e6] rounded-xl flex items-start gap-3 transition-colors"
-                >
-                  <span className="text-[14px] font-bold text-[#0a4635] line-clamp-2 leading-tight">
-                    {loc.display_name}
-                  </span>
-                </button>
-              ))}
+              {suggestions.length > 0 ? (
+                suggestions.map((loc, idx) => (
+                  <button
+                    key={idx}
+                    data-cursor
+                    onClick={() => handleSelectLocation(loc)}
+                    className="w-full p-3 text-left hover:bg-[#f4f3e6] rounded-xl flex items-start gap-3 transition-colors"
+                  >
+                    <span className="text-[14px] font-bold text-[#0a4635] line-clamp-2 leading-tight">
+                      {loc.display_name}
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <div className="p-4 text-center text-gray-400 text-[14px] font-bold uppercase">
+                  {T.NO_SUGGESTIONS}
+                </div>
+              )}
             </div>
           )}
         </div>

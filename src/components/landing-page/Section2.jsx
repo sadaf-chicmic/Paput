@@ -140,7 +140,7 @@ export default function Section2() {
           variants={fadeZoom}
           src={images.nastras}
           alt={SECTION2_STRINGS.OUR_BURGERS_ALT}
-          className="w-full max-w-[200px] mb-8"
+          className="max-w-[40vw] mb-8"
         />
       </motion.div>
 
