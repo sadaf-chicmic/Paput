@@ -28,7 +28,6 @@ const DeliveryPanel = ({
             />
           </div>
           <input
-            data-cursor
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -39,6 +38,7 @@ const DeliveryPanel = ({
           />
           {searchQuery && (
             <button
+             data-cursor
               onClick={() => {
                 setSearchQuery('');
                 setSuggestions([]);

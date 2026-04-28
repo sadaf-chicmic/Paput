@@ -23,7 +23,6 @@ const LocationsTab = ({
             <Search size={22} className="text-gray-300" />
           </div>
           <input
-            data-cursor
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -34,6 +33,7 @@ const LocationsTab = ({
           />
           {searchQuery && (
             <button
+              data-cursor
               onClick={() => {
                 setSearchQuery('');
                 setSuggestions([]);

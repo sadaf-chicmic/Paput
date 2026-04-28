@@ -31,7 +31,6 @@ const PickupPanel = ({
             />
           </div>
           <input
-            data-cursor
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -42,6 +41,7 @@ const PickupPanel = ({
           />
           {searchQuery && (
             <button
+              data-cursor
               onClick={() => {
                 setSearchQuery('');
                 setSuggestions([]);
