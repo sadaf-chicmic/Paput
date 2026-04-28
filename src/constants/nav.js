@@ -18,6 +18,7 @@ export const MENU_ITEMS = [
 ];
 
 export const ORDER_LINKS = [
+  { name: SHARED_TEXTS.PLACE_ORDER, href: ROUTES.ORDER },
   { name: SHARED_TEXTS.LARGE_ORDERS, href: ROUTES.LARGE_ORDERS },
   { name: SHARED_TEXTS.DELIVERY, href: ROUTES.DELIVERY },
   { name: SHARED_TEXTS.SHOP, href: ROUTES.SHOP },

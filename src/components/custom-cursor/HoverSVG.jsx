@@ -4,7 +4,7 @@ export default function HoverSVG() {
     <img
       src={images.cursorHover}
       alt="cursorHover"
-      style={{ width: '60px', height: 'auto' }}
+      style={{ width: '50px', height: 'auto' }}
     />
   );
 }

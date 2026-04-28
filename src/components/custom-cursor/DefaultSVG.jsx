@@ -4,7 +4,7 @@ export default function DefaultSVG() {
     <img
       src={images.cursorDefault}
       alt="cursorDefault"
-      style={{ width: '60px', height: 'auto' }}
+      style={{ width: '50px', height: 'auto' }}
     />
   );
 }

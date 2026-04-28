@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useSpring } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 import DefaultSVG from './DefaultSVG';
 import HoverSVG from './HoverSVG';
 
 export default function CustomCursor() {
   const [hovered, setHovered] = useState(false);
 
-  // Spring settings for smooth movement
-  const springConfig = { damping: 25, stiffness: 250 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
 
   useEffect(() => {
     const moveCursor = (e) => {
-      cursorX.set(e.clientX);
+      // Offset by 25px horizontally to mimic translate(-50%, 0%) for 50px width SVG.
+      cursorX.set(e.clientX - 25);
       cursorY.set(e.clientY);
     };
 
@@ -37,33 +36,9 @@ export default function CustomCursor() {
       style={{
         x: cursorX,
         y: cursorY,
-        translateX: '-50%',
-        translateY: '-50%',
       }}
     >
-      <AnimatePresence mode="wait">
-        {hovered ? (
-          <motion.div
-            key="hover"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ duration: 0 }}
-          >
-            <HoverSVG />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="default"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.5, opacity: 0 }}
-            transition={{ duration: 0 }}
-          >
-            <DefaultSVG />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {hovered ? <HoverSVG /> : <DefaultSVG />}
     </motion.div>
   );
 }
