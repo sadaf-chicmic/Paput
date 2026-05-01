@@ -27,7 +27,7 @@ export default function Section1() {
       const t1 = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'bottom bottom',
           toggleActions: 'play none none none',
         },
       });
@@ -53,7 +53,7 @@ const el = slidingRef.current;
 
 const trigger = ScrollTrigger.create({
   trigger: el,
-  start: 'top 80%',
+  start: 'bottom bottom',
 
   onEnter: runAnimation,
   onEnterBack: runAnimation,

@@ -207,7 +207,7 @@ export default function About() {
           {S.ESPECIALLY_THESE}
         </h2>
         <motion.section
-          className="flex flex-col items-center gap-6 mb-20"
+          className="flex flex-col items-center gap-6 "
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"

@@ -72,19 +72,20 @@ export default function Section2() {
         .timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%', // fires when section top reaches 80% down the screen
+            start: 'bottom bottom', // fires when section top reaches 80% down the screen
             once: true,
+            markers: true,
           },
         })
         .to(nastrasRef.current, {
           opacity: 1,
-          duration: 1.6,
-          ease: 'power2.out',
+          duration: 1,
+          ease: 'power1.out',
         })
         .to(
           buttonRef.current,
-          { opacity: 1, duration: 3, ease: 'power1.out' },
-          '-=0.8',
+          { opacity: 1, duration: 1, ease: 'power1.out' },
+          '-=0.5',
         );
     }, sectionRef);
 
@@ -97,7 +98,7 @@ export default function Section2() {
       className="pt-20 pb-10 bg-[#f4f3e6] overflow-hidden select-none"
     >
       {/* Heading image */}
-      <div className="flex justify-center mt-8 mb-4">
+      <div className="flex justify-center mt-8">
         <img
           ref={nastrasRef}
           src={images.nastras}
@@ -127,7 +128,7 @@ export default function Section2() {
                 className={`
                   burger-card
                   flex flex-col items-center text-center shrink-0
-                  w-[400px] md:w-[520px]
+                  w-[300px] md:w-[420px]
                   pointer-events-none
                   transition-transform duration-500 ease-out
                   ${isActive ? 'scale-100' : 'scale-[0.82]'}
@@ -144,7 +145,7 @@ export default function Section2() {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-2xl md:text-3xl font-black text-[#1a3a2a] uppercase tracking-tight mb-3 leading-tight">
+                <h3 className="text-2xl md:text-3xl font-black text-[#1a3a2a] uppercase tracking-tight leading-tight">
                   {burger.title}
                 </h3>
 
@@ -159,7 +160,7 @@ export default function Section2() {
       </div>
 
       {/* CTA button */}
-      <div ref={buttonRef} className="flex justify-center mt-8">
+      <div ref={buttonRef} className="flex justify-center mt-4">
         <OrderButton className="px-8 py-4 text-xl" />
       </div>
     </section>

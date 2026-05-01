@@ -41,7 +41,7 @@ export default function Delivery() {
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: deliveryRef.current,
-          start: 'top 85%',
+          start: 'bottom bottom',
         },
       });
 
@@ -66,7 +66,7 @@ export default function Delivery() {
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: scheduleLabelRef.current,
-          start: 'top 85%',
+          start: 'bottom bottom',
         },
       });
 

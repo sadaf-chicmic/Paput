@@ -35,8 +35,7 @@ export default function LargeOrders() {
       const tl = gsap.timeline({
 scrollTrigger: {
   trigger: textRef.current,
-  start: 'top center',
-  end: 'bottom center',
+  start: 'bottom bottom',
   toggleActions: 'play none none none',
   once: true,
 }
