@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import images from '../../assets/images';
 import { useAuth } from '../../context/AuthContext';
+import { AUTH_TEXTS } from '../../constants/texts';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -20,7 +21,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (authError) {
       setError(authError.message === 'otp_expired' 
-        ? 'El enlace de confirmación ha caducado. Por favor, solicita uno nuevo.' 
+        ? AUTH_TEXTS.OTP_EXPIRED
         : authError.message);
       
       // If it's an auth error from the URL, we might want to ensure the modal is in a certain state
@@ -125,12 +126,12 @@ const LoginModal = ({ isOpen, onClose }) => {
                   
                   <div className="flex flex-col gap-2">
                     <h2 className="text-[26px] font-bold text-[#0a4635] uppercase tracking-tight">
-                      {needsEmailConfirmation ? '¡Registro exitoso!' : '¡Bienvenido!'}
+                      {needsEmailConfirmation ? AUTH_TEXTS.REGISTRATION_SUCCESS_TITLE : AUTH_TEXTS.WELCOME_TITLE}
                     </h2>
                     <p className="text-gray-500 font-medium text-[16px] max-w-[320px] mx-auto">
                       {needsEmailConfirmation 
-                        ? 'Te hemos enviado un correo de confirmación. Por favor, verifica tu bandeja de entrada para activar tu cuenta.'
-                        : 'Tu cuenta ha sido creada con éxito. Ya puedes empezar a disfrutar de Paput.'}
+                        ? AUTH_TEXTS.CONFIRMATION_SENT
+                        : AUTH_TEXTS.SUCCESS_MESSAGE}
                     </p>
                   </div>
 
@@ -146,26 +147,26 @@ const LoginModal = ({ isOpen, onClose }) => {
                     }}
                     className="w-full max-w-[280px] h-12 bg-[#0a4635] text-white rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-[#0a4635]/90 transition-all shadow-lg hover:translate-y-[-2px] active:translate-y-0"
                   >
-                    {needsEmailConfirmation ? 'Volver al inicio' : 'Comenzar'}
+                    {needsEmailConfirmation ? AUTH_TEXTS.BACK_TO_START : AUTH_TEXTS.START_BUTTON}
                   </button>
                 </motion.div>
               ) : (
                 <>
                   <div className="flex flex-col">
                     <h2 className="text-[26px] font-bold text-[#0a4635] uppercase tracking-tight">
-                      {isSignUp ? 'Crear cuenta' : 'Su cuenta'}
+                      {isSignUp ? AUTH_TEXTS.SIGNUP_TITLE : AUTH_TEXTS.LOGIN_TITLE}
                     </h2>
                     <p className="text-gray-500 font-medium text-[16px]">
                       {isSignUp
-                        ? 'Regístrese para guardar sus direcciones.'
-                        : 'Inicie sesión para comenzar.'}
+                        ? AUTH_TEXTS.SIGNUP_SUBTITLE
+                        : AUTH_TEXTS.LOGIN_SUBTITLE}
                     </p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <div className="flex flex-col gap-2">
                       <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
-                        Correo electrónico
+                        {AUTH_TEXTS.EMAIL_LABEL}
                       </label>
                       <input
                         data-cursor
@@ -173,14 +174,14 @@ const LoginModal = ({ isOpen, onClose }) => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Ingrese correo electrónico"
+                        placeholder={AUTH_TEXTS.EMAIL_PLACEHOLDER}
                         className="w-full h-12 px-6 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
                       />
                     </div>
 
                     <div className="flex flex-col gap-2">
                       <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
-                        Contraseña
+                        {AUTH_TEXTS.PASSWORD_LABEL}
                       </label>
                       <div className="relative group">
                         <input
@@ -189,7 +190,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                           required
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
-                          placeholder="Ingrese su contraseña"
+                          placeholder={AUTH_TEXTS.PASSWORD_PLACEHOLDER}
                           className="w-full h-12 px-6 pr-12 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
                         />
                         <button
@@ -221,9 +222,9 @@ const LoginModal = ({ isOpen, onClose }) => {
                       {loading ? (
                         <Loader2 className="w-5 h-5 animate-spin" />
                       ) : isSignUp ? (
-                        'Registrarse'
+                        AUTH_TEXTS.SIGNUP_BUTTON
                       ) : (
-                        'Acceso'
+                        AUTH_TEXTS.LOGIN_BUTTON
                       )}
                     </button>
                   </form>
@@ -235,8 +236,8 @@ const LoginModal = ({ isOpen, onClose }) => {
                       className="text-[#0a4635] text-[14px] font-bold uppercase tracking-wider hover:underline"
                     >
                       {isSignUp
-                        ? '¿Ya tienes una cuenta? Iniciar sesión'
-                        : '¿No tienes una cuenta? Regístrate'}
+                        ? AUTH_TEXTS.ALREADY_HAVE_ACCOUNT
+                        : AUTH_TEXTS.DONT_HAVE_ACCOUNT}
                     </button>
                   </div>
                 </>

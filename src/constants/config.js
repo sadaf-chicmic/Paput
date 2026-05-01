@@ -6,3 +6,4 @@ export const APP_CONFIG = {
   MAP_ATTRIBUTION:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 };
+

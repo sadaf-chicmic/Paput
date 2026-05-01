@@ -16,3 +16,32 @@ export const SHARED_TEXTS = {
   LARGE_ORDERS: 'PEDIDOS GRANDES',
   LOGOUT: 'LOGOUT',
 };
+
+export const AUTH_TEXTS = {
+  LOGIN_TITLE: 'Su cuenta',
+  SIGNUP_TITLE: 'Crear cuenta',
+  LOGIN_SUBTITLE: 'Inicie sesión para comenzar.',
+  SIGNUP_SUBTITLE: 'Regístrese para guardar sus direcciones.',
+  EMAIL_LABEL: 'Correo electrónico',
+  EMAIL_PLACEHOLDER: 'Ingrese correo electrónico',
+  PASSWORD_LABEL: 'Contraseña',
+  PASSWORD_PLACEHOLDER: 'Ingrese su contraseña',
+  LOGIN_BUTTON: 'Acceso',
+  SIGNUP_BUTTON: 'Registrarse',
+  ALREADY_HAVE_ACCOUNT: '¿Ya tienes una cuenta? Iniciar sesión',
+  DONT_HAVE_ACCOUNT: '¿No tienes una cuenta? Regístrate',
+  REGISTRATION_SUCCESS_TITLE: '¡Registro exitoso!',
+  WELCOME_TITLE: '¡Bienvenido!',
+  CONFIRMATION_SENT:
+    'Te hemos enviado un correo de confirmación. Por favor, verifica tu bandeja de entrada para activar tu cuenta.',
+  SUCCESS_MESSAGE:
+    'Tu cuenta ha sido creada con éxito. Ya puedes empezar a disfrutar de Paput.',
+  BACK_TO_START: 'Volver al inicio',
+  START_BUTTON: 'Comenzar',
+  OTP_EXPIRED:
+    'El enlace de confirmación ha caducado. Por favor, solicita uno nuevo.',
+  LOGOUT_CONFIRM_TITLE: 'Cerrar Sesión',
+  LOGOUT_CONFIRM_SUBTITLE: '¿Estás seguro de que deseas salir de tu cuenta?',
+  LOGOUT_BUTTON: 'Cerrar Sesión',
+  CANCEL_BUTTON: 'Cancelar',
+};

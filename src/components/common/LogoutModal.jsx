@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LogOut } from 'lucide-react';
 import images from '../../assets/images';
+import { AUTH_TEXTS } from '../../constants/texts';
 
 const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
   return (
@@ -45,10 +46,10 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
 
               <div className="flex flex-col gap-2">
                 <h2 className="text-[24px] font-bold text-[#0a4635] uppercase tracking-tight">
-                  ¿Cerrar sesión?
+                  {AUTH_TEXTS.LOGOUT_CONFIRM_TITLE}
                 </h2>
                 <p className="text-gray-500 font-medium text-[16px]">
-                  ¿Estás seguro de que quieres cerrar sesión?
+                  {AUTH_TEXTS.LOGOUT_CONFIRM_SUBTITLE}
                 </p>
               </div>
 
@@ -58,14 +59,14 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
                   onClick={onConfirm}
                   className="w-full h-12 bg-red-500 text-white rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-red-600 transition-all shadow-lg hover:translate-y-[-2px] active:translate-y-0"
                 >
-                  Cerrar sesión
+                  {AUTH_TEXTS.LOGOUT_BUTTON}
                 </button>
                 <button
                   data-cursor
                   onClick={onClose}
                   className="w-full h-12 bg-gray-100 text-[#0a4635] rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-gray-200 transition-all"
                 >
-                  Cancelar
+                  {AUTH_TEXTS.CANCEL_BUTTON}
                 </button>
               </div>
             </div>
