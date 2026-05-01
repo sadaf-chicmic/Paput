@@ -74,6 +74,13 @@ import mainShirt from './mainShirt.jpg';
 import paputDuck from './paputDuck.svg';
 import orderFav from './orderFav.jpeg';
 import orderPng from './orderPng.png';
+import event2 from './event2.jpg';
+import event3 from './event3.jpg';
+import event4 from './event4.jpg';
+import event5 from './event5.jpg';
+import event6 from './event6.jpg';
+import event7 from './event7.jpg';
+import event8 from './event8.jpg';
 
 export default {
   paputGreen,
@@ -152,4 +159,11 @@ export default {
   paputDuck,
   orderFav,
   orderPng,
+  event2,
+  event3,
+  event4,
+  event5,
+  event6,
+  event7,
+  event8,
 };

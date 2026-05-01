@@ -4,11 +4,9 @@ import {
   staggerContainer,
   fadeInLeft,
   fadeInRight,
-  fadeZoom,
+  fadeIn
 } from '../constants/animations';
 import { motion } from 'framer-motion';
-import { ROUTES } from '../constants/routes';
-import { useNavigate } from 'react-router';
 import { ABOUT_TEXTS as S } from '../constants/texts';
 import OrderButton from '../components/common/OrderButton';
 import Contact from '../components/Contact';
@@ -24,7 +22,7 @@ const Polaroid = ({ src, alt, rotation = 'rotate-0', className = '' }) => (
 export default function About() {
   return (
     <>
-      <div className="mx-auto pb-32 px-40 flex flex-col gap-32 overflow-x-hidden font-['Roc_Grotesk'] text-[#0a4635] pt-[18vh]">
+      <div className="mx-auto pb-32 px-40 flex flex-col gap-15 overflow-x-hidden font-['Roc_Grotesk'] text-[#0a4635] pt-[18vh]">
         {/* Section 1 */}
         <motion.section
           className="flex flex-col md:flex-row items-center justify-between gap-16"
@@ -50,7 +48,7 @@ export default function About() {
 
         {/* Section 2 */}
         <motion.section
-          className="flex flex-col md:flex-row-reverse items-center justify-between gap-16"
+          className="flex flex-col md:flex-row-reverse items-center justify-between gap-16 mb-20"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -78,21 +76,21 @@ export default function About() {
           </motion.div>
         </motion.section>
 
+        <h2 className="text-[40px] font-black uppercase  text-center">
+          {S.WE_ARE_ALL_THIS}
+        </h2>
         {/* SOMOS TODO ESTO */}
         <motion.section
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-6 mb-20"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, amount: 0.6 }} // trigger when 60% visible
         >
-          <h2 className="text-[40px] font-black uppercase ">
-            {S.WE_ARE_ALL_THIS}
-          </h2>
           <div className="flex justify-center -space-x-16 md:-space-x-12">
-            <motion.section
+            <motion.div
               variants={fadeInLeft}
-              className="-space-x-16 md:-space-x-12"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
               <Polaroid
                 src={images.image4}
@@ -104,18 +102,19 @@ export default function About() {
                 src={images.image5}
                 alt="Info 2"
                 rotation="rotate-2"
-                className="-mt-12"
+                className="mt-12"
               />
-            </motion.section>
-            <motion.section
+            </motion.div>
+
+            <motion.div
               variants={fadeInRight}
-              className="-space-x-16 md:-space-x-12"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
               <Polaroid
                 src={images.image6}
                 alt="Info 3"
                 rotation="-rotate-12"
-                className="-mt-12"
+                className="mt-12"
               />
               <Polaroid
                 src={images.image7}
@@ -123,21 +122,21 @@ export default function About() {
                 rotation="rotate-6"
                 className="mt-12"
               />
-            </motion.section>
+            </motion.div>
           </div>
         </motion.section>
 
         {/* MUCHO DE ESTO */}
+        <h2 className="text-[40px] font-black uppercase  text-center">
+          {S.A_LOT_OF_THIS}
+        </h2>
         <motion.section
-          className="flex flex-col items-center gap-16"
+          className="flex flex-col items-center gap-16 mb-20"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase ">
-            {S.A_LOT_OF_THIS}
-          </h2>
           <div
             className="flex flex-nowrap justify-center items-center px-8 mt-12"
             style={{ gap: 0 }}
@@ -204,70 +203,66 @@ export default function About() {
         </motion.section>
 
         {/* Y SOBRETODO DE ESTOS */}
+        <h2 className="text-[40px] font-black uppercase  text-center">
+          {S.ESPECIALLY_THESE}
+        </h2>
         <motion.section
-          className="flex flex-col items-center gap-12 mt-12"
+          className="flex flex-col items-center gap-6 mb-20"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <h2 className="text-[40px] font-black uppercase  text-center">
-            {S.ESPECIALLY_THESE}
-          </h2>
-          <div className="flex flex-wrap justify-center -space-x-10 md:-space-x-3">
+          <div className="flex justify-center mb-15 -space-x-16 md:-space-x-12">
             <motion.section
               variants={fadeInLeft}
-              className="-space-x-16 md:-space-x-8"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
               <Polaroid
                 src={images.image14}
-                alt="Pet 1"
-                rotation="-rotate-12"
-                className="-mt-8"
+                alt="Info 1"
+                rotation="-rotate-10"
+                className="mt-12"
               />
               <Polaroid
                 src={images.image15}
-                alt="Pet 2"
-                rotation="rotate-8"
-                className="mt-8"
+                alt="Info 2"
+                rotation="rotate-2"
+                className="mt-12"
               />
             </motion.section>
             <motion.section
               variants={fadeInRight}
-              className="-space-x-16 md:-space-x-12"
+              className="flex shrink-0 -mr-10 md:-mr-14 lg:-mr-16"
             >
               <Polaroid
                 src={images.image16}
-                alt="Pet 3"
-                rotation="-rotate-9"
-                className="-mt-8 text-center"
+                alt="Info 3"
+                rotation="-rotate-12"
+                className="mt-12"
               />
               <Polaroid
                 src={images.image17}
-                alt="Pet 4"
-                rotation="rotate-12"
+                alt="Info 4"
+                rotation="rotate-6"
                 className="mt-12"
               />
             </motion.section>
           </div>
-        </motion.section>
-
-        {/* Footer */}
-        <motion.section
-          className="flex flex-col items-center gap-12 text-center mx-auto"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-        >
           <motion.p
-            className="flex-1 text-[30px]  leading-[1.1] max-w-[70vw]"
+            className="flex-1 text-[30px] text-center leading-[1.1] max-w-[70vw]"
             variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 1 }}
           >
             {S.FOOTER_DESCRIPTION}
           </motion.p>
           <OrderButton
-            variants={fadeInUp}
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 1 }}
             className="h-16 px-12 text-2xl tracking-tight"
           />
         </motion.section>

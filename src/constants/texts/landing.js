@@ -6,8 +6,7 @@ export const LANDING_TEXTS = {
     HERO_ALT: 'Paput Hero',
   },
   SECTION_1: {
-    HEADING_1: 'AÇÒ ÉS UNA',
-    HEADING_2: 'MANERA DE VIURE',
+    HEADING_1: 'AÇÒ ÉS UNA MANERA DE VIURE',
     DESCRIPTION:
       'Paput es un restaurante chiringuito en el Puerto de Mahón, en la isla de Menorca. Desde 2016, nos dedicamos a lo que mejor sabemos hacer, hamburguesas.',
     BURGERS_KEYWORD: 'hamburguesas',

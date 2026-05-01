@@ -1,177 +1,277 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import images from '../assets/images';
-import {
-  fadeInUp,
-  staggerContainer,
-  fadeInLeft,
-  fadeInRight,
-} from '../constants/animations';
-import { ROUTES } from '../constants/routes';
-import { useNavigate } from 'react-router';
 import { DELIVERY_TEXTS as S, LANDING_TEXTS } from '../constants/texts';
+import OrderButton from '../components/common/OrderButton';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const { SOCIAL } = LANDING_TEXTS;
 const { WHATSAPP: WHATSAPP_LINK } = SOCIAL;
-import OrderButton from '../components/common/OrderButton';
 
 export default function Delivery() {
+  const pageRef = useRef(null);
+
+  // SECTION 1
+  const deliveryRef = useRef(null);
+  const mapRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  // SECTION 2
+  const scheduleLabelRef = useRef(null);
+  const scheduleRef = useRef(null);
+  const serviceAreaRef = useRef(null);
+  const addressRef = useRef(null);
+
+  // SECTION 3
+  const vehicleRef = useRef(null);
+  const serviceOptionsRef = useRef(null);
+
+  // FINAL
+  const orderTitleRef = useRef(null);
+  const orderDescRef = useRef(null);
+  const dineTitleRef = useRef(null);
+  const dineDescRef = useRef(null);
+  const dineNoteRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // ================= SECTION 1 =================
+      const tl1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: deliveryRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      tl1
+        .from([deliveryRef.current, mapRef.current], {
+          y: 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+        })
+        .from(
+          buttonRef.current,
+          {
+            opacity: 0,
+            duration: 1,
+            ease: 'power1.out',
+          },
+          '-=0.6',
+        );
+
+      // ================= SECTION 2 =================
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: scheduleLabelRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      tl2
+        .from(scheduleLabelRef.current, {
+          x: -100,
+          opacity: 0,
+          duration: 1,
+        })
+        .from(
+          scheduleRef.current,
+          {
+            x: -80,
+            opacity: 0,
+            duration: 1,
+          },
+          '-=0.7',
+        )
+        .from(
+          serviceAreaRef.current,
+          {
+            x: -60,
+            opacity: 0,
+            duration: 1,
+          },
+          '-=0.7',
+        )
+        .from(
+          addressRef.current,
+          {
+            opacity: 0,
+            duration: 1.4,
+            ease: 'power1.out',
+          },
+          '-=0.5',
+        );
+
+      // ================= VEHICLE =================
+      gsap.from(vehicleRef.current, {
+        y: 120,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: vehicleRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      // ================= SERVICE OPTIONS (independent) =================
+      gsap.from(serviceOptionsRef.current, {
+        x: 40,
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: serviceOptionsRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      // ================= FINAL TEXT =================
+      const tl4 = gsap.timeline({
+        scrollTrigger: {
+          trigger: orderTitleRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      tl4
+        .from([orderTitleRef.current, dineTitleRef.current], {
+          x: -100,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+        })
+        .from(
+          [orderDescRef.current, dineDescRef.current, dineNoteRef.current],
+          {
+            x: -80,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+          },
+          '-=0.5',
+        );
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className=" ">
-      {/* Section 1: Brand & Map */}
-      <div className="flex flex-col items-center w-full bg-[#f4f3e6] text-[#0a4635] pt-[15vh]">
-        <div className="flex flex-col items-center w-[50vw]  overflow-x-hidden">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            className="w-full flex flex-col items-center gap-12 px-6 mb-20"
-          >
-            <motion.img
-              variants={fadeInUp}
-              src={images.deliveryGreen}
-              alt="DELIVERY"
-              className="w-full max-w-[600px] h-auto object-contain"
-              loading="lazy"
-            />
+    <div ref={pageRef}>
+      {/* ================= SECTION 1 ================= */}
+      <div className="flex flex-col items-center w-full bg-[#f4f3e6] pt-[15vh] text-[#0a4635]">
+        <div className="flex flex-col items-center w-[50vw] gap-12 px-6 mb-10">
+          <img
+            ref={deliveryRef}
+            src={images.deliveryGreen}
+            alt="DELIVERY"
+            className="w-full max-w-[600px]"
+          />
 
-            <OrderButton
-              variants={fadeInUp}
-              className="px-16 py-8 text-4xl lg:text-5xl"
-            />
+          <div ref={buttonRef}>
+            <OrderButton className="px-16 py-8 text-4xl lg:text-5xl" />
+          </div>
 
-            <motion.div
-              variants={fadeInUp}
-              viewport={{ once: true, margin: '-100px' }}
-              className="w-full"
-            >
-              <img
-                src={images.map}
-                alt="Delivery Map"
-                className="w-full h-auto object-contain"
-                loading="lazy"
-              />
-            </motion.div>
-          </motion.div>
+          <img
+            ref={mapRef}
+            src={images.map}
+            alt="Delivery Map"
+            className="w-full"
+          />
         </div>
       </div>
 
-      {/* Section 2: Info & Vehicle */}
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="w-full flex flex-col items-start gap-15 px-6 md:px-12 lg:px-16 mx-auto"
-      >
-        <div className="w-full flex flex-col lg:flex-row justify-between items-start">
-          <div className="flex flex-col gap-2 max-w-full ">
-            <motion.p
-              variants={fadeInLeft}
-              className="text-[18px] lg:text-[30px] pb-6 font-black uppercase text-[#0a4635] leading-tight opacity-90"
-            >
+      {/* ================= SECTION 2 ================= */}
+      <div className="w-full flex flex-col px-6 md:px-12 text-[#0a4635]">
+        <div className="flex justify-between items-start">
+          <div className="flex flex-col gap-2">
+            <p ref={serviceAreaRef} className="text-lg lg:text-2xl font-bold">
               {S.SERVICE_AREA}
-            </motion.p>
-            <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] underline decoration-[8px] ">
+            </p>
+
+            <p
+              ref={addressRef}
+              className="text-4xl lg:text-[80px] font-black underline"
+            >
               {S.ADDRESS}
             </p>
           </div>
 
-          <motion.div variants={fadeInRight} className="relative shrink-0">
-            <img
-              src={images.img1}
-              alt="Mascot"
-              className="w-[100px] lg:w-[150px] h-auto object-contain"
-              loading="lazy"
-            />
-          </motion.div>
+          {/* NO ANIMATION */}
+          <img
+            src={images.img1}
+            alt="Mascot"
+            className="w-[100px] lg:w-[150px]"
+          />
         </div>
 
-        <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
-          <p className="text-[18px] lg:text-[30px] pb-6 font-black uppercase tracking-tight text-[#0a4635] opacity-90">
+        <div className="flex flex-col gap-2 ">
+          <p ref={scheduleLabelRef} className="text-lg lg:text-2xl font-bold">
             {S.SCHEDULE_LABEL}
           </p>
-          <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635]">
+
+          <p ref={scheduleRef} className="text-4xl lg:text-[80px] font-black">
             {S.SCHEDULE}
           </p>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="w-full flex justify-center"
-      >
-        <motion.img
-          variants={fadeInLeft}
+        </div>
+      </div>
+
+      {/* ================= VEHICLE ================= */}
+      <div className="flex justify-center">
+        <img
+          ref={vehicleRef}
           src={images.vehicle}
           alt="Vehicle"
-          className="w-full max-w-[1000px] h-auto object-contain"
-          loading="lazy"
+          className="w-full max-w-[600px]"
         />
-      </motion.div>
+      </div>
 
-      {/* Section 3: Options */}
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="w-full flex flex-col gap-16 px-6 md:px-12 lg:px-16 mx-auto mb-40"
+      {/* ================= SECTION 3 ================= */}
+      <div
+        ref={serviceOptionsRef}
+        className="flex flex-col gap-2 px-6 md:px-12 lg:px-16 pb-10 text-[#0a4635]"
       >
-        <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
-          <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-            {S.SERVICE_OPTIONS}
-          </p>
-          <motion.p
-            variants={fadeInUp}
-            className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
-          >
-            Recoge tu pedido en el local <br className="hidden md:block" /> O
-            recíbelo en casa cómodamente 🛵
-          </motion.p>
-        </motion.div>
+        <p className="text-4xl lg:text-[80px] font-black">
+          {S.SERVICE_OPTIONS}
+        </p>
+        <p className="text-lg lg:text-xl">
+          Recoge tu pedido en el local <br />O recíbelo en casa cómodamente 🛵
+        </p>
+      </div>
 
-        <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
-          <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
+      {/* ================= FINAL ================= */}
+      <div className="flex flex-col gap-10 px-6 md:px-12 lg:px-16 pb-40 text-[#0a4635]">
+        <div>
+          <p ref={orderTitleRef} className="text-4xl lg:text-[80px] font-black">
             {S.ORDER_EASY_TITLE}
           </p>
-          <motion.p
-            variants={fadeInUp}
-            className="text-[18px] lg:text-[25px] pb-6 text-[#0a4635] leading-tight opacity-90"
-          >
+
+          <p ref={orderDescRef} className="text-lg lg:text-xl">
             {S.ORDER_EASY_DESCRIPTION_PREFIX}
-            <a
-              data-cursor
-              href={WHATSAPP_LINK}
-              className="underline decoration-[2px] underline-offset-4 hover:text-[#e54d3a] transition-colors"
-            >
+            <a href={WHATSAPP_LINK} className="underline hover:text-[#e54d3a]">
               {S.ORDER_EASY_LINK_TEXT}
             </a>{' '}
             🤳🏼
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
-        <motion.div variants={fadeInLeft} className="flex flex-col gap-2">
-          <div className="flex flex-col gap-2">
-            <p className="text-[44px] lg:text-[80px] font-black uppercase leading-[0.85] text-[#0a4635] decoration-[8px]">
-              {S.DINE_IN_TITLE}
-            </p>
-            <motion.p
-              variants={fadeInUp}
-              className="text-[18px] lg:text-[25px] tracking-tight text-[#0a4635] leading-tight opacity-90"
-            >
-              {S.DINE_IN_DESCRIPTION}
-            </motion.p>
-            <motion.p
-              variants={fadeInUp}
-              className="text-[18px] lg:text-[25px] text-[#0a4635] opacity-90"
-            >
-              {S.DINE_IN_NOTE}
-            </motion.p>
-          </div>
-        </motion.div>
-      </motion.div>
+        <div>
+          <p ref={dineTitleRef} className="text-4xl lg:text-[80px] font-black">
+            {S.DINE_IN_TITLE}
+          </p>
+
+          <p ref={dineDescRef} className="text-lg lg:text-xl">
+            {S.DINE_IN_DESCRIPTION}
+          </p>
+
+          <p ref={dineNoteRef} className="text-lg lg:text-xl">
+            {S.DINE_IN_NOTE}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

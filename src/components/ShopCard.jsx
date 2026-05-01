@@ -1,16 +1,14 @@
 import { motion } from 'framer-motion';
-import { fadeInUp2 } from '../constants/animations.js';
 
 export default function ShopCard({ imageSrc, title, fabric, year }) {
   return (
     <motion.div
-      variants={fadeInUp2}
       className="flex flex-col md:[&:nth-child(3n)]:border-r-0"
     >
       <div className="w-full object-contain">
         <motion.img
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.95 }}
+          // whileHover={{ scale: 1.02 }}
+          // whileTap={{ scale: 0.95 }}
           src={imageSrc}
           alt={title}
           className="w-full h-full object-contain"

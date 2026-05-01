@@ -1,202 +1,150 @@
-import {
-  motion,
-  useMotionValue,
-  animate,
-  useMotionValueEvent,
-} from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import images from '../../assets/images';
-import {
-  fadeInUp,
-  fadeInUp2,
-  staggerContainer,
-  fadeZoom,
-} from '../../constants/animations';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import OrderButton from '../common/OrderButton';
 import { LANDING_TEXTS } from '../../constants/texts';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const { SECTION_2: SECTION2_STRINGS } = LANDING_TEXTS;
 
 export default function Section2() {
-  const [width, setWidth] = useState(0);
-  const [itemWidth, setItemWidth] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const carousel = useRef();
-  const x = useMotionValue(0);
+  const sectionRef = useRef(null);
+  const carousel = useRef(null);
+  const nastrasRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const burgers = [
-    {
-      ...SECTION2_STRINGS.BURGERS[0],
-      src: images.burger1,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[1],
-      src: images.burger2,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[2],
-      src: images.burger3,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[3],
-      src: images.burger4,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[4],
-      src: images.burger5,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[5],
-      src: images.burger6,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[6],
-      src: images.burger7,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[7],
-      src: images.burger8,
-    },
-    {
-      ...SECTION2_STRINGS.BURGERS[8],
-      src: images.burger9,
-    },
+    { ...SECTION2_STRINGS.BURGERS[0], src: images.burger1 },
+    { ...SECTION2_STRINGS.BURGERS[1], src: images.burger2 },
+    { ...SECTION2_STRINGS.BURGERS[2], src: images.burger3 },
+    { ...SECTION2_STRINGS.BURGERS[3], src: images.burger4 },
+    { ...SECTION2_STRINGS.BURGERS[4], src: images.burger5 },
+    { ...SECTION2_STRINGS.BURGERS[5], src: images.burger6 },
+    { ...SECTION2_STRINGS.BURGERS[6], src: images.burger7 },
+    { ...SECTION2_STRINGS.BURGERS[7], src: images.burger8 },
+    { ...SECTION2_STRINGS.BURGERS[8], src: images.burger9 },
   ];
 
-  useEffect(() => {
-    const updateWidth = () => {
-      if (carousel.current) {
-        const totalScrollWidth = carousel.current.scrollWidth;
-        const offsetWidth = carousel.current.offsetWidth;
-        setWidth(totalScrollWidth - offsetWidth);
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    const items = carousel.current.querySelectorAll('.burger-item');
 
-        const firstItem = carousel.current.querySelector('.burger-item');
-        if (firstItem) {
-          // 32 is the gap (gap-8 = 2rem = 32px)
-          setItemWidth(firstItem.offsetWidth + 32);
-        }
+    const ACTIVE = 1;
+
+    gsap.set(nastrasRef.current, { opacity: 0 });
+
+    gsap.set(items, (i) => {
+      if (i === ACTIVE) {
+        return { opacity: 0, scale: 1.2, y: 40 };
       }
-    };
 
-    updateWidth();
-    // Use a small timeout to ensure DOM is fully rendered
-    const timer = setTimeout(updateWidth, 100);
-
-    window.addEventListener('resize', updateWidth);
-    return () => {
-      window.removeEventListener('resize', updateWidth);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  useMotionValueEvent(x, 'change', (latest) => {
-    if (itemWidth) {
-      const index = Math.round(Math.abs(latest) / itemWidth);
-      if (index !== activeIndex) {
-        setActiveIndex(index);
+      if (i === 0) {
+        return { opacity: 0, scale: 1.2, y: 40 };
       }
-    }
-  });
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (!itemWidth) return;
+      return { opacity: 0, scale: 0.45, y: 40 };
+    });
 
-      if (e.key === 'ArrowRight') {
-        const nextIndex = Math.min(activeIndex + 1, burgers.length - 1);
-        const newX = -nextIndex * itemWidth;
-        animate(x, Math.max(newX, -width), {
-          type: 'spring',
-          stiffness: 300,
-          damping: 30,
-        });
-      } else if (e.key === 'ArrowLeft') {
-        const prevIndex = Math.max(activeIndex - 1, 0);
-        const newX = -prevIndex * itemWidth;
-        animate(x, Math.min(newX, 0), {
-          type: 'spring',
-          stiffness: 300,
-          damping: 30,
-        });
-      }
-    },
-    [width, x, activeIndex, itemWidth, burgers.length],
-  );
+    gsap.set(buttonRef.current, {
+      opacity: 0,
+      y: 60,
+    });
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    tl.to(nastrasRef.current, {
+      opacity: 1,
+      duration: 2,
+      ease: 'power2.out',
+    })
+
+      .to(items, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+      })
+
+      .to(items, {
+        scale: 0.9,
+        duration: 0.6,
+        ease: 'power2.out',
+      })
+
+      .to(
+        items[ACTIVE],
+        {
+          scale: 1.2,
+          duration: 0.6,
+          ease: 'power2.out',
+        },
+        '-=0.5',
+      )
+
+      .to(buttonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+      });
+  }, sectionRef);
+
+  return () => ctx.revert();
+}, []);
 
   return (
-    <motion.section
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="py-20 overflow-hidden bg-[#f4f3e6]"
-    >
-      <motion.div className="flex justify-center">
-        <motion.img
-          variants={fadeZoom}
+    <section ref={sectionRef} className="py-10 pt-20 overflow-hidden bg-[#f4f3e6]">
+      {/* NASTRAS IMAGE */}
+      <div className="flex justify-center">
+        <img
+          ref={nastrasRef}
           src={images.nastras}
           alt={SECTION2_STRINGS.OUR_BURGERS_ALT}
-          className="max-w-[40vw] mb-8"
-          loading="lazy"
+          className="max-w-[28vw] mb-12"
         />
-      </motion.div>
+      </div>
 
-      <motion.div
-        ref={carousel}
-        className="cursor-grab active:cursor-grabbing overflow-visible"
-      >
-        <motion.div
-          drag="x"
-          dragConstraints={{ right: 0, left: -width }}
-          dragTransition={{
-            power: 0.2,
-            timeConstant: 200,
-            modifyTarget: (target) => {
-              if (!itemWidth) return target;
-              return Math.round(target / itemWidth) * itemWidth;
-            },
-          }}
-          style={{ x }}
-          className="flex gap-8 px-10"
-        >
+      {/* CAROUSEL */}
+      <div ref={carousel}>
+        <div className="flex gap-8 px-10">
           {burgers.map((burger, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={fadeInUp2}
-              animate={{
-                scale: activeIndex === index ? 1.05 : 0.95,
-                opacity: activeIndex === index ? 1 : 0.7,
-              }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               className="burger-item min-w-[300px] md:min-w-[400px] flex flex-col items-center text-center"
             >
               <div className="w-full h-[300px] flex items-center justify-center mb-6">
                 <img
                   src={burger.src}
                   alt={burger.title}
-                  className="max-w-full max-h-full object-contain hover:scale-110 transition-transform duration-500 cursor-pointer"
+                  className="max-w-full max-h-full object-contain"
                   draggable="false"
-                  loading="lazy"
                 />
               </div>
+
               <h3 className="text-3xl font-black text-[#1a3a2a] mb-2">
                 {burger.title}
               </h3>
+
               <p className="text-[#1a3a2a] text-sm max-w-[250px] font-medium leading-relaxed">
                 {burger.description}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.div variants={fadeInUp} className="flex justify-center mt-20">
+      {/* BUTTON */}
+      <div ref={buttonRef} className="flex justify-center mt-20">
         <OrderButton className="px-12 py-5 text-xl" />
-      </motion.div>
-    </motion.section>
+      </div>
+    </section>
   );
 }

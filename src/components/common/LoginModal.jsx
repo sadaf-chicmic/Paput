@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2 } from 'lucide-react';
+import { X, Loader2, Eye, EyeOff } from 'lucide-react';
 import images from '../../assets/images';
 import { useAuth } from '../../context/AuthContext';
 
@@ -11,8 +11,9 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, signOut } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +23,20 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     try {
       if (isSignUp) {
-        const { error } = await signUp({ email, password });
-        if (error) throw error;
-        setMessage('Check your email for the confirmation link!');
+        const { error: signUpError } = await signUp({ email, password });
+        if (signUpError) throw signUpError;
+        
+        setMessage('¡Revisa tu correo para confirmar tu cuenta!');
       } else {
-        const { error } = await signIn({ email, password });
-        if (error) throw error;
+        const { data, error: signInError } = await signIn({ email, password });
+        if (signInError) throw signInError;
+
+        // Force check for email confirmation if Supabase doesn't enforce it
+        if (data?.user && !data.user.email_confirmed_at) {
+          await signOut();
+          throw new Error('Email not confirmed');
+        }
+
         onClose();
       }
     } catch (err) {
@@ -103,15 +112,25 @@ const LoginModal = ({ isOpen, onClose }) => {
                   <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
                     Contraseña
                   </label>
-                  <input
-                    data-cursor
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Ingrese su contraseña"
-                    className="w-full h-12 px-6 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
-                  />
+                  <div className="relative group">
+                    <input
+                      data-cursor
+                      type={showPassword ? "text" : "password"}
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Ingrese su contraseña"
+                      className="w-full h-12 px-6 pr-12 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
+                    />
+                    <button
+                      type="button"
+                      data-cursor
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#0a4635] transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
 
                 {error && (

@@ -6,10 +6,17 @@ import { ROUTES } from '../../constants/routes';
 import { SHARED_TEXTS, ORDER_TEXTS } from '../../constants/texts';
 import { useAuth } from '../../context/AuthContext';
 import { LogOut, User } from 'lucide-react';
+import LogoutModal from '../common/LogoutModal';
 
 const OrderHeader = ({ activeTab, setActiveTab, setIsLoginModalOpen }) => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = React.useState(false);
+
+  const handleLogout = () => {
+    signOut();
+    setIsLogoutModalOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 h-[72px] bg-white z-[5000] px-4 md:px-6 flex items-center justify-between border-b border-gray-100">
@@ -70,7 +77,7 @@ const OrderHeader = ({ activeTab, setActiveTab, setIsLoginModalOpen }) => {
               </span>
               <button
                 data-cursor
-                onClick={signOut}
+                onClick={() => setIsLogoutModalOpen(true)}
                 className="text-[10px] font-black uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors"
               >
                 {SHARED_TEXTS.LOGOUT}
@@ -78,7 +85,7 @@ const OrderHeader = ({ activeTab, setActiveTab, setIsLoginModalOpen }) => {
             </div>
             <button
               data-cursor
-              onClick={signOut}
+              onClick={() => setIsLogoutModalOpen(true)}
               className="sm:hidden p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
             >
               <LogOut size={18} />
@@ -94,6 +101,12 @@ const OrderHeader = ({ activeTab, setActiveTab, setIsLoginModalOpen }) => {
           </button>
         )}
       </div>
+
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogout}
+      />
     </header>
   );
 };
