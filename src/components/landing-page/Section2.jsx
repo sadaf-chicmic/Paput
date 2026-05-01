@@ -66,27 +66,29 @@ export default function Section2() {
     const ctx = gsap.context(() => {
       // Start both hidden
       gsap.set(nastrasRef.current, { opacity: 0 });
-      gsap.set(buttonRef.current, { opacity: 0 });
+      gsap.set(buttonRef.current, { opacity: 0 , y:40});
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'bottom bottom', // fires when section top reaches 80% down the screen
-            once: true,
-            markers: true,
-          },
-        })
-        .to(nastrasRef.current, {
-          opacity: 1,
-          duration: 1,
-          ease: 'power1.out',
-        })
-        .to(
-          buttonRef.current,
-          { opacity: 1, duration: 1, ease: 'power1.out' },
-          '-=0.5',
-        );
+      gsap.to(nastrasRef.current, {
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: nastrasRef.current,
+          start: 'bottom bottom',
+          once: true,
+        },
+      });
+gsap.to(buttonRef.current, {
+  y:0,
+  opacity: 1,
+  duration: 1,
+  ease: 'power1.out',
+  scrollTrigger: {
+    trigger: sectionRef.current, 
+    start: 'bottom bottom', 
+    once: true,
+  },
+});
     }, sectionRef);
 
     return () => ctx.revert();

@@ -56,35 +56,48 @@ export default function Section4() {
         opacity: 0,
       });
 
-      // ---------------- TIMELINE ----------------
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'bottom bottom',
-          once: true,
-        },
-      });
-
-      tl.to(iconRefs.current, {
+      gsap.to(iconRefs.current, {
         y: 0,
         opacity: 1,
         duration: 1.2,
         stagger: 0.15,
         ease: 'bounce.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 90%',
+          once: true,
+        },
       })
-        .to(textRefs.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-        }, '-=0.8')
-        .to(footerRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-        }, '-=0.4');
+        gsap
+          .to(
+            textRefs.current,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              stagger: 0.2,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: textRefs.current,
+                start: 'bottom bottom',
+                once: true,
+              },
+            },
+          )
+          gsap.to(
+            footerRef.current,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: footerRef.current,
+                start: 'bottom bottom',
+                once: true,
+              },
+            },
+          );
     }, sectionRef);
 
     return () => ctx.revert();

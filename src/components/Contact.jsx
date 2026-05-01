@@ -33,44 +33,57 @@ export default function Contact() {
         opacity: 0,
       });
 
-      // TIMELINE
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'bottom bottom',
-          once: true,
-        },
-      });
+      // // TIMELINE
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: sectionRef.current,
+      //     start: 'bottom bottom',
+      //     once: true,
+      //   },
+      // });
 
       // TEXT (left → right + fade)
-      tl.to(textRef.current, {
+      gsap.to(textRef.current, {
         x: 0,
         opacity: 1,
         duration: 1.2,
-        ease: 'power2.out', 
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: 'bottom bottom',
+          once: true,
+        },
       })
 
-        .to(
-          buttonRef.current,
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power2.out',
-          },
-          '-=0.8',
-        )
+        gsap.to(
+            buttonRef.current,
+            {
+              x: 0,
+              opacity: 1,
+              duration: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: buttonRef.current,
+                start: 'bottom bottom',
+                once: true,
+              },
+            },
+          )
 
-        .to(
-          imageRef.current,
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-          },
-          '-=1', 
-        );
+          gsap.to(
+            imageRef.current,
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 80%',
+                once: true,
+              },
+            },
+          );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -115,7 +128,7 @@ export default function Contact() {
           ref={imageRef}
           src={images.aboutImg}
           alt={CONTACT_STRINGS.ABOUT_IMG_ALT}
-          className="max-w-[80%] w-full object-contain object-bottom "
+          className="max-w-[70%] w-full object-contain object-bottom "
         />
       </div>
     </section>

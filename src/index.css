@@ -36,8 +36,16 @@
 }
 * {
   cursor: none !important;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+
+html,
 body {
   background-color: var(--_colors---blanco);
   color: var(--_colors---verde);
@@ -46,9 +54,17 @@ body {
   font-family: 'Roc Grotesk', 'Inter', sans-serif;
   font-size: 14px;
   line-height: normal;
-    overflow-x: hidden;
-  /* letter-spacing: 0.06em; */
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+
 .cursor {
   position: fixed;
   top: 0;

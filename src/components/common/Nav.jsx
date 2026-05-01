@@ -21,7 +21,7 @@ export default function Nav() {
         data-cursor
           src={images.paputGreen}
           alt="paputGreen"
-          className="h-10 cursor-pointer"
+          className="h-9 cursor-pointer"
           onClick={() => navigate(ROUTES.LANDING)}
         />
 

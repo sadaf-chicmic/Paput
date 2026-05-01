@@ -22,46 +22,50 @@ export default function Section3() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // ---------------- INITIAL STATES ----------------
       gsap.set(shirtRef.current, { y: 80, opacity: 0 });
       gsap.set(mottoRef.current, { y: 60, opacity: 0 });
       gsap.set(buttonRef.current, { y: 60, opacity: 0 });
 
-      // ---------------- TIMELINE ----------------
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'bottom bottom',
-          once: true,
-        },
-      });
+      gsap
+        .to(shirtRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: shirtRef.current,
+            start: 'top 90%',
+            once: true,
+          },
+        });
 
-      tl.to(shirtRef.current, {
+      gsap.to(mottoRef.current, {
         y: 0,
         opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-      })
-        .to(
-          mottoRef.current,
-          {
-            y: 0,
-            opacity: 1,
             duration: 0.8,
             ease: 'power3.out',
+            scrollTrigger: {
+              trigger: mottoRef.current,
+              start: 'bottom bottom',
+              once: true,
+            },
           },
-          '-=0.6',
         )
-        .to(
-          buttonRef.current,
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: 'power3.out',
+
+      gsap.to(
+        buttonRef.current,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: buttonRef.current,
+            start: 'bottom bottom',
+            once: true,
           },
-          '-=0.4',
-        );
+        },
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -77,7 +81,7 @@ export default function Section3() {
             ref={shirtRef}
             src={images.mainShirt}
             alt={SECTION3_STRINGS.SHIRT_ALT}
-            className="mt-44 w-full max-w-[400px] aspect-square object-cover rounded-[30px]"
+            className="mt-44 w-full max-w-[450px] aspect-square object-cover rounded-[30px]"
           />
           <p
             ref={mottoRef}
