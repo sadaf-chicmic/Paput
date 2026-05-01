@@ -9,140 +9,157 @@ gsap.registerPlugin(ScrollTrigger);
 
 const { SECTION_2: SECTION2_STRINGS } = LANDING_TEXTS;
 
+const burgers = [
+  { ...SECTION2_STRINGS.BURGERS[0], src: images.burger1 },
+  { ...SECTION2_STRINGS.BURGERS[1], src: images.burger2 },
+  { ...SECTION2_STRINGS.BURGERS[2], src: images.burger3 },
+  { ...SECTION2_STRINGS.BURGERS[3], src: images.burger4 },
+  { ...SECTION2_STRINGS.BURGERS[4], src: images.burger5 },
+  { ...SECTION2_STRINGS.BURGERS[5], src: images.burger6 },
+  { ...SECTION2_STRINGS.BURGERS[6], src: images.burger7 },
+  { ...SECTION2_STRINGS.BURGERS[7], src: images.burger8 },
+  { ...SECTION2_STRINGS.BURGERS[8], src: images.burger9 },
+];
+
 export default function Section2() {
   const sectionRef = useRef(null);
-  const carousel = useRef(null);
+  const scrollerRef = useRef(null); // the overflow-x div
   const nastrasRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const burgers = [
-    { ...SECTION2_STRINGS.BURGERS[0], src: images.burger1 },
-    { ...SECTION2_STRINGS.BURGERS[1], src: images.burger2 },
-    { ...SECTION2_STRINGS.BURGERS[2], src: images.burger3 },
-    { ...SECTION2_STRINGS.BURGERS[3], src: images.burger4 },
-    { ...SECTION2_STRINGS.BURGERS[4], src: images.burger5 },
-    { ...SECTION2_STRINGS.BURGERS[5], src: images.burger6 },
-    { ...SECTION2_STRINGS.BURGERS[6], src: images.burger7 },
-    { ...SECTION2_STRINGS.BURGERS[7], src: images.burger8 },
-    { ...SECTION2_STRINGS.BURGERS[8], src: images.burger9 },
-  ];
+  // Which card index is currently "active" (closest to center)
+  const [activeIndex, setActiveIndex] = useState(0);
 
-useEffect(() => {
-  const ctx = gsap.context(() => {
-    const items = carousel.current.querySelectorAll('.burger-item');
+  // ── Active card detection on scroll ──────────────────────────────────
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
 
-    const ACTIVE = 1;
+    const onScroll = () => {
+      const scrollerCenter = scroller.scrollLeft + scroller.clientWidth / 2;
 
-    gsap.set(nastrasRef.current, { opacity: 0 });
+      // Find the card whose center is closest to the scroller's center
+      let closest = 0;
+      let closestDist = Infinity;
 
-    gsap.set(items, (i) => {
-      if (i === ACTIVE) {
-        return { opacity: 0, scale: 1.2, y: 40 };
-      }
-
-      if (i === 0) {
-        return { opacity: 0, scale: 1.2, y: 40 };
-      }
-
-      return { opacity: 0, scale: 0.45, y: 40 };
-    });
-
-    gsap.set(buttonRef.current, {
-      opacity: 0,
-      y: 60,
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 80%',
-        once: true,
-      },
-    });
-
-    tl.to(nastrasRef.current, {
-      opacity: 1,
-      duration: 2,
-      ease: 'power2.out',
-    })
-
-      .to(items, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-      })
-
-      .to(items, {
-        scale: 0.9,
-        duration: 0.6,
-        ease: 'power2.out',
-      })
-
-      .to(
-        items[ACTIVE],
-        {
-          scale: 1.2,
-          duration: 0.6,
-          ease: 'power2.out',
-        },
-        '-=0.5',
-      )
-
-      .to(buttonRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
+      scroller.querySelectorAll('.burger-card').forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(cardCenter - scrollerCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = i;
+        }
       });
-  }, sectionRef);
 
-  return () => ctx.revert();
-}, []);
+      setActiveIndex(closest);
+    };
+
+    scroller.addEventListener('scroll', onScroll, { passive: true });
+    // Run once on mount so card 0 starts scaled up
+    onScroll();
+
+    return () => scroller.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // ── GSAP entrance — fires only when section enters the viewport ───────
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Start both hidden
+      gsap.set(nastrasRef.current, { opacity: 0 });
+      gsap.set(buttonRef.current, { opacity: 0 });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%', // fires when section top reaches 80% down the screen
+            once: true,
+          },
+        })
+        .to(nastrasRef.current, {
+          opacity: 1,
+          duration: 1.6,
+          ease: 'power2.out',
+        })
+        .to(
+          buttonRef.current,
+          { opacity: 1, duration: 3, ease: 'power1.out' },
+          '-=0.8',
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section ref={sectionRef} className="py-10 pt-20 overflow-hidden bg-[#f4f3e6]">
-      {/* NASTRAS IMAGE */}
-      <div className="flex justify-center">
+    <section
+      ref={sectionRef}
+      className="pt-20 pb-10 bg-[#f4f3e6] overflow-hidden select-none"
+    >
+      {/* Heading image */}
+      <div className="flex justify-center mt-8 mb-4">
         <img
           ref={nastrasRef}
           src={images.nastras}
           alt={SECTION2_STRINGS.OUR_BURGERS_ALT}
-          className="max-w-[28vw] mb-12"
+          className="max-w-[28vw] pointer-events-none"
         />
       </div>
 
-      {/* CAROUSEL */}
-      <div ref={carousel}>
-        <div className="flex gap-8 px-10">
-          {burgers.map((burger, index) => (
-            <div
-              key={index}
-              className="burger-item min-w-[300px] md:min-w-[400px] flex flex-col items-center text-center"
-            >
-              <div className="w-full h-[300px] flex items-center justify-center mb-6">
-                <img
-                  src={burger.src}
-                  alt={burger.title}
-                  className="max-w-full max-h-full object-contain"
-                  draggable="false"
-                />
+      {/* Carousel — native browser horizontal scroll */}
+      <div
+        ref={scrollerRef}
+        className="
+          overflow-x-auto overflow-y-hidden
+          scroll-smooth
+          cursor-grab active:cursor-grabbing
+          [scrollbar-width:none]
+          [&::-webkit-scrollbar]:hidden
+        "
+        style={{ touchAction: 'pan-x' }}
+      >
+        <div className="flex gap-8 pl-30 pr-150 pt-16 pb-10 w-max">
+          {burgers.map((burger, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <div
+                key={i}
+                className={`
+                  burger-card
+                  flex flex-col items-center text-center shrink-0
+                  w-[300px] md:w-[400px]
+                  pointer-events-none
+                  transition-transform duration-500 ease-out
+                  ${isActive ? 'scale-100' : 'scale-[0.82]'}
+                `}
+              >
+                {/* Burger image */}
+                <div className="w-full h-[240px] md:h-[300px] flex items-center justify-center mb-5">
+                  <img
+                    src={burger.src}
+                    alt={burger.title}
+                    draggable="false"
+                    className="max-w-full max-h-full object-contain pointer-events-none"
+                  />
+                </div>
+
+                {/* Name */}
+                <h3 className="text-xl md:text-2xl font-black text-[#1a3a2a] uppercase tracking-tight mb-2 leading-tight">
+                  {burger.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[#1a3a2a] text-sm font-medium leading-relaxed max-w-[220px]">
+                  {burger.description}
+                </p>
               </div>
-
-              <h3 className="text-3xl font-black text-[#1a3a2a] mb-2">
-                {burger.title}
-              </h3>
-
-              <p className="text-[#1a3a2a] text-sm max-w-[250px] font-medium leading-relaxed">
-                {burger.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {/* BUTTON */}
-      <div ref={buttonRef} className="flex justify-center mt-20">
+      {/* CTA button */}
+      <div ref={buttonRef} className="flex justify-center mt-10">
         <OrderButton className="px-12 py-5 text-xl" />
       </div>
     </section>

@@ -3,10 +3,13 @@ import Nav from '../components/common/Nav';
 import { Outlet, useLocation } from 'react-router';
 import Footer from '../components/common/Footer';
 import { ROUTES } from '../constants/routes';
+import LoginModal from '../components/common/LoginModal';
+import { useAuth } from '../context/AuthContext';
 
 export default function Layout() {
   const location = useLocation();
   const isOrderPage = location.pathname === ROUTES.ORDER;
+  const { isLoginModalOpen, setIsLoginModalOpen } = useAuth();
 
   return (
     <>
@@ -15,6 +18,10 @@ export default function Layout() {
         <Outlet />
       </main>
       {!isOrderPage && <Footer />}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </>
   );
 }

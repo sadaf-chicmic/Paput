@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Eye, EyeOff } from 'lucide-react';
 import images from '../../assets/images';
@@ -13,7 +13,20 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const { signIn, signUp, signOut } = useAuth();
+  const { signIn, signUp, signOut, resendConfirmation, authError, clearAuthError } = useAuth();
+
+  useEffect(() => {
+    if (authError) {
+      setError(authError.message === 'otp_expired' 
+        ? 'El enlace de confirmación ha caducado. Por favor, solicita uno nuevo.' 
+        : authError.message);
+      
+      // If it's an auth error from the URL, we might want to ensure the modal is in a certain state
+      if (authError.code === 'otp_expired') {
+        setIsSignUp(false);
+      }
+    }
+  }, [authError]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,19 +36,19 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     try {
       if (isSignUp) {
-        const { error: signUpError } = await signUp({ email, password });
+        const { data: signUpData, error: signUpError } = await signUp({ email, password });
         if (signUpError) throw signUpError;
         
-        setMessage('¡Revisa tu correo para confirmar tu cuenta!');
-      } else {
-        const { data, error: signInError } = await signIn({ email, password });
-        if (signInError) throw signInError;
-
-        // Force check for email confirmation if Supabase doesn't enforce it
-        if (data?.user && !data.user.email_confirmed_at) {
-          await signOut();
-          throw new Error('Email not confirmed');
+        // If Supabase is configured to not require confirmation, signUpData will contain a session
+        if (signUpData?.session) {
+          onClose();
+        } else {
+          setMessage('¡Cuenta creada con éxito! Ya puedes iniciar sesión.');
+          setIsSignUp(false);
         }
+      } else {
+        const { error: signInError } = await signIn({ email, password });
+        if (signInError) throw signInError;
 
         onClose();
       }
@@ -69,7 +82,10 @@ const LoginModal = ({ isOpen, onClose }) => {
             {/* Close Button */}
             <button
               data-cursor
-              onClick={onClose}
+              onClick={() => {
+                if (authError) clearAuthError();
+                onClose();
+              }}
               className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition-colors group"
             >
               <img

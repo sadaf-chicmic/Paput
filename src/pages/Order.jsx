@@ -4,7 +4,6 @@ import OrderSidebar from '../components/order/OrderSidebar';
 import OrderMap from '../components/order/OrderMap';
 import LocationsTab from '../components/order/LocationsTab';
 import OrderFooter from '../components/order/OrderFooter';
-import LoginModal from '../components/common/LoginModal';
 
 import { API_ENDPOINTS } from '../constants/api';
 import { APP_CONFIG } from '../constants/config';
@@ -13,7 +12,7 @@ import { useAuth } from '../context/AuthContext';
 import { addressService } from '../services/addressService';
 
 const Order = () => {
-  const { user } = useAuth();
+  const { user, isLoginModalOpen, setIsLoginModalOpen } = useAuth();
   const [activeTab, setActiveTab] = useState(ORDER_TEXTS.TABS.ORDER); // ORDER or LOCATIONS
   const [orderType, setOrderType] = useState(ORDER_TEXTS.TYPES.DELIVERY); // DELIVERY or PICKUP
   const [searchQuery, setSearchQuery] = useState('');
@@ -30,7 +29,6 @@ const Order = () => {
     hours: ORDER_TEXTS.STORE.DEFAULT_HOURS,
     location: APP_CONFIG.DEFAULT_COORDINATES,
   });
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   // Saved addresses state
   const [savedAddresses, setSavedAddresses] = useState([]);
@@ -210,10 +208,6 @@ const Order = () => {
           </div>
         )}
       </div>
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
     </div>
   );
 };

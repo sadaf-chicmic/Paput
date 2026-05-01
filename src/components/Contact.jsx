@@ -93,7 +93,7 @@ export default function Contact() {
 
         <p className="text-[18px] md:text-[20px] leading-tight font-medium  mb-8">
           {S.JOIN_DESCRIPTION_PREFIX}
-          <span className="font-black underline decoration-2 underline-offset-4">
+          <span data-cursor onClick={() => window.open(`mailto:${S.JOIN_EMAIL}`)} className="font-black underline decoration-2 underline-offset-4">
             {S.JOIN_EMAIL}
           </span>
           {S.JOIN_DESCRIPTION_SUFFIX}
