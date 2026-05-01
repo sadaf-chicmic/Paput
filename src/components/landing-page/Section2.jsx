@@ -118,7 +118,7 @@ export default function Section2() {
         "
         style={{ touchAction: 'pan-x' }}
       >
-        <div className="flex gap-8 pl-30 pr-150 pt-16 pb-10 w-max">
+        <div className="flex gap-8 pl-10 pr-150  w-max">
           {burgers.map((burger, i) => {
             const isActive = i === activeIndex;
             return (
@@ -127,14 +127,14 @@ export default function Section2() {
                 className={`
                   burger-card
                   flex flex-col items-center text-center shrink-0
-                  w-[300px] md:w-[400px]
+                  w-[400px] md:w-[520px]
                   pointer-events-none
                   transition-transform duration-500 ease-out
                   ${isActive ? 'scale-100' : 'scale-[0.82]'}
                 `}
               >
                 {/* Burger image */}
-                <div className="w-full h-[240px] md:h-[300px] flex items-center justify-center mb-5">
+                <div className="w-full h-[320px] md:h-[420px] flex items-center justify-center mb-6">
                   <img
                     src={burger.src}
                     alt={burger.title}
@@ -144,12 +144,12 @@ export default function Section2() {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-xl md:text-2xl font-black text-[#1a3a2a] uppercase tracking-tight mb-2 leading-tight">
+                <h3 className="text-2xl md:text-3xl font-black text-[#1a3a2a] uppercase tracking-tight mb-3 leading-tight">
                   {burger.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#1a3a2a] text-sm font-medium leading-relaxed max-w-[220px]">
+                <p className="text-[#1a3a2a] text-base font-medium leading-relaxed max-w-[300px]">
                   {burger.description}
                 </p>
               </div>
@@ -159,8 +159,8 @@ export default function Section2() {
       </div>
 
       {/* CTA button */}
-      <div ref={buttonRef} className="flex justify-center mt-10">
-        <OrderButton className="px-12 py-5 text-xl" />
+      <div ref={buttonRef} className="flex justify-center mt-8">
+        <OrderButton className="px-8 py-4 text-xl" />
       </div>
     </section>
   );
