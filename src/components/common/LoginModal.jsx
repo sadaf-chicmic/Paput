@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, Eye, EyeOff } from 'lucide-react';
+import { X, Loader2, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import images from '../../assets/images';
 import { useAuth } from '../../context/AuthContext';
 
@@ -12,6 +12,8 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [needsEmailConfirmation, setNeedsEmailConfirmation] = useState(true);
 
   const { signIn, signUp, signOut, resendConfirmation, authError, clearAuthError } = useAuth();
 
@@ -28,6 +30,20 @@ const LoginModal = ({ isOpen, onClose }) => {
     }
   }, [authError]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      const timer = setTimeout(() => {
+        setRegistrationSuccess(false);
+        setIsSignUp(false);
+        setError(null);
+        setMessage(null);
+        setEmail('');
+        setPassword('');
+      }, 300); // Wait for exit animation
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,11 +57,11 @@ const LoginModal = ({ isOpen, onClose }) => {
         
         // If Supabase is configured to not require confirmation, signUpData will contain a session
         if (signUpData?.session) {
-          onClose();
+          setNeedsEmailConfirmation(false);
         } else {
-          setMessage('¡Cuenta creada con éxito! Ya puedes iniciar sesión.');
-          setIsSignUp(false);
+          setNeedsEmailConfirmation(true);
         }
+        setRegistrationSuccess(true);
       } else {
         const { error: signInError } = await signIn({ email, password });
         if (signInError) throw signInError;
@@ -97,94 +113,134 @@ const LoginModal = ({ isOpen, onClose }) => {
             </button>
 
             <div className="flex flex-col gap-6">
-              <div className="flex flex-col">
-                <h2 className="text-[26px] font-bold text-[#0a4635] uppercase tracking-tight">
-                  {isSignUp ? 'Crear cuenta' : 'Su cuenta'}
-                </h2>
-                <p className="text-gray-500 font-medium text-[16px]">
-                  {isSignUp
-                    ? 'Regístrese para guardar sus direcciones.'
-                    : 'Inicie sesión para comenzar.'}
-                </p>
-              </div>
+              {registrationSuccess ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center text-center py-8 gap-6"
+                >
+                  <div className="w-20 h-20 bg-[#0a4635]/5 rounded-full flex items-center justify-center text-[#0a4635]">
+                    <CheckCircle2 size={40} strokeWidth={2.5} />
+                  </div>
+                  
+                  <div className="flex flex-col gap-2">
+                    <h2 className="text-[26px] font-bold text-[#0a4635] uppercase tracking-tight">
+                      {needsEmailConfirmation ? '¡Registro exitoso!' : '¡Bienvenido!'}
+                    </h2>
+                    <p className="text-gray-500 font-medium text-[16px] max-w-[320px] mx-auto">
+                      {needsEmailConfirmation 
+                        ? 'Te hemos enviado un correo de confirmación. Por favor, verifica tu bandeja de entrada para activar tu cuenta.'
+                        : 'Tu cuenta ha sido creada con éxito. Ya puedes empezar a disfrutar de Paput.'}
+                    </p>
+                  </div>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
-                    Correo electrónico
-                  </label>
-                  <input
+                  <button
                     data-cursor
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Ingrese correo electrónico"
-                    className="w-full h-12 px-6 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
-                  />
-                </div>
+                    onClick={() => {
+                      if (!needsEmailConfirmation) {
+                        onClose();
+                      } else {
+                        setRegistrationSuccess(false);
+                        setIsSignUp(false);
+                      }
+                    }}
+                    className="w-full max-w-[280px] h-12 bg-[#0a4635] text-white rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-[#0a4635]/90 transition-all shadow-lg hover:translate-y-[-2px] active:translate-y-0"
+                  >
+                    {needsEmailConfirmation ? 'Volver al inicio' : 'Comenzar'}
+                  </button>
+                </motion.div>
+              ) : (
+                <>
+                  <div className="flex flex-col">
+                    <h2 className="text-[26px] font-bold text-[#0a4635] uppercase tracking-tight">
+                      {isSignUp ? 'Crear cuenta' : 'Su cuenta'}
+                    </h2>
+                    <p className="text-gray-500 font-medium text-[16px]">
+                      {isSignUp
+                        ? 'Regístrese para guardar sus direcciones.'
+                        : 'Inicie sesión para comenzar.'}
+                    </p>
+                  </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
-                    Contraseña
-                  </label>
-                  <div className="relative group">
-                    <input
-                      data-cursor
-                      type={showPassword ? "text" : "password"}
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Ingrese su contraseña"
-                      className="w-full h-12 px-6 pr-12 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
-                    />
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
+                        Correo electrónico
+                      </label>
+                      <input
+                        data-cursor
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Ingrese correo electrónico"
+                        className="w-full h-12 px-6 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[12px] font-bold text-[#0a4635] uppercase tracking-wider ml-1">
+                        Contraseña
+                      </label>
+                      <div className="relative group">
+                        <input
+                          data-cursor
+                          type={showPassword ? "text" : "password"}
+                          required
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          placeholder="Ingrese su contraseña"
+                          className="w-full h-12 px-6 pr-12 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
+                        />
+                        <button
+                          type="button"
+                          data-cursor
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#0a4635] transition-colors"
+                        >
+                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                      </div>
+                    </div>
+
+                    {error && (
+                      <p className="text-red-500 text-sm font-bold ml-1">{error}</p>
+                    )}
+                    {message && (
+                      <p className="text-green-600 text-sm font-bold ml-1">
+                        {message}
+                      </p>
+                    )}
+
                     <button
-                      type="button"
                       data-cursor
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-[#0a4635] transition-colors"
+                      type="submit"
+                      disabled={loading}
+                      className="w-full h-12 bg-[#0a4635] text-white rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-[#0a4635]/90 transition-all shadow-lg hover:translate-y-[-2px] active:translate-y-0 disabled:opacity-50 disabled:translate-y-0 flex items-center justify-center gap-2"
                     >
-                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      {loading ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : isSignUp ? (
+                        'Registrarse'
+                      ) : (
+                        'Acceso'
+                      )}
+                    </button>
+                  </form>
+
+                  <div className="text-center">
+                    <button
+                      data-cursor
+                      onClick={() => setIsSignUp(!isSignUp)}
+                      className="text-[#0a4635] text-[14px] font-bold uppercase tracking-wider hover:underline"
+                    >
+                      {isSignUp
+                        ? '¿Ya tienes una cuenta? Iniciar sesión'
+                        : '¿No tienes una cuenta? Regístrate'}
                     </button>
                   </div>
-                </div>
-
-                {error && (
-                  <p className="text-red-500 text-sm font-bold ml-1">{error}</p>
-                )}
-                {message && (
-                  <p className="text-green-600 text-sm font-bold ml-1">
-                    {message}
-                  </p>
-                )}
-
-                <button
-                  data-cursor
-                  type="submit"
-                  disabled={loading}
-                  className="w-full h-12 bg-[#0a4635] text-white rounded-[10px] font-bold uppercase text-[15px] tracking-widest hover:bg-[#0a4635]/90 transition-all shadow-lg hover:translate-y-[-2px] active:translate-y-0 disabled:opacity-50 disabled:translate-y-0 flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                  ) : isSignUp ? (
-                    'Registrarse'
-                  ) : (
-                    'Acceso'
-                  )}
-                </button>
-              </form>
-
-              <div className="text-center">
-                <button
-                  data-cursor
-                  onClick={() => setIsSignUp(!isSignUp)}
-                  className="text-[#0a4635] text-[14px] font-bold uppercase tracking-wider hover:underline"
-                >
-                  {isSignUp
-                    ? '¿Ya tienes una cuenta? Iniciar sesión'
-                    : '¿No tienes una cuenta? Regístrate'}
-                </button>
-              </div>
+                </>
+              )}
             </div>
           </motion.div>
         </div>
