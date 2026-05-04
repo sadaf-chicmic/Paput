@@ -11,10 +11,12 @@ export default function BackgroundPattern() {
         {[...Array(rows)].map((_, i) => (
           <div
             key={i}
-            className={`text-[60px] font-black leading-[0.6] whitespace-nowrap flex items-center gap-10 ${
+            className={`text-[80px] leading-[0.6] whitespace-nowrap flex items-center gap-10 ${
               i % 2 === 0 ? 'text-[#0a4635]' : 'text-transparent'
             }`}
             style={{
+              fontFamily: 'Nazare',
+              fontWeight: 600,
               WebkitTextStroke: i % 2 !== 0 ? '2px #0a4635' : 'none',
               transform: `translateX(${i % 2 === 0 ? '-5%' : '5%'})`,
             }}

@@ -85,7 +85,7 @@ export default function About() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }} // trigger when 60% visible
+          viewport={{ once: true, margin: '-100px' }} // trigger when 60% visible
         >
           <div className="flex justify-center -space-x-16 md:-space-x-12">
             <motion.div

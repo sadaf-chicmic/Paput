@@ -44,4 +44,8 @@ export const AUTH_TEXTS = {
   LOGOUT_CONFIRM_SUBTITLE: '¿Estás seguro de que deseas salir de tu cuenta?',
   LOGOUT_BUTTON: 'Cerrar Sesión',
   CANCEL_BUTTON: 'Cancelar',
+  PASSWORD_STRENGTH_WEAK: 'Débil',
+  PASSWORD_STRENGTH_MEDIUM: 'Media',
+  PASSWORD_STRENGTH_STRONG: 'Fuerte',
+  PASSWORD_STRENGTH_VERY_STRONG: 'Muy fuerte',
 };

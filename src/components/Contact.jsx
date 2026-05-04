@@ -92,7 +92,7 @@ export default function Contact() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-auto flex flex-col md:flex-row justify-between items-center bg-[#ffc62d] text-[#0a4635] px-[40px] py-50 overflow-hidden"
+      className="relative h-auto flex flex-col md:flex-row justify-between items-center bg-[#ffc62d] text-[#0a4635] px-[40px] pb-58 pt-56 overflow-hidden"
     >
       {/* TEXT BLOCK */}
       <div
@@ -100,13 +100,13 @@ export default function Contact() {
         className="flex flex-col max-w-full md:max-w-[55%] z-10 translate-y-[140px]"
       >
         <h2
-          className="text-[55px] sm:text-[70px] md:text-[80px] font-black uppercase leading-[1] mb-6"
+          className="text-[55px] sm:text-[70px] md:text-[80px] font-black uppercase leading-[1] mb-8"
           dangerouslySetInnerHTML={{ __html: S.JOIN_HEADING }}
         />
 
         <p className="text-[18px] md:text-[20px] leading-tight font-medium  mb-8">
           {S.JOIN_DESCRIPTION_PREFIX}
-          <span data-cursor onClick={() => window.open(`mailto:${S.JOIN_EMAIL}`)} className="font-black underline decoration-2 underline-offset-4">
+          <span data-cursor onClick={() => window.open(`mailto:${S.JOIN_EMAIL}`)} className=" underline decoration-2 underline-offset-4">
             {S.JOIN_EMAIL}
           </span>
           {S.JOIN_DESCRIPTION_SUFFIX}
@@ -116,19 +116,19 @@ export default function Contact() {
         <button
           ref={buttonRef}
           onClick={() => window.open(`mailto:${S.JOIN_EMAIL}`)}
-          className="h-14 px-10 bg-transparent text-[#0a4635] font-black text-lg border-2 border-[#0a4635] w-fit rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
+          className="h-18 px-8 bg-transparent text-[#0a4635] font-black text-[18px] border-2 border-[#0a4635] w-fit rounded-full uppercase tracking-tight hover:bg-[#0a4635] hover:text-[#ffc62d] transition-colors duration-300"
         >
           {CONTACT_US}
         </button>
       </div>
 
       {/* IMAGE BLOCK */}
-      <div className="absolute bottom-0 right-15 h-full w-full md:w-1/2 flex justify-end items-end pointer-events-none select-none">
+      <div className="absolute bottom-0 right-13 h-full w-full md:w-1/2 flex justify-end items-end pointer-events-none select-none">
         <img
           ref={imageRef}
           src={images.aboutImg}
           alt={CONTACT_STRINGS.ABOUT_IMG_ALT}
-          className="max-w-[70%] w-full object-contain object-bottom "
+          className="max-w-[76%] w-full object-contain object-bottom "
         />
       </div>
     </section>

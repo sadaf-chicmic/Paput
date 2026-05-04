@@ -26,7 +26,7 @@ export default function OrderButton({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => window.open(ROUTES.ORDER, '_blank')}
-      className={`bg-[#ffc62d] text-[#0a4635] font-black hover:bg-[#0a4635] hover:text-[#ffc62d] rounded-full shadow-2xl uppercase transition-all duration-300 flex items-center justify-center ${className}`}
+      className={`bg-[#ffc62d] text-[#0a4635] font-black hover:bg-[#0a4635] hover:text-[#ffc62d] rounded-full uppercase transition-all duration-300 flex items-center justify-center ${className}`}
       {...props}
     >
       {label}

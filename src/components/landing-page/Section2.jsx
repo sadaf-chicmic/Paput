@@ -121,7 +121,7 @@ gsap.to(buttonRef.current, {
         "
         style={{ touchAction: 'pan-x' }}
       >
-        <div className="flex gap-8 pl-10 pr-150  w-max">
+        <div className="flex pl-10 pr-150  w-max">
           {burgers.map((burger, i) => {
             const isActive = i === activeIndex;
             return (
@@ -130,14 +130,13 @@ gsap.to(buttonRef.current, {
                 className={`
                   burger-card
                   flex flex-col items-center text-center shrink-0
-                  w-[300px] md:w-[420px]
                   pointer-events-none
                   transition-transform duration-500 ease-out
                   ${isActive ? 'scale-100' : 'scale-[0.82]'}
                 `}
               >
                 {/* Burger image */}
-                <div className="w-full h-[320px] md:h-[420px] flex items-center justify-center mb-6">
+                <div className="w-full h-[380px] flex items-center justify-center mb-6">
                   <img
                     src={burger.src}
                     alt={burger.title}
@@ -147,12 +146,12 @@ gsap.to(buttonRef.current, {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-2xl md:text-3xl font-black text-[#1a3a2a] uppercase tracking-tight leading-tight">
+                <h3 className="text-[35px] font-black text-[#1a3a2a] uppercase tracking-tight leading-tight">
                   {burger.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#1a3a2a] text-base font-medium leading-relaxed max-w-[300px]">
+                <p className="text-[#1a3a2a] text-[20px] font-medium leading-relaxed max-w-[300px]">
                   {burger.description}
                 </p>
               </div>
@@ -163,7 +162,7 @@ gsap.to(buttonRef.current, {
 
       {/* CTA button */}
       <div ref={buttonRef} className="flex justify-center mt-4">
-        <OrderButton className="px-8 py-4 text-xl" />
+        <OrderButton className="text-[18px] px-8 py-5 tracking-tight" />
       </div>
     </section>
   );

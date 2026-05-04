@@ -15,6 +15,35 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [needsEmailConfirmation, setNeedsEmailConfirmation] = useState(true);
+  const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const getPasswordStrength = (pass) => {
+    let score = 0;
+    if (!pass) return 0;
+    if (pass.length >= 8) score += 1;
+    if (/[A-Z]/.test(pass)) score += 1;
+    if (/[a-z]/.test(pass)) score += 1;
+    if (/\d/.test(pass)) score += 1;
+    if (/[^A-Za-z0-9]/.test(pass)) score += 1;
+    return score; // max 5
+  };
+
+  const getStrengthConfig = (score) => {
+    switch (score) {
+      case 1:
+        return { color: 'bg-red-500', label: AUTH_TEXTS.PASSWORD_STRENGTH_WEAK, width: '25%' };
+      case 2:
+        return { color: 'bg-orange-500', label: AUTH_TEXTS.PASSWORD_STRENGTH_MEDIUM, width: '50%' };
+      case 3:
+        return { color: 'bg-yellow-500', label: AUTH_TEXTS.PASSWORD_STRENGTH_MEDIUM, width: '65%' };
+      case 4:
+        return { color: 'bg-green-500', label: AUTH_TEXTS.PASSWORD_STRENGTH_STRONG, width: '80%' };
+      case 5:
+        return { color: 'bg-[#0a4635]', label: AUTH_TEXTS.PASSWORD_STRENGTH_VERY_STRONG, width: '100%' };
+      default:
+        return { color: 'bg-gray-200', label: '', width: '0%' };
+    }
+  };
 
   const { signIn, signUp, signOut, resendConfirmation, authError, clearAuthError } = useAuth();
 
@@ -40,6 +69,7 @@ const LoginModal = ({ isOpen, onClose }) => {
         setMessage(null);
         setEmail('');
         setPassword('');
+        setPasswordStrength(0);
       }, 300); // Wait for exit animation
       return () => clearTimeout(timer);
     }
@@ -189,7 +219,11 @@ const LoginModal = ({ isOpen, onClose }) => {
                           type={showPassword ? "text" : "password"}
                           required
                           value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={(e) => {
+                            const newPass = e.target.value;
+                            setPassword(newPass);
+                            setPasswordStrength(getPasswordStrength(newPass));
+                          }}
                           placeholder={AUTH_TEXTS.PASSWORD_PLACEHOLDER}
                           className="w-full h-12 px-6 pr-12 rounded-[10px] border border-gray-200 bg-[#fbfbfb] focus:border-[#0a4635]/40 outline-none transition-all text-[15px] font-bold placeholder:text-gray-300"
                         />
@@ -202,6 +236,26 @@ const LoginModal = ({ isOpen, onClose }) => {
                           {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                       </div>
+                      
+                      {isSignUp && password.length > 0 && (
+                        <div className="flex flex-col gap-1.5 mt-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-bold text-[#0a4635] uppercase tracking-wider">
+                              {getStrengthConfig(passwordStrength).label}
+                            </span>
+                          </div>
+                          <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ 
+                                width: getStrengthConfig(passwordStrength).width,
+                                backgroundColor: getStrengthConfig(passwordStrength).color.replace('bg-', '') === '#0a4635' ? '#0a4635' : undefined
+                              }}
+                              className={`h-full transition-all duration-300 ${getStrengthConfig(passwordStrength).color}`}
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {error && (

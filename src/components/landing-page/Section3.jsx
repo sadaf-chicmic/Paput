@@ -76,7 +76,7 @@ export default function Section3() {
       <div className="relative flex-col items-center justify-center overflow-visible">
         <BackgroundPattern />
 
-        <div className="px-3 pt-2 flex flex-col items-center gap-8">
+        <div className="px-3 pt-42 flex flex-col items-center gap-8">
           <img
             ref={shirtRef}
             src={images.mainShirt}

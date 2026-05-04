@@ -187,21 +187,21 @@ scrollTrigger: {
   return (
     <main ref={sectionRef} className="w-full min-h-screen py-24 md:py-32 px-4 md:px-12 flex flex-col items-center bg-[#f4f3e6]">
       <div ref={textRef} className="flex flex-col items-center text-center mt-20 mb-20">
-        <h2 ref={subtitleRef} className="text-[14px] md:text-[25px] font-bold text-[#0a4635] tracking-widest uppercase mb-6">
+        <h2 ref={subtitleRef} className="text-[25px] font-medium text-[#0a4635] uppercase ">
           {S.SUBTITLE}
         </h2>
 
-        <h1 ref={headingRef} className="text-[clamp(4.5rem,15vw,11rem)] font-black text-[#0a4635] leading-[0.8] tracking-tighter flex flex-col items-center">
+        <h1 ref={headingRef} className="text-[150px] font-black text-[#0a4635] leading-[0.9]  flex flex-col items-center">
           <span>{S.TITLE_LINE1}</span>
           <span>{S.TITLE_LINE2}</span>
           <span>{S.TITLE_LINE3}</span>
         </h1>
 
         <div ref={bottomTextRef} className="mt-6">
-          <p className="text-[17px] md:text-[18px] font-medium text-[#0a4635]">
+          <p className="text-[18px] leading-[0.8] font-medium text-[#0a4635]">
             {S.DESC}
           </p>
-          <p className="text-[17px] md:text-[18px] font-black text-[#0a4635]">
+          <p className="text-[18px] font-bold text-[#0a4635]">
             {S.REMINDER}
           </p>
         </div>

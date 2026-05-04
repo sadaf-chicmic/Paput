@@ -67,20 +67,20 @@ export default function Hero() {
           ref={contentRef}
           className="relative z-10 flex flex-col items-center text-center px-6 mt-20"
         >
-          <p className="text-[#f4f3e6] text-lg md:text-xl lg:text-xl font-medium mb-7">
+          <p className="text-[#f4f3e6] text-[22px] font-medium mb-4">
             {HERO_STRINGS.SUBTITLE}
           </p>
 
-          <h1 className="text-[#f4f3e6] text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.85] uppercase">
+          <h1 className="text-[#f4f3e6] text-[160px] font-black leading-[0.85] uppercase">
             {HERO_STRINGS.TITLE_PRIMARY}
           </h1>
 
-          <h1 className="text-[#f4f3e6] text-6xl md:text-8xl lg:text-[10rem] font-black leading-[0.85] uppercase mb-10">
+          <h1 className="text-[#f4f3e6] text-[160px] font-black leading-[0.85] uppercase mb-10">
             {HERO_STRINGS.TITLE_SECONDARY}
           </h1>
         </div>
         <div ref={buttonRef}>
-          <OrderButton className="h-16 md:h-20 text-xl md:text-2xl px-12 tracking-tight" />
+          <OrderButton className=" text-[18px] px-8 py-5 tracking-tight" />
         </div>
       </div>
     </section>

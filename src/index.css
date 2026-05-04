@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 
 @font-face {
+  font-family: 'Nazare';
+  src: url('https://cdn.prod.website-files.com/67f76ea15593a44f3a57fe4b/67f963ecdb052f24a47c692b_Nazare%20SemiBold.otf')
+    format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Roc Grotesk';
   src: url('https://cdn.prod.website-files.com/67f76ea15593a44f3a57fe4b/67f8e7f5046d43a5abaa3ee1_Kostic%20-%20Roc%20Grotesk%20Regular.otf')
     format('opentype');

@@ -1,8 +1,8 @@
 export const LARGE_ORDERS_STRINGS = {
-  SUBTITLE: 'PEDIDOS PARA GRUPOS Y EVENTOS',
+  SUBTITLE: 'PAPUT PARA GRUPOS Y EVENTOS',
   TITLE_LINE1: 'PAPUT',
   TITLE_LINE2: 'ESTÉS DONDE',
-  TITLE_LINE3: 'CON PAPUT',
+  TITLE_LINE3: 'ESTÉS',
   DESC: 'Llevamos Paput a tu evento, fiesta, boda, cena con amigos... Si te imaginas a Paput allí, haremos lo posible por estar.',
   REMINDER: '‍Recuerda hacer tu pedido con 48h de antelación.',
   STEP_TITLES: [
